@@ -1,4 +1,4 @@
-# CẨM NANG HƯỚNG DẪN SỬ DỤNG HỆ THỐNG ERP / MRP (NEOBAGS V25.02)
+﻿# CẨM NANG HƯỚNG DẪN SỬ DỤNG HỆ THỐNG ERP / MRP (NEOBAGS V25.02)
 
 > **Hệ thống:** NEOBAGS ERP/MRP V 25.02  
 > **Dành cho:** Merchandiser (Đơn hàng), Kỹ thuật/R&D (BOM), Quản lý Sản xuất & Kế hoạch (Planning/PMC), Mua hàng (Purchasing), Quản lý Kho (Warehouse), Giám đốc & Quản trị viên (Admin).  
@@ -318,34 +318,88 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 
 ### 4.3. Nhập kho Nguyên Phụ Liệu (`MATERIAL › Inbound`)
 - **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Inbound` (Đường dẫn: `/material/inbound`)
-- **Mục đích:** Tiếp nhận lô hàng giao từ nhà cung cấp, ghi nhận số lượng thực tế nhận được theo từng mã `MATERIAL PO#`, gắn vị trí kệ kho và cộng tồn vào hệ thống.
+- **Mục đích:** Tiếp nhận các chuyến hàng giao từ Nhà cung cấp theo mã đơn mua `MATERIAL PO#`, kiểm đếm số lượng thực nhận, gắn vị trí kệ kho (Location) và chốt tăng tồn kho hệ thống.
 
-#### A. Bảng nút bấm tác vụ
-| Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
+#### A. Bảng giải thích chi tiết các nút bấm chức năng
+| Tên Nút Bấm | Màu Sắc | Vị Trí Màn Hình | Chức Năng Nghiệp Vụ | Khi Nào Cần Nhấn Nút? |
 | :--- | :--- | :--- | :--- | :--- |
-| **UPLOAD EXCEL** | Xanh dương | Đầu trang | Nhập danh sách phiếu nhập kho nhanh từ file Excel | Khi nhập lô hàng lớn gồm hàng trăm mã phụ liệu cùng lúc |
-| **DOWNLOAD EXCEL** | Vàng cam | Đầu trang | Tải file Excel mẫu phiếu nhập kho | Khi cần mẫu chuẩn để thủ kho làm biên bản nhận hàng |
-| **APPLYING INBOUND NOW** | Xanh lá | Đầu trang | **Chốt ghi sổ nhập kho chính thức** | **Bắt buộc bấm sau khi kiểm tra xong số lượng** để tăng tồn kho hệ thống |
-| **+ ADD** | Xanh lá | Cạnh cột PO# | Thêm dòng vật tư cần nhập | Khi nhập bổ sung từng mã hàng lẻ |
-| **DEL** | Đỏ | Cột cuối mỗi dòng | Xóa dòng vật tư khỏi phiếu nhập | Khi nhập nhầm dòng hoặc nhà cung cấp chưa giao mã đó |
+| **APPLYING INBOUND NOW** | Xanh lá | Thanh công cụ đầu trang | **Xác nhận chốt ghi sổ nhập kho chính thức** để hệ thống cộng dồn số lượng vào tồn kho | **BẮT BUỘC NHẤN** sau khi đã kiểm tra xong số lượng thực nhận và chọn vị trí Location. |
+| **+ ADD** | Xanh lá | Cạnh tiêu đề cột MATERIAL PO# | Tạo thêm 1 dòng trống mới để nhập mã đơn mua vật tư thủ công | Nhấn khi muốn nhập thêm từng dòng vật tư lẻ vào bảng nhập kho. |
+| **UPLOAD EXCEL** | Xanh dương | Thanh công cụ đầu trang | Tải file Excel danh sách nhập kho lên hệ thống | Dùng khi tiếp nhận chuyến xe hàng lớn gồm hàng chục hoặc hàng trăm mã vải/phụ liệu. |
+| **DOWNLOAD EXCEL** | Vàng cam | Thanh công cụ đầu trang | Tải tệp Excel mẫu phiếu nhập kho tiêu chuẩn về máy tính | Nhấn trước khi muốn lập danh sách nhập kho hàng loạt trên máy tính. |
+| **DEL** | Đỏ | Cột cuối cùng của mỗi dòng | Xóa dòng nhập kho vừa tạo khỏi bảng tạm | Nhấn khi gõ nhầm mã PO hoặc nhà cung cấp chưa giao mặt hàng này. |
 
-#### B. Quy trình nhập kho 4 bước
-- **Bước 1:** Nhập mã `MATERIAL PO#` vào dòng nhập. Hệ thống sẽ tự động điền các thông tin: Nhà cung cấp, Tên vật tư, Quy cách, Số lượng đã đặt mua `ORDER QTY` và Số lượng còn thiếu `BALANCE QTY`.
-- **Bước 2:** Kiểm đếm hàng thực tế tại cửa kho, nhập số lượng nhận vào cột **DELIVERY QTY**.
-- **Bước 3:** Tại cột **LOCATION**, chọn vị trí giá kệ mà thủ kho sẽ xếp vật tư vào (Ví dụ: Kệ A1-02, Kho Vải K1...).
-- **Bước 4:** Kiểm tra tổng thể và bấm nút màu xanh lá **APPLYING INBOUND NOW**. Hệ thống sẽ tự động tăng số lượng tồn trong `MATERIAL › Inventory` và giảm công nợ giao hàng trên `MATERIAL › Manage PO`.
+#### B. Quy trình thao tác từng bước chi tiết (Step-by-step)
+
+##### 👉 Kịch bản A: Nhập trực tiếp trên giao diện Web (Áp dụng cho đơn hàng lẻ, vài dòng vật tư)
+- **Bước 1 (Mở màn hình):** Truy cập vào menu `MATERIAL ▶ Inbound` (Đường dẫn: `/material/inbound`).
+- **Bước 2 (Tạo dòng & Nạp thông tin):**
+  + Nhấn nút màu xanh lá **`+ ADD`** nằm cạnh tiêu đề cột `MATERIAL PO#`.
+  + Tại ô `MATERIAL PO #`, gõ hoặc chọn mã đơn mua vật tư cần nhập (Ví dụ: `MPO-2601...`).
+  + *Phản hồi của hệ thống:* Hệ thống tự động nạp (auto-fill) 100% các thông tin: Mã đơn hàng nội bộ `NEO PO#`, Tên nhà cung cấp `SUPPLIER NAME`, Thông tin vật tư (Mã, Tên, Quy cách, Màu, Đơn vị tính), Số lượng đã đặt mua `ORDER QTY`, Số lượng đã giao ở các đợt trước `DELIVERED (IN) QTY`, và Số lượng còn thiếu cần giao `BALANCE QTY`.
+- **Bước 3 (Kiểm đếm & Nhập số lượng thực nhận):**
+  + Đối chiếu thực tế với Phiếu giao hàng (Delivery Note/Packing List) của Nhà cung cấp. Nhập số lượng thực tế nhận được vào ô **`DELIVERY QTY`**.
+  + *Quy tắc:* Nếu NCC giao đủ toàn bộ thì điền đúng bằng số hiển thị tại cột `BALANCE QTY`. Nếu NCC giao thiếu (Giao từng phần - Partial delivery) thì điền đúng số lượng thực tế kiểm đếm được; số còn thiếu hệ thống sẽ tự lưu lại trong `BALANCE QTY` cho các đợt giao sau.
+- **Bước 4 (Chỉ định vị trí giá kệ kho - Bắt buộc):**
+  + Tại cột **`LOCATION`**, nhấp vào dropdown và chọn vị trí kệ thực tế mà bạn sẽ xếp hàng vào (Ví dụ: `KỆ-A1-02`, `KHO-VẢI-01`...).
+  + ⚠️ *Tuyệt đối không bỏ trống LOCATION, nếu không hệ thống sẽ không thể ghi nhận vị trí vật tư trên báo cáo tồn kho.*
+- **Bước 5 (Ghi chú):** Tại cột **`REMARK`**, nhập ghi chú kiểm phẩm nếu có (Ví dụ: *"Bao bì nguyên vẹn đã kiểm kim"*, *"Cuộn số 3 có vết trầy nhẹ đã báo NCC"*).
+- **Bước 6 (Nhấn nút chốt ghi sổ):** Rà soát lại toàn bộ dòng dữ liệu, sau đó **nhấn nút màu xanh lá `APPLYING INBOUND NOW`** trên thanh công cụ đầu trang.
+
+##### 🔔 SAU KHI NHẤN NÚT "APPLYING INBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?
+1. **Xác nhận trạng thái hệ thống:** Màn hình sẽ hiện thông báo xác nhận thành công *"Inbound Applied Successfully!"*. Các dòng bạn vừa nhập sẽ được hệ thống khóa lại (đóng sổ) để tránh nhập trùng lặp.
+2. **Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):**
+   - Mở menu `MATERIAL ▶ Inventory`.
+   - Tìm mã nguyên phụ liệu vừa nhập.
+   - Kiểm tra cột `IN` (Nhập lũy kế) và cột `INVENTORY` (Tồn khả dụng): Số lượng phải tăng lên đúng bằng số bạn vừa nhập tại `DELIVERY QTY`.
+   - Kiểm tra cột `LOCATION`: Đảm bảo số lượng tồn nằm đúng ở vị trí kệ bạn đã chọn.
+3. **Đối soát tại màn hình Đơn mua (`MATERIAL ▶ Manage PO`):**
+   - Vào `MATERIAL ▶ Manage PO`, chọn mã `NEO PO#` tương ứng.
+   - Tại khối `Ⓔ DELIVERY`: Cột `① IN` đã tăng lên, và cột `BAL` (nợ chưa giao) đã giảm xuống tương ứng. Nếu NCC đã giao đủ 100%, trạng thái đơn mua sẽ chuyển sang hoàn tất.
+4. **Hành động tiếp theo:** Thông báo cho Quản đốc xưởng may hoặc bộ phận Kế hoạch (PMC) biết vật tư đã sẵn sàng trong kho để chuẩn bị xuất cấp cho chuyền may tại màn hình `MATERIAL ▶ Outbound`.
+
+##### 👉 Kịch bản B: Nhập hàng loạt bằng file Excel (Áp dụng cho xe hàng lớn / container nhiều mã)
+- **Bước 1:** Nhấn nút màu vàng cam **`DOWNLOAD EXCEL`** trên thanh công cụ để tải file mẫu chuẩn về máy tính.
+- **Bước 2:** Mở file Excel vừa tải, điền các cột: `MATERIAL PO#`, `DELIVERY QTY` (Số lượng thực nhận), `LOCATION` (Mã kệ kho), và `REMARK`. Lưu lại file.
+- **Bước 3:** Quay lại màn hình Inbound, nhấn nút màu xanh dương **`UPLOAD EXCEL`** và chọn file Excel bạn vừa điền.
+- **Bước 4:** Toàn bộ danh sách vật tư từ file Excel sẽ được nạp hiển thị lên bảng. Thủ kho kiểm tra đối chiếu lại một lượt.
+- **Bước 5:** **Nhấn nút màu xanh lá `APPLYING INBOUND NOW`**. Sau khi nhấn, thực hiện các bước đối soát kiểm tra tại `Inventory` và `Manage PO` như mô tả ở Kịch bản A.
 
 ---
 
 ### 4.4. Xuất kho Cấp phát Sản xuất (`MATERIAL › Outbound`)
 - **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Outbound` (Đường dẫn: `/material/Outbound`)
-- **Mục đích:** Xuất cấp nguyên phụ liệu từ kho cho các chuyền may hoặc xưởng cắt theo lệnh sản xuất.
+- **Mục đích:** Xuất cấp nguyên phụ liệu từ kho cho các Chuyền may (Line) hoặc Xưởng cắt theo Lệnh sản xuất và Kế hoạch đơn hàng.
 
-#### A. Bảng nút bấm tác vụ
-- **+ ADD/EDIT STYLE** (Xanh lá): Chọn mã hàng và đơn hàng cần xuất vật tư.
-- **UPLOAD EXCEL** (Xanh dương): Tải file danh sách xuất kho hàng loạt.
-- **DOWNLOAD EXCEL** (Vàng cam): Tải mẫu phiếu xuất kho Excel.
-- **APPLYING OUTBOUND NOW** (Xanh lá): **Chốt xuất kho chính thức**, tự động trừ tồn kho hệ thống và ghi nhận chi phí sản xuất cho đơn hàng.
+#### A. Bảng giải thích chi tiết các nút bấm chức năng
+| Tên Nút Bấm | Màu Sắc | Vị Trí Màn Hình | Chức Năng Nghiệp Vụ | Khi Nào Cần Nhấn Nút? |
+| :--- | :--- | :--- | :--- | :--- |
+| **+ ADD/EDIT STYLE** | Xanh lá | Thanh công cụ đầu trang | Mở popup chọn mã đơn hàng NEO PO# và mã Style cần xuất vật tư | **Nhấn đầu tiên** khi bắt đầu tạo phiếu xuất kho cấp cho chuyền. |
+| **APPLYING OUTBOUND NOW** | Xanh lá | Thanh công cụ đầu trang | **Chốt trừ tồn kho chính thức** và ghi nhận chi phí xuất kho cho đơn hàng | **BẮT BUỘC NHẤN** sau khi đã nhập xong số lượng thực xuất tại cột `TO BE OUT QTY`. |
+| **UPLOAD EXCEL** | Xanh dương | Thanh công cụ đầu trang | Nhập danh sách xuất kho từ file Excel | Dùng khi xuất kho số lượng lớn cho nhiều chuyền may cùng lúc. |
+| **DOWNLOAD EXCEL** | Vàng cam | Thanh công cụ đầu trang | Tải mẫu phiếu xuất kho Excel | Dùng khi cần làm phiếu xuất trước trên bảng tính. |
+| **DEL** | Đỏ | Cột cuối mỗi dòng | Xóa dòng vật tư khỏi phiếu xuất | Nhấn khi chuyền chưa cần dùng đến loại vật tư này ở đợt may hiện tại. |
+
+#### B. Quy trình thao tác từng bước chi tiết (Step-by-step)
+- **Bước 1 (Truy cập màn hình):** Vào menu `MATERIAL ▶ Outbound` (Đường dẫn: `/material/Outbound`).
+- **Bước 2 (Chọn Đơn hàng & Mã Style cần xuất):**
+  + Nhấn nút màu xanh lá **`+ ADD/EDIT STYLE`** trên thanh công cụ.
+  + Trong hộp thoại hiện ra, chọn mã đơn hàng **`NEO PO#`** và mã **`Style`** đang chuẩn bị đưa lên chuyền may.
+  + *Phản hồi của hệ thống:* Hệ thống sẽ tự động nạp toàn bộ danh mục nguyên phụ liệu cần thiết theo định mức BOM, hiển thị định mức tính toán `CALC. QTY`, vị trí kệ `LOCATION`, và số lượng tồn hiện có sẵn trong kho `STOCK`.
+- **Bước 3 (Nhập số lượng thực xuất):**
+  + Tại cột **`TO BE OUT QTY`**, nhập số lượng vải/phụ liệu thực tế bàn giao cho tổ trưởng chuyền may.
+  + ⚠️ *Lưu ý: Số lượng nhập tại `TO BE OUT QTY` không được vượt quá số lượng tồn sẵn có tại cột `STOCK`. Nếu kho không đủ, hệ thống sẽ cảnh báo không cho xuất.*
+- **Bước 4 (Ghi chú):** Nhập tên Chuyền may hoặc Tổ nhận hàng tại cột **`REMARK`** (Ví dụ: *"Xuất cho Chuyền May 2 ca ngày"*, *"Xuất đợt 1 phân bổ xưởng Cắt"*).
+- **Bước 5 (Nhấn nút chốt xuất kho):** Kiểm tra tổng thể các dòng xuất, sau đó **nhấn nút màu xanh lá `APPLYING OUTBOUND NOW`** ở đầu trang.
+
+##### 🔔 SAU KHI NHẤN NÚT "APPLYING OUTBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?
+1. **Xác nhận trạng thái hoàn tất:** Hệ thống hiển thị thông báo xuất kho thành công *"Outbound Applied Successfully!"*. Số lượng tồn kho tương ứng sẽ bị trừ ngay lập tức.
+2. **Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):**
+   - Vào `MATERIAL ▶ Inventory`.
+   - Kiểm tra cột `OUT` (Xuất lũy kế): Đã được cộng thêm số lượng vừa xuất.
+   - Kiểm tra cột `INVENTORY` (Tồn khả dụng): Đã bị giảm trừ chính xác số lượng bạn vừa giao cho xưởng.
+3. **Bàn giao thực tế & Ký nhận:** In hoặc ký biên bản xuất kho bàn giao vật tư cho Tổ trưởng chuyền may / Thủ kho phụ xưởng.
+4. **Hành động tiếp theo:** Chuyển sang phân hệ `PRODUCTION ▶ Schedule-Manage` để kiểm tra lịch vào hàng của chuyền may và theo dõi tiến độ sản xuất từng giờ trên `PRODUCTION ▶ Dashboard-Table`.
 
 ---
 

@@ -250,6 +250,37 @@
       padding: 0.25rem 0.55rem;
       border-radius: 6px;
     }
+    .sidebar-filter-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #e0f2fe;
+      animation: fadeIn 0.2s ease;
+    }
+    .btn-reset-filter {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0 0.25rem;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .btn-reset-filter:hover {
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* LAYOUT CONTAINER */
     .main-container {
@@ -311,6 +342,18 @@
       font-weight: 700;
       border-left: 3px solid var(--accent);
       padding-left: 0.75rem;
+    }
+    .sidebar-nav li a.role-matched {
+      border-left: 3px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      color: #e0f2fe;
+      font-weight: 600;
+    }
+    .sidebar-nav li a.role-matched::before {
+      content: "● ";
+      color: #38bdf8;
+      font-size: 0.7rem;
+      margin-right: 0.35rem;
     }
     .sidebar-divider {
       height: 1px;
@@ -1033,16 +1076,6 @@
   <section class="hero">
     <h1>CẨM NANG ĐIỆN TỬ VẬN HÀNH HỆ THỐNG MRP</h1>
     <p>Tài liệu tra cứu trực quan và trợ lý ảo đơn giản dành cho Merchandiser, Kỹ thuật (BOM), Mua hàng, Quản lý Kho và Quản đốc Sản xuất xưởng may NEOBAGS.</p>
-    
-    <div class="role-filters" id="roleFilters">
-      <button class="role-pill active" data-role="all">⚡ Tất cả phân hệ</button>
-      <button class="role-pill" data-role="merchandiser">💼 Merchandiser (Đơn hàng)</button>
-      <button class="role-pill" data-role="technical">📐 Kỹ thuật / R&D (BOM)</button>
-      <button class="role-pill" data-role="purchasing">🛒 Mua hàng (PO/PR/Chi phí)</button>
-      <button class="role-pill" data-role="warehouse">📦 Quản lý Kho (In/Out/Tồn)</button>
-      <button class="role-pill" data-role="production">🏭 Kế hoạch & Chuyền may</button>
-      <button class="role-pill" data-role="admin">🛡️ Quản trị viên</button>
-    </div>
   </section>
 
   <!-- MAIN WRAPPER -->
@@ -1064,31 +1097,35 @@
           <button class="role-pill" data-role="production">🏭 Chuyền may</button>
           <button class="role-pill" data-role="admin">🛡️ Quản trị</button>
         </div>
+        <div class="sidebar-filter-status" id="sidebarFilterStatus" style="display: none;">
+          <span id="filterBadgeText">Đang lọc: Merchandiser</span>
+          <button type="button" class="btn-reset-filter" id="btnResetFilter" title="Xem tất cả">✕</button>
+        </div>
       </div>
 
       <div class="sidebar-divider"></div>
 
       <div class="sidebar-title">Mục lục nhanh</div>
       <ul class="sidebar-nav" id="sidebarNav">
-        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
-        <li data-role="all technical purchasing warehouse admin"><a href="#sec-code-rm">1. Danh mục R/M (Code › RM)</a></li>
-        <li data-role="all merchandiser admin"><a href="#sec-fg-order">2. Đơn hàng (Buyer Order)</a></li>
-        <li data-role="all technical merchandiser admin"><a href="#sec-bom-list">3. Danh sách BOM (BOM-List)</a></li>
-        <li data-role="all technical merchandiser admin"><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
-        <li class="sidebar-divider" data-role="all merchandiser technical purchasing warehouse admin"></li>
-        <li data-role="all purchasing warehouse merchandiser admin"><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
-        <li data-role="all purchasing warehouse merchandiser admin"><a href="#sec-po-status">6. Trạng thái Đơn mua (PO Status)</a></li>
-        <li data-role="all warehouse purchasing admin"><a href="#sec-inbound">7. Nhập kho Vật tư (Inbound)</a></li>
-        <li data-role="all warehouse admin"><a href="#sec-inventory">8. Quản lý Tồn kho (Inventory)</a></li>
-        <li data-role="all warehouse production admin"><a href="#sec-outbound">9. Xuất kho Cấp phát (Outbound)</a></li>
-        <li class="sidebar-divider" data-role="all production warehouse admin"></li>
-        <li data-role="all production admin"><a href="#sec-schedule">10. Kế hoạch Chuyền (Schedule)</a></li>
-        <li data-role="all production admin"><a href="#sec-dashboard">11. Giám sát Năng suất (DT1-DT8)</a></li>
-        <li data-role="all production warehouse merchandiser admin"><a href="#sec-shipment">12. Xuất Hàng & Tồn F/G (Shipment & Stock)</a></li>
-        <li class="sidebar-divider" data-role="all merchandiser technical purchasing warehouse production admin"></li>
-        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-buttons">13. Bảng Quy chuẩn Nút bấm</a></li>
-        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-glossary">14. Từ điển Thuật ngữ MRP</a></li>
-        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-faq">15. Ma trận Xử lý Lỗi (FAQ)</a></li>
+        <li data-role="common"><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
+        <li data-role="technical purchasing warehouse admin"><a href="#sec-code-rm">1. Danh mục R/M (Code › RM)</a></li>
+        <li data-role="merchandiser admin"><a href="#sec-fg-order">2. Đơn hàng (Buyer Order)</a></li>
+        <li data-role="technical merchandiser admin"><a href="#sec-bom-list">3. Danh sách BOM (BOM-List)</a></li>
+        <li data-role="technical merchandiser admin"><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
+        <li class="sidebar-divider"></li>
+        <li data-role="purchasing warehouse merchandiser admin"><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
+        <li data-role="purchasing warehouse merchandiser admin"><a href="#sec-po-status">6. Trạng thái Đơn mua (PO Status)</a></li>
+        <li data-role="warehouse purchasing admin"><a href="#sec-inbound">7. Nhập kho Vật tư (Inbound)</a></li>
+        <li data-role="warehouse admin"><a href="#sec-inventory">8. Quản lý Tồn kho (Inventory)</a></li>
+        <li data-role="warehouse production admin"><a href="#sec-outbound">9. Xuất kho Cấp phát (Outbound)</a></li>
+        <li class="sidebar-divider"></li>
+        <li data-role="production admin"><a href="#sec-schedule">10. Kế hoạch Chuyền (Schedule)</a></li>
+        <li data-role="production admin"><a href="#sec-dashboard">11. Giám sát Năng suất (DT1-DT8)</a></li>
+        <li data-role="production warehouse merchandiser admin"><a href="#sec-shipment">12. Xuất Hàng & Tồn F/G (Shipment & Stock)</a></li>
+        <li class="sidebar-divider"></li>
+        <li data-role="common"><a href="#sec-buttons">13. Bảng Quy chuẩn Nút bấm</a></li>
+        <li data-role="common"><a href="#sec-glossary">14. Từ điển Thuật ngữ MRP</a></li>
+        <li data-role="common"><a href="#sec-faq">15. Ma trận Xử lý Lỗi (FAQ)</a></li>
       </ul>
     </aside>
 
@@ -1096,7 +1133,7 @@
     <main class="content">
 
       <!-- 1. PIPELINE INTERACTIVE DIAGRAM -->
-      <section class="pipeline-card" id="pipeline" data-role="all merchandiser technical purchasing warehouse production admin">
+      <section class="pipeline-card" id="pipeline" data-role="common">
         <div class="pipeline-title">
           <span>🔄</span> Chu Trình Dữ Liệu Sản Xuất Khép Kín (End-to-End Pipeline)
         </div>
@@ -1158,7 +1195,7 @@
       </section>
 
       <!-- 1. SECTION: CODE R/M (DANH MỤC NGUYÊN PHỤ LIỆU GỐC) -->
-      <section class="module-section" id="sec-code-rm" data-role="all technical purchasing warehouse admin">
+      <section class="module-section" id="sec-code-rm" data-role="technical purchasing warehouse admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ CODE (MASTER DATA)</span>
@@ -1287,7 +1324,7 @@
       </section>
 
       <!-- 2. SECTION: F/G BUYER ORDER -->
-      <section class="module-section" id="sec-fg-order" data-role="all merchandiser admin">
+      <section class="module-section" id="sec-fg-order" data-role="merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ F/G</span>
@@ -1400,7 +1437,7 @@
       </section>
 
       <!-- 3. SECTION: F/G BOM-LIST (DANH SÁCH ĐỊNH MỨC VẬT TƯ) -->
-      <section class="module-section" id="sec-bom-list" data-role="all technical merchandiser admin">
+      <section class="module-section" id="sec-bom-list" data-role="technical merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ F/G</span>
@@ -1516,7 +1553,7 @@
       </section>
 
       <!-- 4. SECTION: F/G BOM-MANAGE (CHI TIẾT ĐỊNH MỨC) -->
-      <section class="module-section" id="sec-bom-manage" data-role="all technical merchandiser admin">
+      <section class="module-section" id="sec-bom-manage" data-role="technical merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ F/G</span>
@@ -1693,7 +1730,7 @@
       </section>
 
       <!-- 4. SECTION: MATERIAL MANAGE PO (MRP CORE) -->
-      <section class="module-section" id="sec-manage-po" data-role="all purchasing warehouse merchandiser admin">
+      <section class="module-section" id="sec-manage-po" data-role="purchasing warehouse merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ MATERIAL</span>
@@ -1884,7 +1921,7 @@
       </section>
 
       <!-- 5. SECTION: MATERIAL INBOUND, OUTBOUND, INVENTORY -->
-      <section class="module-section" id="sec-inbound" data-role="all warehouse purchasing admin">
+      <section class="module-section" id="sec-inbound" data-role="warehouse purchasing admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ MATERIAL</span>
@@ -1897,40 +1934,157 @@
         <div class="submodule-card">
           <div class="submodule-title">📦 1. Màn hình Nhập kho Vật tư (Inbound)</div>
           <p class="submodule-desc">
-            Tiếp nhận các chuyến hàng giao từ Nhà cung cấp theo mã `MATERIAL PO#`, kiểm đếm số lượng thực nhận, gắn vị trí kệ kho (Location) và chốt tăng tồn kho.
+            Tiếp nhận các chuyến hàng giao từ Nhà cung cấp theo mã đơn mua <code>MATERIAL PO#</code>, kiểm đếm số lượng thực nhận, gắn vị trí kệ kho (Location) và chốt tăng tồn kho hệ thống.
           </p>
 
+          <div class="submodule-title">🎛️ Bảng giải thích chi tiết toàn bộ các nút bấm trên màn hình Inbound</div>
           <div class="table-responsive">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Nút Bấm</th>
-                  <th>Màu Sắc</th>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Vị Trí Màn Hình</th>
                   <th>Chức Năng Nghiệp Vụ</th>
-                  <th>Lưu Ý Quan Trọng</th>
+                  <th>Khi Nào Cần Nhấn Nút?</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><span class="btn-badge btn-success">APPLYING INBOUND NOW</span></td>
-                  <td>Xanh lá</td>
-                  <td><b>Xác nhận chốt ghi sổ nhập kho chính thức</b></td>
-                  <td><b>BẮT BUỘC BẤM</b> sau khi nhập xong số lượng để hệ thống tăng tồn kho trong `Inventory`!</td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td><b>Xác nhận chốt ghi sổ nhập kho chính thức</b> để hệ thống cộng dồn số lượng vào tồn kho</td>
+                  <td><b>BẮT BUỘC NHẤN</b> sau khi đã kiểm tra xong số lượng thực nhận và chọn vị trí Location.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">+ ADD</span></td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Cạnh tiêu đề cột MATERIAL PO#</td>
+                  <td>Tạo thêm 1 dòng trống mới để nhập mã đơn mua vật tư thủ công</td>
+                  <td>Nhấn khi muốn nhập thêm từng dòng vật tư lẻ vào bảng nhập kho.</td>
                 </tr>
                 <tr>
                   <td><span class="btn-badge btn-primary">UPLOAD EXCEL</span></td>
-                  <td>Xanh dương</td>
-                  <td>Nhập danh sách phiếu nhập kho từ file Excel</td>
-                  <td>Dùng khi tiếp nhận chuyến xe hàng lớn gồm hàng trăm cuộn vải/phụ liệu.</td>
+                  <td>Xanh dương (`#007bff`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td>Tải file Excel danh sách nhập kho lên hệ thống</td>
+                  <td>Dùng khi tiếp nhận chuyến xe hàng lớn gồm hàng chục hoặc hàng trăm mã vải/phụ liệu.</td>
                 </tr>
                 <tr>
                   <td><span class="btn-badge btn-warning">DOWNLOAD EXCEL</span></td>
-                  <td>Vàng cam</td>
-                  <td>Tải file Excel mẫu phiếu nhập kho</td>
-                  <td>Dùng mẫu này để thủ kho đối chiếu với Packing List của NCC.</td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td>Tải tệp Excel mẫu phiếu nhập kho tiêu chuẩn về máy tính</td>
+                  <td>Nhấn trước khi muốn lập danh sách nhập kho hàng loạt trên máy tính.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ (`#dc3545`)</td>
+                  <td>Cột cuối cùng của mỗi dòng</td>
+                  <td>Xóa dòng nhập kho vừa tạo khỏi bảng tạm</td>
+                  <td>Nhấn khi gõ nhầm mã PO hoặc nhà cung cấp chưa giao mặt hàng này.</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="submodule-title">📋 HƯỚNG DẪN THAO TÁC TỪNG BƯỚC CHI TIẾT (STEP-BY-STEP)</div>
+          
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <b style="color: #38bdf8; font-size: 0.95rem; display: block; margin-bottom: 0.75rem;">👉 KỊCH BẢN A: NHẬP TRỰC TIẾP TRÊN GIAO DIỆN WEB (Áp dụng cho đơn hàng lẻ, vài dòng vật tư)</b>
+            <ul class="steps-list">
+              <li class="step-item">
+                <span class="step-num">BƯỚC 1:</span>
+                <div class="step-text">
+                  <b>Mở màn hình Inbound:</b> Truy cập vào menu <code>MATERIAL ▶ Inbound</code> (Đường dẫn: <code>/material/inbound</code>).
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 2:</span>
+                <div class="step-text">
+                  <b>Tạo dòng nhập kho & Nạp dữ liệu:</b> Nhấn nút màu xanh lá <span class="btn-badge btn-success">+ ADD</span> nằm cạnh tiêu đề cột <code>MATERIAL PO#</code>.<br>
+                  Tại ô <b>MATERIAL PO #</b>, gõ hoặc chọn mã đơn mua vật tư cần nhập (Ví dụ: <code>MPO-2601...</code>).<br>
+                  <i>Phản hồi của hệ thống:</i> Hệ thống sẽ <b>tự động điền 100%</b> các thông tin: Mã đơn hàng nội bộ <code>NEO PO#</code>, Tên nhà cung cấp <code>SUPPLIER NAME</code>, Thông tin vật tư (Mã, Tên, Quy cách, Màu, Đơn vị tính), Số lượng đã đặt mua <code>ORDER QTY</code>, Số lượng đã giao ở các đợt trước <code>DELIVERED (IN) QTY</code>, và Số lượng còn thiếu cần giao <code>BALANCE QTY</code>.
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 3:</span>
+                <div class="step-text">
+                  <b>Kiểm đếm thực tế & Nhập số lượng nhận:</b> Đối chiếu thực tế với Phiếu giao hàng (Delivery Note/Packing List) của Nhà cung cấp. Nhập số lượng thực tế nhận được vào ô <b>DELIVERY QTY</b>.<br>
+                  • <i>Nếu NCC giao đủ toàn bộ:</i> Điền đúng bằng số hiển thị tại cột <code>BALANCE QTY</code>.<br>
+                  • <i>Nếu NCC giao thiếu (Giao từng phần - Partial delivery):</i> Điền đúng số lượng thực tế kiểm đếm được. Số lượng còn thiếu sẽ được hệ thống lưu lại trong <code>BALANCE QTY</code> để nhập tiếp ở các chuyến xe sau.
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 4:</span>
+                <div class="step-text">
+                  <b>Chỉ định vị trí giá kệ kho (Bắt buộc):</b> Tại cột <b>LOCATION</b>, nhấp vào danh sách chọn (dropdown) và chọn vị trí kệ thực tế mà bạn sẽ xếp hàng vào (Ví dụ: <code>KỆ-A1-02</code>, <code>KHO-VẢI-01</code>...).<br>
+                  <span style="color: #ef5350;">⚠️ Tuyệt đối không được bỏ trống LOCATION, vì nếu bỏ trống hệ thống sẽ không thể ghi nhận vị trí vật tư trên báo cáo tồn kho.</span>
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 5:</span>
+                <div class="step-text">
+                  <b>Ghi chú tình trạng hàng (Nếu có):</b> Tại cột <b>REMARK</b>, nhập ghi chú kiểm phẩm (Ví dụ: <i>"Bao bì nguyên vẹn đã kiểm kim"</i>, <i>"Cuộn số 3 có vết trầy nhẹ đã báo NCC"</i>).
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 6:</span>
+                <div class="step-text">
+                  <b>Nhấn nút chốt ghi sổ:</b> Rà soát lại toàn bộ dòng dữ liệu, sau đó <b>nhấn nút màu xanh lá <span class="btn-badge btn-success">APPLYING INBOUND NOW</span></b> trên thanh công cụ đầu trang.
+                </div>
+              </li>
+            </ul>
+
+            <!-- NEXT STEPS AFTER BUTTON PRESS -->
+            <div style="background: rgba(40, 167, 69, 0.12); border: 1px solid rgba(40, 167, 69, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
+              <b style="color: #4ade80; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "APPLYING INBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
+              <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+                <li><b>Xác nhận trạng thái hệ thống:</b> Màn hình sẽ hiện thông báo xác nhận thành công <i>"Inbound Applied Successfully!"</i>. Các dòng bạn vừa nhập sẽ được hệ thống khóa lại (đóng sổ) để tránh nhập trùng lặp.</li>
+                <li><b>Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):</b>
+                  <ul>
+                    <li>Mở menu <code>MATERIAL ▶ Inventory</code>.</li>
+                    <li>Tìm mã nguyên phụ liệu vừa nhập.</li>
+                    <li>Kiểm tra cột <code>IN</code> (Nhập lũy kế) và cột <code>INVENTORY</code> (Tồn khả dụng): Số lượng phải tăng lên đúng bằng số bạn vừa nhập tại <code>DELIVERY QTY</code>.</li>
+                    <li>Kiểm tra cột <code>LOCATION</code>: Đảm bảo số lượng tồn nằm đúng ở vị trí kệ bạn đã chọn.</li>
+                  </ul>
+                </li>
+                <li><b>Đối soát tại màn hình Đơn mua (`MATERIAL ▶ Manage PO`):</b>
+                  <ul>
+                    <li>Vào <code>MATERIAL ▶ Manage PO</code>, chọn mã <code>NEO PO#</code> tương ứng.</li>
+                    <li>Tại khối <code>Ⓔ DELIVERY</code>: Cột <code>① IN</code> đã tăng lên, và cột <code>BAL</code> (nợ chưa giao) đã giảm xuống tương ứng. Nếu NCC đã giao đủ 100%, trạng thái đơn mua sẽ chuyển sang hoàn tất.</li>
+                  </ul>
+                </li>
+                <li><b>Hành động tiếp theo:</b> Thông báo cho Quản đốc xưởng may hoặc bộ phận Kế hoạch (PMC) biết vật tư đã sẵn sàng trong kho để chuẩn bị xuất cấp cho chuyền may tại màn hình <code>MATERIAL ▶ Outbound</code>.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+            <b style="color: #38bdf8; font-size: 0.95rem; display: block; margin-bottom: 0.75rem;">👉 KỊCH BẢN B: NHẬP HÀNG LOẠT BẰNG FILE EXCEL (Áp dụng cho xe hàng lớn / container nhiều mã)</b>
+            <ul class="steps-list">
+              <li class="step-item">
+                <span class="step-num">BƯỚC 1:</span>
+                <div class="step-text">Nhấn nút màu vàng cam <span class="btn-badge btn-warning">DOWNLOAD EXCEL</span> trên thanh công cụ để tải file mẫu chuẩn về máy tính.</div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 2:</span>
+                <div class="step-text">Mở file Excel vừa tải, điền các cột: <code>MATERIAL PO#</code>, <code>DELIVERY QTY</code> (Số lượng thực nhận), <code>LOCATION</code> (Mã kệ kho), và <code>REMARK</code>. Lưu lại file.</div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 3:</span>
+                <div class="step-text">Quay lại màn hình Inbound, nhấn nút màu xanh dương <span class="btn-badge btn-primary">UPLOAD EXCEL</span> và chọn file Excel bạn vừa điền.</div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 4:</span>
+                <div class="step-text">Toàn bộ danh sách vật tư từ file Excel sẽ được nạp hiển thị lên bảng. Thủ kho kiểm tra đối chiếu lại một lượt.</div>
+              </li>
+              <li class="step-item">
+                <span class="step-num">BƯỚC 5:</span>
+                <div class="step-text"><b>Nhấn nút màu xanh lá <span class="btn-badge btn-success">APPLYING INBOUND NOW</span></b>. Sau khi nhấn, thực hiện các bước đối soát kiểm tra tại <code>Inventory</code> và <code>Manage PO</code> như mô tả ở Kịch bản A.</div>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -1985,19 +2139,119 @@
         <div class="submodule-card" id="sec-outbound">
           <div class="submodule-title">🚚 3. Màn hình Xuất kho Cấp phát Sản xuất (Outbound)</div>
           <p class="submodule-desc">
-            Xuất cấp nguyên phụ liệu từ kho cho các Chuyền may (Line) hoặc Xưởng cắt theo Lệnh sản xuất.
+            Xuất cấp nguyên phụ liệu từ kho cho các Chuyền may (Line) hoặc Xưởng cắt theo Lệnh sản xuất và Kế hoạch đơn hàng.
           </p>
-          <div class="alert-box alert-warning">
-            <span>⚠️</span>
-            <div>
-              Sau khi chọn mã Style và nhập số lượng xuất tại cột <code>TO BE OUT QTY</code>, thủ kho <b>bắt buộc phải bấm nút <span class="btn-badge btn-success">APPLYING OUTBOUND NOW</span></b> để hệ thống tự động trừ tồn kho và ghi nhận chi phí vào đơn hàng!
-            </div>
+
+          <div class="submodule-title">🎛️ Bảng giải thích chi tiết toàn bộ các nút bấm trên màn hình Outbound</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Vị Trí Màn Hình</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Nhấn Nút?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">+ ADD/EDIT STYLE</span></td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td>Mở popup chọn mã đơn hàng NEO PO# và mã Style cần xuất vật tư</td>
+                  <td><b>Nhấn đầu tiên</b> khi bắt đầu tạo phiếu xuất kho cấp cho chuyền.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">APPLYING OUTBOUND NOW</span></td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td><b>Chốt trừ tồn kho chính thức</b> và ghi nhận chi phí xuất kho cho đơn hàng</td>
+                  <td><b>BẮT BUỘC NHẤN</b> sau khi đã nhập xong số lượng thực xuất tại cột `TO BE OUT QTY`.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">UPLOAD EXCEL</span></td>
+                  <td>Xanh dương (`#007bff`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td>Nhập danh sách xuất kho từ file Excel</td>
+                  <td>Dùng khi xuất kho số lượng lớn cho nhiều chuyền may cùng lúc.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">DOWNLOAD EXCEL</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Thanh công cụ đầu trang</td>
+                  <td>Tải mẫu phiếu xuất kho Excel</td>
+                  <td>Dùng khi cần làm phiếu xuất trước trên bảng tính.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ (`#dc3545`)</td>
+                  <td>Cột cuối mỗi dòng</td>
+                  <td>Xóa dòng vật tư khỏi phiếu xuất</td>
+                  <td>Nhấn khi chuyền chưa cần dùng đến loại vật tư này ở đợt may hiện tại.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 HƯỚNG DẪN THAO TÁC XUẤT KHO TỪNG BƯỚC CHI TIẾT (STEP-BY-STEP)</div>
+          <ul class="steps-list">
+            <li class="step-item">
+              <span class="step-num">BƯỚC 1:</span>
+              <div class="step-text">
+                <b>Truy cập màn hình:</b> Vào menu <code>MATERIAL ▶ Outbound</code> (Đường dẫn: <code>/material/Outbound</code>).
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 2:</span>
+              <div class="step-text">
+                <b>Chọn Đơn hàng & Mã Style cần xuất:</b> Nhấn nút màu xanh lá <span class="btn-badge btn-success">+ ADD/EDIT STYLE</span> trên thanh công cụ.<br>
+                Trong hộp thoại hiện ra, chọn mã đơn hàng <b>NEO PO#</b> và mã <b>Style</b> đang chuẩn bị đưa lên chuyền may.<br>
+                <i>Phản hồi của hệ thống:</i> Hệ thống sẽ tự động nạp toàn bộ danh mục nguyên phụ liệu cần thiết theo định mức BOM, hiển thị định mức tính toán <code>CALC. QTY</code>, vị trí kệ <code>LOCATION</code>, và số lượng tồn hiện có sẵn trong kho <code>STOCK</code>.
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 3:</span>
+              <div class="step-text">
+                <b>Nhập số lượng thực xuất:</b> Tại cột <b>TO BE OUT QTY</b>, nhập số lượng vải/phụ liệu thực tế bàn giao cho tổ trưởng chuyền may.<br>
+                <span style="color: #ffb74d;">⚠️ Lưu ý: Số lượng nhập tại <code>TO BE OUT QTY</code> không được vượt quá số lượng tồn sẵn có tại cột <code>STOCK</code>. Nếu kho không đủ, hệ thống sẽ cảnh báo không cho xuất.</span>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 4:</span>
+              <div class="step-text">
+                <b>Ghi chú người nhận & Chuyền:</b> Nhập tên Chuyền may hoặc Tổ nhận hàng tại cột <b>REMARK</b> (Ví dụ: <i>"Xuất cho Chuyền May 2 ca ngày"</i>, <i>"Xuất đợt 1 phân bổ xưởng Cắt"</i>).
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 5:</span>
+              <div class="step-text">
+                <b>Nhấn nút chốt xuất kho:</b> Kiểm tra tổng thể các dòng xuất, sau đó <b>nhấn nút màu xanh lá <span class="btn-badge btn-success">APPLYING OUTBOUND NOW</span></b> ở đầu trang.
+              </div>
+            </li>
+          </ul>
+
+          <!-- NEXT STEPS AFTER OUTBOUND BUTTON PRESS -->
+          <div style="background: rgba(40, 167, 69, 0.12); border: 1px solid rgba(40, 167, 69, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
+            <b style="color: #4ade80; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "APPLYING OUTBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
+            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+              <li><b>Xác nhận trạng thái hoàn tất:</b> Hệ thống hiển thị thông báo xuất kho thành công <i>"Outbound Applied Successfully!"</i>. Số lượng tồn kho tương ứng sẽ bị trừ ngay lập tức.</li>
+              <li><b>Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):</b>
+                <ul>
+                  <li>Vào <code>MATERIAL ▶ Inventory</code>.</li>
+                  <li>Kiểm tra cột <code>OUT</code> (Xuất lũy kế): Đã được cộng thêm số lượng vừa xuất.</li>
+                  <li>Kiểm tra cột <code>INVENTORY</code> (Tồn khả dụng): Đã bị giảm trừ chính xác số lượng bạn vừa giao cho xưởng.</li>
+                </ul>
+              </li>
+              <li><b>Bàn giao thực tế & Ký nhận:</b> In hoặc ký biên bản xuất kho bàn giao vật tư cho Tổ trưởng chuyền may / Thủ kho phụ xưởng.</li>
+              <li><b>Hành động tiếp theo:</b> Chuyển sang phân hệ <code>PRODUCTION ▶ Schedule-Manage</code> để kiểm tra lịch vào hàng của chuyền may và theo dõi tiến độ sản xuất từng giờ trên <code>PRODUCTION ▶ Dashboard-Table</code>.</li>
+            </ol>
           </div>
         </div>
       </section>
 
       <!-- 6. SECTION: PRODUCTION SCHEDULE & DASHBOARD -->
-      <section class="module-section" id="sec-schedule" data-role="all production warehouse merchandiser admin">
+      <section class="module-section" id="sec-schedule" data-role="production warehouse merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ PRODUCTION</span>
@@ -2043,6 +2297,53 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="submodule-title">📋 HƯỚNG DẪN XẾP CHUYỀN & IN MÃ QR TỪNG BƯỚC (STEP-BY-STEP)</div>
+          <ul class="steps-list">
+            <li class="step-item">
+              <span class="step-num">BƯỚC 1:</span>
+              <div class="step-text">
+                <b>Truy cập màn hình:</b> Mở menu <code>PRODUCTION ▶ Schedule-Manage</code> (Đường dẫn: <code>/Production/ScheduleManage</code>).
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 2:</span>
+              <div class="step-text">
+                <b>Phân bổ đơn hàng vào chuyền:</b> Tại dòng đơn hàng <code>NEO PO#</code> cần may, <b>nhấn nút màu xanh lá <span class="btn-badge btn-success">Schedule</span></b>.<br>
+                Trong hộp thoại popup hiện ra:
+                <ul style="margin: 0.35rem 0 0 1.2rem; font-size: 0.88rem;">
+                  <li>Chọn <b>LINE</b> (Chuyền may phụ trách: Line 1, Line 2...).</li>
+                  <li>Chọn <b>PROCESS</b> (Công đoạn: Cutting: Cắt, Sewing: May, Assembly: Hoàn thiện).</li>
+                  <li>Chọn <b>START & END DATE</b> (Ngày bắt đầu vào chuyền và Ngày kết thúc dự kiến).</li>
+                  <li>Nhập <b>QTY</b> (Chỉ tiêu sản lượng giao cho chuyền đợt này).</li>
+                  <li>Nhấn nút <b>SAVE</b> trong popup để lưu lịch.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 3:</span>
+              <div class="step-text">
+                <b>Đánh dấu chọn đơn hàng:</b> Tick vào ô <b>checkbox vuông</b> ở cột QR tại dòng đơn hàng vừa xếp lịch (có thể tick chọn nhiều PO cùng lúc).
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 4:</span>
+              <div class="step-text">
+                <b>Nhấn nút in mã QR:</b> <b>Nhấn nút màu xanh dương <span class="btn-badge btn-primary">QR</span></b> nằm ngay trên tiêu đề cột QR.
+              </div>
+            </li>
+          </ul>
+
+          <!-- NEXT STEPS AFTER QR BUTTON PRESS -->
+          <div style="background: rgba(2, 132, 199, 0.12); border: 1px solid rgba(2, 132, 199, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
+            <b style="color: #38bdf8; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "QR", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
+            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+              <li><b>In tem mã QR:</b> Trình duyệt sẽ mở một tab mới hiển thị toàn bộ trang tem mã QR công đoạn (Bundle Tag / Travel Ticket). Nhấn <code>Ctrl + P</code> để in ra máy in tem nhiệt hoặc máy in laser.</li>
+              <li><b>Bàn giao tem xuống xưởng:</b> Giao tệp tem mã QR cho Tổ trưởng chuyền may / Quản đốc xưởng để dán lên từng bó bán thành phẩm hoặc thẻ bài theo dõi công đoạn.</li>
+              <li><b>Quét mã tại các trạm kiểm đếm:</b> Công nhân tại các trạm đầu chuyền, kiểm tra chất lượng (QC), máy rà kim (X-RAY), và đóng gói (PACKING) sử dụng máy quét mã vạch/QR để quét tem mỗi khi hoàn thành một bó hàng.</li>
+              <li><b>Theo dõi năng suất từng giờ:</b> Quản đốc mở màn hình <code>PRODUCTION ▶ Dashboard-Table</code>, chọn ngày hiện tại và theo dõi sản lượng nhảy thời gian thực qua từng khung giờ <b>DT1 đến DT8</b>.</li>
+            </ol>
           </div>
         </div>
 
@@ -2110,7 +2411,7 @@
       </section>
 
       <!-- 7. SECTION: BUTTONS COLOR CODE REFERENCE -->
-      <section class="module-section" id="sec-buttons" data-role="all merchandiser technical purchasing warehouse production admin">
+      <section class="module-section" id="sec-buttons" data-role="common">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">QUY CHUẨN</span>
@@ -2164,7 +2465,7 @@
       </section>
 
       <!-- 8. SECTION: GLOSSARY -->
-      <section class="module-section" id="sec-glossary" data-role="all merchandiser technical purchasing warehouse production admin">
+      <section class="module-section" id="sec-glossary" data-role="common">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">TỪ ĐIỂN</span>
@@ -2204,7 +2505,7 @@
       </section>
 
       <!-- 9. SECTION: FAQ / TROUBLESHOOTING -->
-      <section class="module-section" id="sec-faq" data-role="all merchandiser technical purchasing warehouse production admin">
+      <section class="module-section" id="sec-faq" data-role="common">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">HỖ TRỢ</span>
@@ -2370,68 +2671,99 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 2. ROLE FILTER PILLS & SYNCHRONIZATION
+    // 2. ROLE FILTER PILLS & SIDEBAR NAVIGATION FILTERING
     const allRolePills = document.querySelectorAll('.role-pill');
     const sections = document.querySelectorAll('.module-section, .pipeline-card');
     const sidebarItems = document.querySelectorAll('#sidebarNav li:not(.sidebar-divider)');
+    const sidebarDividers = document.querySelectorAll('#sidebarNav .sidebar-divider');
     const sidebarResetBtn = document.getElementById('sidebarResetRole');
+    const btnResetFilter = document.getElementById('btnResetFilter');
+    const statusBox = document.getElementById('sidebarFilterStatus');
+    const badgeText = document.getElementById('filterBadgeText');
 
-    function applyRoleFilter(role, shouldScroll = false) {
-      // a. Đồng bộ trạng thái active của tất cả buttons (cả trên Hero và trong Sidebar)
+    function hasRoleMatch(rolesString, activeRole) {
+      if (activeRole === 'all') return true;
+      const roles = (rolesString || '').toLowerCase().trim().split(/\s+/);
+      return roles.includes(activeRole) || roles.includes('common');
+    }
+
+    function applyRoleFilter(role) {
+      const isFiltered = (role !== 'all');
+
+      // a. Cập nhật trạng thái active của các nút chọn vai trò
       allRolePills.forEach(p => {
-        if (p.dataset.role === role) {
-          p.classList.add('active');
-        } else {
-          p.classList.remove('active');
-        }
+        p.classList.toggle('active', p.dataset.role === role);
       });
 
-      // b. Lọc các section nội dung chính
-      sections.forEach(sec => {
-        const secRoles = sec.dataset.role || 'all';
-        if (role === 'all' || secRoles.includes(role) || secRoles.includes('all')) {
-          sec.style.display = 'block';
+      // b. Cập nhật thanh trạng thái bộ lọc trong Sidebar
+      if (statusBox && badgeText) {
+        if (isFiltered) {
+          const activeBtn = document.querySelector(`.role-pill[data-role="${role}"]`);
+          const roleLabel = activeBtn ? activeBtn.innerText.replace(/^[^\s]+\s+/, '') : role;
+          badgeText.innerHTML = `Đang lọc: <b>${roleLabel}</b>`;
+          statusBox.style.display = 'flex';
         } else {
-          sec.style.display = 'none';
-        }
-      });
-
-      // c. Lọc mục lục bên Sidebar tương ứng
-      sidebarItems.forEach(li => {
-        const itemRoles = li.dataset.role || 'all';
-        if (role === 'all' || itemRoles.includes(role) || itemRoles.includes('all')) {
-          li.style.display = 'block';
-        } else {
-          li.style.display = 'none';
-        }
-      });
-
-      // d. Cập nhật vị trí mục lục active
-      updateActiveTOC();
-
-      // e. Nếu người dùng bấm từ Hero khi đang ở trên cùng thì cuộn nhẹ đến đầu danh mục
-      if (shouldScroll) {
-        const mainContainer = document.querySelector('.main-container');
-        if (mainContainer) {
-          const targetY = mainContainer.offsetTop - 70;
-          if (Math.abs(window.scrollY - targetY) > 80) {
-            window.scrollTo({ top: targetY, behavior: 'smooth' });
-          }
+          statusBox.style.display = 'none';
         }
       }
+
+      // c. Lọc các section nội dung chính (Ẩn bớt các mục không liên quan)
+      sections.forEach(sec => {
+        const matches = hasRoleMatch(sec.dataset.role, role);
+        sec.style.display = matches ? 'block' : 'none';
+      });
+
+      // d. ẨN BỚT VÀ ĐÁNH DẤU MỤC LỤC TRONG SIDEBAR
+      let visibleCount = 0;
+      sidebarItems.forEach(li => {
+        const link = li.querySelector('a');
+        const matches = hasRoleMatch(li.dataset.role, role);
+        if (matches) {
+          li.style.display = 'block';
+          visibleCount++;
+          if (link) {
+            if (isFiltered && !li.dataset.role.includes('common')) {
+              link.classList.add('role-matched');
+            } else {
+              link.classList.remove('role-matched');
+            }
+          }
+        } else {
+          li.style.display = 'none';
+          if (link) link.classList.remove('role-matched');
+        }
+      });
+
+      // e. Ẩn divider khi đang lọc để mục lục liền mạch
+      sidebarDividers.forEach(div => {
+        div.style.display = isFiltered ? 'none' : 'block';
+      });
+
+      // f. Cập nhật số lượng hiển thị trong badge trạng thái
+      if (statusBox && badgeText && isFiltered) {
+        badgeText.innerHTML += ` (${visibleCount} mục)`;
+      }
+
+      // g. Cập nhật Scrollspy an toàn
+      updateActiveTOC();
     }
 
     allRolePills.forEach(pill => {
       pill.addEventListener('click', () => {
         const role = pill.dataset.role;
-        const isFromHero = pill.closest('.hero') !== null;
-        applyRoleFilter(role, isFromHero);
+        applyRoleFilter(role);
       });
     });
 
     if (sidebarResetBtn) {
       sidebarResetBtn.addEventListener('click', () => {
-        applyRoleFilter('all', false);
+        applyRoleFilter('all');
+      });
+    }
+
+    if (btnResetFilter) {
+      btnResetFilter.addEventListener('click', () => {
+        applyRoleFilter('all');
       });
     }
 
@@ -2733,17 +3065,46 @@
       },
       {
         id: 'inbound-applying',
-        title: 'Nhập kho & Nút APPLYING INBOUND NOW',
-        keywords: ['nhập kho', 'nhập kho ở đâu', 'inbound', 'applying inbound now', 'tăng tồn kho', 'nhận hàng ncc', 'quên bấm applying', 'nhận hàng vật tư', 'nhập kho vật tư thực tế'],
-        answer: 'Khi nhận hàng từ nhà cung cấp về kho:<br>1. Vào <b>MATERIAL ▶ Inbound</b>, nhập mã <code>MATERIAL PO#</code>.<br>2. Điền số lượng thực nhận vào cột <code>DELIVERY QTY</code> và chọn vị trí kệ tại <code>LOCATION</code>.<br>3. <b>BẮT BUỘC BẤM</b> nút màu xanh lá <b>APPLYING INBOUND NOW</b>. Khi có thông báo hoàn tất, tồn kho mới chính thức được cộng vào hệ thống!',
-        chips: ['Tại sao nhập kho không tăng tồn?', 'Xem tồn kho ở đâu?']
+        title: 'Quy trình Nhập kho Inbound & Các bước cần làm',
+        keywords: [
+          'các bước cần làm của inbound', 'các bước inbound', 'quy trình inbound', 'inbound cần nhấn nút nào', 
+          'nhập kho cần bấm nút nào', 'sau khi nhấn applying inbound now', 'sau khi bấm applying inbound now làm gì', 
+          'sau khi nhấn nút ở inbound', 'nhập kho', 'nhập kho ở đâu', 'inbound', 'applying inbound now', 
+          'tăng tồn kho', 'nhận hàng ncc', 'quên bấm applying', 'nhận hàng vật tư', 'nhập kho vật tư thực tế'
+        ],
+        answer: '<b>QUY TRÌNH 5 BƯỚC NHẬP KHO INBOUND CHUẨN XÁC:</b><br><br>' +
+          '• <b>Bước 1:</b> Vào menu <code>MATERIAL ▶ Inbound</code> (Đường dẫn: <code>/material/inbound</code>).<br>' +
+          '• <b>Bước 2:</b> Nhấn nút màu xanh lá <b>+ ADD</b> cạnh cột MATERIAL PO#, sau đó gõ mã <code>MATERIAL PO#</code>. Hệ thống sẽ <b>tự động nạp 100%</b> tên NCC, tên vật tư, số lượng đặt mua <code>ORDER QTY</code> và số lượng còn nợ <code>BALANCE QTY</code>.<br>' +
+          '• <b>Bước 3:</b> Đối chiếu hàng thực nhận, nhập số lượng đếm được vào ô <b>DELIVERY QTY</b>.<br>' +
+          '• <b>Bước 4:</b> Bắt buộc nhấp vào dropdown tại cột <b>LOCATION</b> để chọn vị trí kệ kho cất hàng (Ví dụ: Kệ A1-02, Kho Vải K1...).<br>' +
+          '• <b>Bước 5 (Nhấn nút chốt):</b> Rà soát lại rồi <b>nhấn nút màu xanh lá APPLYING INBOUND NOW</b> ở đầu trang.<br><br>' +
+          '🔔 <b>SAU KHI NHẤN NÚT NÀY, CẦN LÀM GÌ TIẾP THEO?</b><br>' +
+          '1. Hệ thống hiện thông báo thành công <i>"Inbound Applied Successfully!"</i> và khóa chốt sổ dòng vừa nhập.<br>' +
+          '2. <b>Vào <code>MATERIAL ▶ Inventory</code> đối soát:</b> Kiểm tra xem cột <code>IN</code> và <code>INVENTORY</code> (tồn khả dụng) đã tăng đúng số lượng vừa nhập và đúng vị trí kệ <code>LOCATION</code> chưa.<br>' +
+          '3. <b>Vào <code>MATERIAL ▶ Manage PO</code> đối soát:</b> Kiểm tra khối <code>DELIVERY</code> xem cột <code>IN</code> đã tăng và cột nợ <code>BAL</code> đã giảm tương ứng chưa.<br>' +
+          '4. Báo cho Quản đốc xưởng may và bộ phận Kế hoạch (PMC) biết vật tư đã sẵn sàng để xuất cấp tại màn hình <code>Outbound</code>.',
+        chips: ['Tại sao nhập kho không tăng tồn?', 'Xem tồn kho Inventory', 'Quy trình xuất kho Outbound', 'Kiểm tra Manage PO']
       },
       {
         id: 'outbound-applying',
-        title: 'Xuất kho cấp phát sản xuất (Outbound)',
-        keywords: ['xuất kho', 'outbound', 'applying outbound now', 'xuất cho chuyền', 'cấp phát vật tư'],
-        answer: 'Để xuất kho cấp phát vật tư cho xưởng may:<br>1. Vào <b>MATERIAL ▶ Outbound</b>, bấm <code>+ ADD/EDIT STYLE</code> chọn đơn hàng.<br>2. Nhập số lượng xuất vào cột <code>TO BE OUT QTY</code>.<br>3. Bắt buộc bấm nút màu xanh lá <b>APPLYING OUTBOUND NOW</b> để hệ thống tự động trừ tồn kho và ghi nhận chi phí vào PO sản xuất.',
-        chips: ['Xem tồn kho sau khi xuất?', 'Kiểm tra tiến độ chuyền may?']
+        title: 'Quy trình Xuất kho Outbound & Các bước cần làm',
+        keywords: [
+          'các bước xuất kho', 'quy trình outbound', 'outbound cần nhấn nút nào', 'sau khi nhấn applying outbound now', 
+          'sau khi bấm applying outbound now làm gì', 'xuất kho', 'outbound', 'applying outbound now', 
+          'xuất cho chuyền', 'cấp phát vật tư'
+        ],
+        answer: '<b>QUY TRÌNH 5 BƯỚC XUẤT KHO CẤP PHÁT (OUTBOUND):</b><br><br>' +
+          '• <b>Bước 1:</b> Vào menu <code>MATERIAL ▶ Outbound</code> (Đường dẫn: <code>/material/Outbound</code>).<br>' +
+          '• <b>Bước 2:</b> <b>Nhấn nút màu xanh lá + ADD/EDIT STYLE</b> trên thanh công cụ. Trong popup hiện ra, chọn mã đơn hàng <code>NEO PO#</code> và mã <code>Style</code> cần may. Hệ thống sẽ tự động nạp danh sách vật tư theo BOM, hiển thị nhu cầu <code>CALC. QTY</code> và tồn kho hiện có <code>STOCK</code>.<br>' +
+          '• <b>Bước 3:</b> Tại cột <b>TO BE OUT QTY</b>, nhập số lượng vải/phụ liệu thực tế bàn giao cho chuyền (lưu ý không vượt quá cột <code>STOCK</code>).<br>' +
+          '• <b>Bước 4:</b> Nhập tên Chuyền may hoặc Tổ nhận hàng tại cột <b>REMARK</b>.<br>' +
+          '• <b>Bước 5 (Nhấn nút chốt):</b> <b>Nhấn nút màu xanh lá APPLYING OUTBOUND NOW</b> trên đầu trang.<br><br>' +
+          '🔔 <b>SAU KHI NHẤN NÚT NÀY, CẦN LÀM GÌ TIẾP THEO?</b><br>' +
+          '1. Hệ thống báo <i>"Outbound Applied Successfully!"</i> và trừ số lượng tồn ngay lập tức.<br>' +
+          '2. <b>Vào <code>MATERIAL ▶ Inventory</code> đối soát:</b> Kiểm tra cột <code>OUT</code> đã tăng lên và cột <code>INVENTORY</code> đã bị giảm trừ đúng số lượng vừa xuất.<br>' +
+          '3. Cho Tổ trưởng chuyền may ký nhận vào phiếu xuất kho bàn giao.<br>' +
+          '4. Sang màn hình <code>PRODUCTION ▶ Schedule-Manage</code> và <code>Dashboard-Table</code> để theo dõi tiến độ may.',
+        chips: ['Xem tồn kho sau khi xuất?', 'Kiểm tra tiến độ chuyền may?', 'In tem mã QR công đoạn']
       },
       {
         id: 'inventory-valuation',
