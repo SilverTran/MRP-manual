@@ -953,19 +953,21 @@
       <div class="sidebar-title">Mục lục nhanh</div>
       <ul class="sidebar-nav" id="sidebarNav">
         <li><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
-        <li><a href="#sec-fg-order">1. Đơn hàng (Buyer Order)</a></li>
-        <li><a href="#sec-bom-manage">2. Định mức BOM (BOM-Manage)</a></li>
+        <li><a href="#sec-code-rm">1. Danh mục R/M (Code › RM)</a></li>
+        <li><a href="#sec-fg-order">2. Đơn hàng (Buyer Order)</a></li>
+        <li><a href="#sec-bom-list">3. Danh sách BOM (BOM-List)</a></li>
+        <li><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
         <li class="sidebar-divider"></li>
-        <li><a href="#sec-manage-po">3. Tính toán Nhu cầu (Manage PO)</a></li>
-        <li><a href="#sec-inbound">4. Nhập kho Vật tư (Inbound)</a></li>
-        <li><a href="#sec-inventory">5. Quản lý Tồn kho (Inventory)</a></li>
-        <li><a href="#sec-outbound">6. Xuất kho Cấp phát (Outbound)</a></li>
+        <li><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
+        <li><a href="#sec-inbound">6. Nhập kho Vật tư (Inbound)</a></li>
+        <li><a href="#sec-inventory">7. Quản lý Tồn kho (Inventory)</a></li>
+        <li><a href="#sec-outbound">8. Xuất kho Cấp phát (Outbound)</a></li>
         <li class="sidebar-divider"></li>
-        <li><a href="#sec-schedule">7. Kế hoạch Chuyền (Schedule)</a></li>
-        <li><a href="#sec-dashboard">8. Giám sát Năng suất (DT1-DT8)</a></li>
-        <li><a href="#sec-buttons">9. Bảng Quy chuẩn Nút bấm</a></li>
-        <li><a href="#sec-glossary">10. Từ điển Thuật ngữ MRP</a></li>
-        <li><a href="#sec-faq">11. Ma trận Xử lý Lỗi (FAQ)</a></li>
+        <li><a href="#sec-schedule">9. Kế hoạch Chuyền (Schedule)</a></li>
+        <li><a href="#sec-dashboard">10. Giám sát Năng suất (DT1-DT8)</a></li>
+        <li><a href="#sec-buttons">11. Bảng Quy chuẩn Nút bấm</a></li>
+        <li><a href="#sec-glossary">12. Từ điển Thuật ngữ MRP</a></li>
+        <li><a href="#sec-faq">13. Ma trận Xử lý Lỗi (FAQ)</a></li>
       </ul>
     </aside>
 
@@ -981,15 +983,20 @@
           Dữ liệu trong hệ thống MRP liên kết chặt chẽ theo từng mắt xích. Hãy nhấp vào từng công đoạn bên dưới để chuyển nhanh đến tài liệu hướng dẫn chi tiết:
         </p>
         <div class="pipeline-steps">
+          <div class="pipe-step" onclick="location.href='#sec-code-rm'">
+            <div class="pipe-num">0</div>
+            <div class="pipe-name">Khai Báo R/M</div>
+            <div class="pipe-sub">Mã vật tư & đơn giá chuẩn</div>
+          </div>
           <div class="pipe-step" onclick="location.href='#sec-fg-order'">
             <div class="pipe-num">1</div>
             <div class="pipe-name">Đơn Hàng (Order)</div>
             <div class="pipe-sub">Tạo mã NEO PO# & sản lượng</div>
           </div>
-          <div class="pipe-step" onclick="location.href='#sec-bom-manage'">
+          <div class="pipe-step" onclick="location.href='#sec-bom-list'">
             <div class="pipe-num">2</div>
             <div class="pipe-name">Định Mức (BOM)</div>
-            <div class="pipe-sub">Tiêu hao vật tư Vải, Trim, Bao bì</div>
+            <div class="pipe-sub">BOM-List & BOM-Manage</div>
           </div>
           <div class="pipe-step" onclick="location.href='#sec-manage-po'">
             <div class="pipe-num">3</div>
@@ -1015,6 +1022,135 @@
             <div class="pipe-num">7</div>
             <div class="pipe-name">Giám Sát (DT1-DT8)</div>
             <div class="pipe-sub">Theo dõi sản lượng từng giờ</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. SECTION: CODE R/M (DANH MỤC NGUYÊN PHỤ LIỆU GỐC) -->
+      <section class="module-section" id="sec-code-rm" data-role="all technical purchasing warehouse admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ CODE (MASTER DATA)</span>
+            <h2 class="module-title">Quản Lý Danh Mục Nguyên Phụ Liệu Gốc (Code › R/M)</h2>
+          </div>
+          <div class="breadcrumb-trail">CODE ▶ R/M</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">📌 Mục đích & Bối cảnh sử dụng</div>
+          <p class="submodule-desc">
+            Đây là <b>Từ điển Master Data nguyên phụ liệu dùng chung cho toàn bộ nhà máy</b>. Bất kỳ loại vải chính, vải lót, chỉ may, khóa kéo, nhãn mác, băng dính hay thùng carton nào <b>trước khi được đưa vào Định mức BOM hoặc Đặt mua</b> đều phải được khai báo mã chuẩn tại màn hình này.
+          </p>
+
+          <div class="alert-box alert-info">
+            <span>💡</span>
+            <div>
+              <b>QUY TẮC PHÂN NHÓM VẬT TƯ (CATEGORY CODE):</b><br>
+              • <code>F (Fabric)</code>: Tất cả các loại vải chính, vải lót, vải phối, lưới, mút xốp eva.<br>
+              • <code>T (Trim)</code>: Phụ liệu may mặc (Dây kéo, đầu khóa kéo, băng nhám dính Velcro, chỉ may, nút bấm, móc kim loại, dây dệt quai túi).<br>
+              • <code>P (Packing)</code>: Vật tư đóng gói (Thùng carton, túi nilon PE/PP, hạt hút ẩm Silica gel, băng keo niêm phong, nhãn mã vạch barcode).<br>
+              • <code>O (Other)</code>: Các loại hóa chất phụ trợ, dầu máy, keo dán, vật tư tiêu hao phụ xưởng cắt/may.
+            </div>
+          </div>
+
+          <div class="submodule-title">🎛️ Bảng giải thích các nút bấm & công cụ trên màn hình CODE › R/M</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc</th>
+                  <th>Vị Trí</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Bấm?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">+ Add R/M</span></td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Mở popup khai báo 01 mã nguyên phụ liệu mới vào từ điển</td>
+                  <td>Khi có mã vải, phụ liệu mới về xưởng chưa từng có trong hệ thống.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">UPLOAD EXCEL</span></td>
+                  <td>Xanh dương (`#007bff`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Nạp danh sách hàng loạt nguyên phụ liệu từ file Excel</td>
+                  <td>Khi nhận dự án mới cần nhập hàng trăm mã phụ liệu cùng lúc vào Master Data.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">Template R/M</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Tải file mẫu Excel chuẩn để điền dữ liệu R/M</td>
+                  <td>Trước khi bấm UPLOAD EXCEL, tải file mẫu này về để điền đúng định dạng cột.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">D/L Excel</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Xuất toàn bộ từ điển danh mục R/M ra tệp Excel</td>
+                  <td>Dùng khi cần gửi bảng tra cứu mã vật tư cho phòng Mua hàng hoặc Kỹ thuật.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-info">EDIT</span></td>
+                  <td>Xanh ngọc / Cyan</td>
+                  <td>Từng dòng vật tư</td>
+                  <td>Mở popup chỉnh sửa thông tin kỹ thuật, quy cách hoặc đơn giá chuẩn</td>
+                  <td>Khi cần sửa Tên, Đơn vị tính (YDS/M/PCS), Nhà cung cấp hoặc Standard Price.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ (`#dc3545`)</td>
+                  <td>Từng dòng vật tư</td>
+                  <td>Xóa mã nguyên phụ liệu khỏi hệ thống</td>
+                  <td>Chỉ xóa được khi mã R/M này <b>chưa từng được đưa vào bất kỳ BOM nào</b>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Cấu trúc thông tin bắt buộc khi khai báo mã R/M mới</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Trường</th>
+                  <th>Bắt Buộc</th>
+                  <th>Ý Nghĩa Nghiệp Vụ & Quy Chuẩn</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>Category</code></td><td>Có</td><td>Chọn F (Fabric), T (Trim), P (Packing) hoặc O (Other).</td></tr>
+                <tr><td><code>R/M Code</code></td><td>Có</td><td>Mã định danh duy nhất (VD: <code>RMF-00124</code>, <code>RMT-00512</code>, <code>RMP-00031</code>). Không được trùng lặp.</td></tr>
+                <tr><td><code>R/M Name</code></td><td>Có</td><td>Tên tiếng Anh kỹ thuật của vật tư (VD: <i>Polyester 600D PU2 Coating, Nylon Coil Zipper #5</i>).</td></tr>
+                <tr><td><code>Specification</code></td><td>Có</td><td>Quy cách chi tiết (Khổ rộng 58", Độ dày dệt, Kích thước răng khóa, Trọng lượng gsm...).</td></tr>
+                <tr><td><code>Color / Color Code</code></td><td>Tùy chọn</td><td>Tên màu hoặc mã màu Pantone/Colorway chỉ định của khách hàng.</td></tr>
+                <tr><td><code>Unit</code></td><td>Có</td><td>Đơn vị đo lường chuẩn: <b>YDS</b> (Yard), <b>M</b> (Mét), <b>PCS</b> (Cái/Chiếc), <b>CON</b> (Cuộn chỉ), <b>SET</b>, <b>ROLL</b>.</td></tr>
+                <tr><td><code>Standard Price (USD)</code></td><td>Có</td><td>Đơn giá tiêu chuẩn quy đổi ra USD để hệ thống tự động định giá tổng tài sản kho (Inventory Valuation).</td></tr>
+                <tr><td><code>Supplier</code></td><td>Tùy chọn</td><td>Nhà cung cấp mặc định hoặc đối tác sản xuất vật tư đó.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">🔄 Nguồn gốc dữ liệu & Điểm chuyển tiếp</div>
+          <div class="lineage-card">
+            <div class="lineage-box">
+              <b>Nguồn dữ liệu vào:</b>
+              Bảng quy cách kỹ thuật từ Buyer (Spec Sheet) hoặc Báo giá của Nhà cung cấp (Quotation).
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Xử lý tại CODE › R/M:</b>
+              Cấp phát mã R/M chuẩn, quy chuẩn Đơn vị tính và Đơn giá tiêu chuẩn (USD).
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Chuyển tiếp đến:</b>
+              <code>F/G › BOM-Manage</code> (Kỹ thuật chọn mã R/M đưa vào định mức) & <code>MATERIAL › Manage PO</code> (Mua hàng).
+            </div>
           </div>
         </div>
       </section>
@@ -1132,7 +1268,123 @@
         </div>
       </section>
 
-      <!-- 3. SECTION: F/G BOM-LIST & BOM-MANAGE -->
+      <!-- 3. SECTION: F/G BOM-LIST (DANH SÁCH ĐỊNH MỨC VẬT TƯ) -->
+      <section class="module-section" id="sec-bom-list" data-role="all technical merchandiser admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ F/G</span>
+            <h2 class="module-title">Danh Sách Định Mức Vật Tư (BOM-List)</h2>
+          </div>
+          <div class="breadcrumb-trail">F/G ▶ BOM-List</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">📌 Mục đích & Bối cảnh sử dụng</div>
+          <p class="submodule-desc">
+            Màn hình <b>F/G ▶ BOM-List</b> là trung tâm điều phối và quản lý toàn bộ các bảng định mức vật tư sản phẩm. Tại đây, phòng Kỹ thuật / R&D và Merchandiser có thể tra cứu nhanh BOM theo mã Style, quản lý các phiên bản sửa đổi (Revision), tải lên hàng loạt bảng BOM qua file Excel (Upload BOM) hoặc mở giao diện chi tiết bằng nút <b>MANAGE</b>.
+          </p>
+
+          <div class="submodule-title">🎛️ Bảng giải thích chi tiết các nút bấm trên màn hình BOM-List</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Vị Trí</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Bấm?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">Upload BOM</span></td>
+                  <td>Xanh lá (`#28a745`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Tải file Excel định mức kỹ thuật lên hệ thống để tạo hoặc cập nhật BOM hàng loạt</td>
+                  <td>Khi phòng Kỹ thuật/R&D đã lập xong định mức trên file Excel và muốn nạp nhanh vào phần mềm thay vì nhập từng dòng.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">Template BOM</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Tải file Excel mẫu BOM tiêu chuẩn trắng có đầy đủ tiêu đề cột</td>
+                  <td>Bắt buộc tải về trước khi làm file Upload BOM để đảm bảo khớp 100% định dạng cột của hệ thống.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">D/L</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Tiêu đề cột tác vụ</td>
+                  <td>Xuất các bản ghi BOM đã tick chọn ra file Excel</td>
+                  <td>Khi cần trích xuất bảng tổng hợp BOM gửi cho Buyer hoặc phòng Mua hàng tham khảo.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ (`#dc3545`)</td>
+                  <td>Tiêu đề cột tác vụ</td>
+                  <td>Xóa các bản ghi BOM đã tick chọn khỏi danh sách</td>
+                  <td>Chỉ dùng khi muốn dọn dẹp các bản ghi BOM nháp sai hoặc không còn sử dụng (chưa phát sinh đơn mua hàng).</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-info">MANAGE</span></td>
+                  <td>Xanh ngọc / Cyan</td>
+                  <td>Cuối mỗi dòng BOM</td>
+                  <td><b>Mở trực tiếp màn hình biên tập chi tiết định mức BOM-Manage</b></td>
+                  <td>Bấm để xem và hiệu chỉnh chi tiết từng loại vải, phụ liệu, định mức CONS và đơn giá của mã hàng đó.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-dark">Search</span></td>
+                  <td>Xám đen (`#343a40`)</td>
+                  <td>Thanh công cụ</td>
+                  <td>Lọc danh sách BOM theo Buyer, Style Code, Style Name hoặc Season</td>
+                  <td>Khi cần tìm nhanh bảng định mức của một mã hàng cụ thể trong hàng ngàn mã sản phẩm.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Cấu trúc thông tin hiển thị trên bảng BOM-List</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Cột</th>
+                  <th>Ý Nghĩa Nghiệp Vụ & Dấu Vết Lịch Sử</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>LAST MODIFIED</code></td><td>Thời điểm cập nhật bảng BOM gần nhất (Ngày/Giờ).</td></tr>
+                <tr><td><code>USER ID / USER NAME / GROUP</code></td><td>Định danh tài khoản và phòng ban của nhân sự thực hiện chỉnh sửa gần nhất.</td></tr>
+                <tr><td><code>BUYER</code></td><td>Tên khách hàng quốc tế sở hữu mã hàng (JW, HS, DJ, PungKook...).</td></tr>
+                <tr><td><code>STYLE CODE / STYLE NAME</code></td><td>Mã kiểu dáng thiết kế và Tên gọi thương mại của balo/túi xách.</td></tr>
+                <tr><td><code>COLOR NAME</code></td><td>Tên phối màu của mẫu túi (Black, Navy, Camo...).</td></tr>
+                <tr><td><code>REVISION</code></td><td><b>Phiên bản định mức kỹ thuật:</b> <code>V_1</code> (Bản đầu), <code>V_2</code> (Điều chỉnh sau may mẫu), <code>FINAL</code> (Bản chốt sản xuất đại trà).</td></tr>
+                <tr><td><code>REMARK</code></td><td>Ghi chú kỹ thuật về đặc tính công nghệ may hoặc yêu cầu đặc biệt của khách hàng.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">🔄 Nguồn gốc dữ liệu & Điểm chuyển tiếp</div>
+          <div class="lineage-card">
+            <div class="lineage-box">
+              <b>Nguồn dữ liệu vào:</b>
+              Nhập thủ công hoặc tải lên qua nút <b>Upload BOM</b> từ file mẫu Excel phòng Kỹ thuật / R&D.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Xử lý tại BOM-List:</b>
+              Quản lý danh sách, kiểm soát phiên bản Revision, bấm nút <b>MANAGE</b> để vào biên tập chi tiết.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Chuyển tiếp đến:</b>
+              <code>F/G › BOM-Manage</code> (Chỉnh sửa chi tiết R/M) & <code>MATERIAL › Manage PO</code> (Tính nhu cầu MRP).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SECTION: F/G BOM-MANAGE (CHI TIẾT ĐỊNH MỨC) -->
       <section class="module-section" id="sec-bom-manage" data-role="all technical merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
@@ -2051,6 +2303,45 @@
 
     // KNOWLEDGE BASE (30 TOPICS COVERING ALL MODULES, BUTTONS, DATA FLOWS & TROUBLESHOOTING)
     const KB = [
+      {
+        id: 'code-rm-master',
+        title: 'Khai báo và Quản lý Danh mục R/M Gốc (Code › R/M)',
+        keywords: [
+          'code rm', 'code > rm', 'code ▶ rm', 'code raw material', 'danh mục rm', 'khai báo rm', 
+          'mã rm', 'mã nguyên phụ liệu', 'từ điển vật tư', 'master data rm', 'khai báo mã vải', 
+          'khai báo phụ liệu', 'tạo mã rm mới', 'standard price rm', 'category rm'
+        ],
+        answer: 'Màn hình <b>CODE ▶ R/M</b> (Đường dẫn: <code>/code/rm</code>) là Từ điển Master Data nguyên phụ liệu gốc của toàn bộ nhà máy:<br><br>' +
+          '• <b>Mục đích:</b> Mọi loại vải chính, vải lót, khóa kéo, chỉ may hay thùng carton trước khi đưa vào BOM hoặc đặt mua đều phải có mã định danh tại đây.<br>' +
+          '• <b>Phân loại Category:</b> <code>F</code> (Vải Fabric), <code>T</code> (Phụ liệu Trim), <code>P</code> (Đóng gói Packing), <code>O</code> (Khác Other).<br>' +
+          '• <b>Các nút bấm chính:</b><br>' +
+          '  + <b>+ Add R/M</b> (Xanh lá): Mở popup thêm 1 mã vật tư mới vào hệ thống.<br>' +
+          '  + <b>Template R/M</b> (Vàng cam): Tải file Excel mẫu chuẩn.<br>' +
+          '  + <b>UPLOAD EXCEL</b> (Xanh dương): Nạp hàng loạt hàng trăm mã vật tư từ Excel.<br>' +
+          '  + <b>D/L Excel</b> (Vàng cam): Xuất toàn bộ từ điển R/M ra Excel.<br>' +
+          '  + <b>EDIT</b> (Xanh ngọc): Sửa quy cách, màu sắc, đơn vị tính (YDS/M/PCS) hoặc Standard Price USD.<br>' +
+          '  + <b>DEL</b> (Đỏ): Xóa mã R/M (chỉ xóa được khi mã này chưa từng được đưa vào bất kỳ BOM nào).',
+        chips: ['BOM-List là gì?', 'Upload BOM bằng Excel', 'Checkbox EDIT trong BOM', 'Đưa vật tư lên hệ thống']
+      },
+      {
+        id: 'bom-list-manage',
+        title: 'Quản lý Danh sách Định mức Vật tư (F/G › BOM-List)',
+        keywords: [
+          'bom-list', 'bom list', 'f/g bom list', 'danh sách bom', 'danh sách định mức', 
+          'upload bom', 'template bom', 'nút upload bom', 'revision bom', 'phiên bản bom', 
+          'tìm kiếm bom', 'quản lý bom list'
+        ],
+        answer: 'Màn hình <b>F/G ▶ BOM-List</b> (Đường dẫn: <code>/fg/bom-list</code>) là trung tâm điều phối toàn bộ các bảng định mức sản phẩm của nhà máy:<br><br>' +
+          '• <b>Mục đích:</b> Tra cứu nhanh BOM theo mã Style, quản lý các phiên bản chỉnh sửa <code>REVISION</code> (V_1, V_2, FINAL...), nạp hàng loạt bảng định mức bằng Excel.<br>' +
+          '• <b>Các nút bấm quan trọng:</b><br>' +
+          '  + <b>Template BOM</b> (Vàng cam): Tải file Excel mẫu BOM tiêu chuẩn trắng.<br>' +
+          '  + <b>Upload BOM</b> (Xanh lá): Tải file Excel định mức kỹ thuật lên để nạp BOM hàng loạt nhanh chóng.<br>' +
+          '  + <b>MANAGE</b> (Xanh ngọc ở cuối dòng): <b>Mở trực tiếp trang biên tập chi tiết định mức BOM-Manage</b> của mã hàng đó.<br>' +
+          '  + <b>D/L</b> (Vàng cam): Xuất các bản ghi BOM đã chọn ra file Excel.<br>' +
+          '  + <b>DEL</b> (Đỏ): Xóa các bản nháp BOM không sử dụng.<br>' +
+          '  + <b>Search</b> (Xám đen): Lọc nhanh BOM theo Buyer, Style Code, Style Name hoặc Season.',
+        chips: ['Màn hình BOM-Manage', 'Khai báo Code R/M', 'Checkbox EDIT trong BOM', 'Dữ liệu Manage PO lấy từ đâu?']
+      },
       {
         id: 'nhap-vat-tu-o-dau',
         title: 'Nhập vật tư ở đâu? (Nhập kho Inbound vs Khai báo mã R/M)',

@@ -439,15 +439,43 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 
 ## 8. PHÂN HỆ 6: CODE - MASTER DATA (DANH MỤC DÙNG CHUNG)
 
-1. **R/M (`/code/rm`):** Bảng tổng danh mục Nguyên phụ liệu toàn công ty:
-   - Phân loại (Category): F (Fabric - Vải), T (Trim - Phụ liệu), P (Packing - Đóng gói), O (Other - Khác).
-   - Mã R/M chuẩn, Tên tiếng Anh kỹ thuật, Quy cách, Bảng màu, Đơn vị tính và Đơn giá tiêu chuẩn (Standard Price USD).
-2. **Category/Style/Color (`/code/category-style-color`):** Danh mục ngành hàng balo, mã kiểu dáng (Style) và bảng mã màu (Colorways) chuẩn hóa của doanh nghiệp.
-3. **Exchange unit (`/code/exchange-unit`):** Bảng hệ số quy đổi đơn vị tính (Yard sang Mét, Mét sang PCS, Cuộn sang Mét...) phục vụ tính toán tự động trong BOM và Kho.
-4. **Buyer (`/code/buyer`):** Danh mục khách hàng quốc tế (Mã viết tắt, Tên đầy đủ, Quốc gia, Điều khoản thanh toán).
-5. **Site Management (`/code/matl-consignee`):** Địa điểm các nhà máy, xưởng thành viên và thông tin đơn vị nhận hàng (Consignee).
-6. **Matl. supplier (`/code/matl-supplier`):** Danh bạ đối tác nhà cung cấp nguyên phụ liệu trong và ngoài nước.
-7. **Location (`/code/location`):** Hệ thống mã hóa tọa độ giá kệ trong kho bãi (Dãy, Kệ, Tầng, Ô).
+### 8.1. Quản lý Danh mục Nguyên phụ liệu gốc (`CODE › R/M`)
+- **Breadcrumb:** `CODE ▶ R/M` (Đường dẫn: `/code/rm`)
+- **Mục đích:** Đây là **Từ điển Master Data nguyên phụ liệu dùng chung cho toàn bộ nhà máy**. Mọi loại vải chính, vải lót, chỉ may, khóa kéo, nhãn mác, băng dính hay thùng carton trước khi được đưa vào Định mức BOM hoặc Đặt mua đều phải được khai báo mã chuẩn tại màn hình này.
+
+#### A. Quy tắc phân nhóm vật tư (Category Code)
+- `F (Fabric)`: Tất cả các loại vải chính, vải lót, vải phối, lưới, mút xốp eva.
+- `T (Trim)`: Phụ liệu may mặc (Dây kéo, đầu khóa kéo, băng dính Velcro, chỉ may, nút bấm, móc kim loại, dây dệt quai túi).
+- `P (Packing)`: Vật tư đóng gói (Thùng carton, túi nilon PE/PP, hạt hút ẩm Silica gel, băng keo niêm phong, nhãn mã vạch barcode).
+- `O (Other)`: Các loại hóa chất phụ trợ, dầu máy, keo dán, vật tư tiêu hao phụ xưởng cắt/may.
+
+#### B. Bảng nút bấm tác vụ trên màn hình CODE › R/M
+| Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
+| :--- | :--- | :--- | :--- | :--- |
+| **+ Add R/M** | Xanh lá (`#28a745`) | Thanh công cụ | Mở popup khai báo 01 mã nguyên phụ liệu mới vào từ điển | Khi có mã vải, phụ liệu mới về xưởng chưa từng có trong hệ thống. |
+| **UPLOAD EXCEL** | Xanh dương (`#007bff`) | Thanh công cụ | Nạp danh sách hàng loạt nguyên phụ liệu từ file Excel | Khi nhận dự án mới cần nhập hàng trăm mã phụ liệu cùng lúc vào Master Data. |
+| **Template R/M** | Vàng cam (`#ffc107`) | Thanh công cụ | Tải file mẫu Excel chuẩn để điền dữ liệu R/M | Trước khi bấm UPLOAD EXCEL, tải file mẫu này về để điền đúng định dạng cột. |
+| **D/L Excel** | Vàng cam (`#ffc107`) | Thanh công cụ | Xuất toàn bộ từ điển danh mục R/M ra tệp Excel | Dùng khi cần gửi bảng tra cứu mã vật tư cho phòng Mua hàng hoặc Kỹ thuật. |
+| **EDIT** | Xanh ngọc / Cyan | Từng dòng vật tư | Mở popup chỉnh sửa thông tin kỹ thuật, quy cách hoặc đơn giá chuẩn | Khi cần sửa Tên, Đơn vị tính (YDS/M/PCS), Nhà cung cấp hoặc Standard Price. |
+| **DEL** | Đỏ (`#dc3545`) | Từng dòng vật tư | Xóa mã nguyên phụ liệu khỏi hệ thống | Chỉ xóa được khi mã R/M này **chưa từng được đưa vào bất kỳ BOM nào**. |
+
+#### C. Cấu trúc thông tin bắt buộc khi khai báo mã R/M mới
+- `Category`: F (Fabric), T (Trim), P (Packing) hoặc O (Other).
+- `R/M Code`: Mã định danh duy nhất (VD: `RMF-00124`, `RMT-00512`, `RMP-00031`). Không được trùng lặp.
+- `R/M Name`: Tên tiếng Anh kỹ thuật của vật tư (VD: *Polyester 600D PU2 Coating, Nylon Coil Zipper #5*).
+- `Specification`: Quy cách chi tiết (Khổ rộng 58", Độ dày dệt, Kích thước răng khóa, Trọng lượng gsm...).
+- `Color / Color Code`: Tên màu hoặc mã màu Pantone/Colorway chỉ định của khách hàng.
+- `Unit`: Đơn vị đo lường chuẩn: **YDS** (Yard), **M** (Mét), **PCS** (Cái/Chiếc), **CON** (Cuộn chỉ), **SET**, **ROLL**.
+- `Standard Price (USD)`: Đơn giá tiêu chuẩn quy đổi ra USD để hệ thống tự động định giá tổng tài sản kho (Inventory Valuation).
+- `Supplier`: Nhà cung cấp mặc định hoặc đối tác sản xuất vật tư đó.
+
+### 8.2. Các Danh mục Master Data Khác
+1. **Category/Style/Color (`/code/category-style-color`):** Danh mục ngành hàng balo, mã kiểu dáng (Style) và bảng mã màu (Colorways) chuẩn hóa của doanh nghiệp.
+2. **Exchange unit (`/code/exchange-unit`):** Bảng hệ số quy đổi đơn vị tính (Yard sang Mét, Mét sang PCS, Cuộn sang Mét...) phục vụ tính toán tự động trong BOM và Kho.
+3. **Buyer (`/code/buyer`):** Danh mục khách hàng quốc tế (Mã viết tắt, Tên đầy đủ, Quốc gia, Điều khoản thanh toán).
+4. **Site Management (`/code/matl-consignee`):** Địa điểm các nhà máy, xưởng thành viên và thông tin đơn vị nhận hàng (Consignee).
+5. **Matl. supplier (`/code/matl-supplier`):** Danh bạ đối tác nhà cung cấp nguyên phụ liệu trong và ngoài nước.
+6. **Location (`/code/location`):** Hệ thống mã hóa tọa độ giá kệ trong kho bãi (Dãy, Kệ, Tầng, Ô).
 
 ---
 
