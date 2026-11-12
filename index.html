@@ -309,9 +309,9 @@
       margin-top: 1rem;
     }
     .role-pill {
-      background: #1e293b;
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      color: var(--text-muted);
+      color: var(--text-main);
       padding: 0.4rem 0.9rem;
       border-radius: 9999px;
       font-size: 0.85rem;
@@ -324,14 +324,14 @@
     }
     .role-pill:hover, .role-pill.active {
       background: #0284c7;
-      color: #fff;
+      color: #ffffff !important;
       border-color: #38bdf8;
     }
 
     /* SIDEBAR ROLE FILTER PANEL */
     .sidebar-role-panel {
       margin-bottom: 0.85rem;
-      background: #141f32;
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 0.75rem;
@@ -358,7 +358,7 @@
     }
     .btn-clear-role:hover {
       background: var(--accent);
-      color: #0f172a;
+      color: #ffffff;
     }
     .sidebar-role-pills {
       display: flex;
@@ -374,13 +374,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(56, 189, 248, 0.12);
+      background: var(--lineage-bg);
       border: 1px solid var(--accent);
       border-radius: 6px;
       padding: 0.35rem 0.65rem;
       margin-top: 0.6rem;
       font-size: 0.76rem;
-      color: #e0f2fe;
+      color: var(--text-main);
       animation: fadeIn 0.2s ease;
     }
     .btn-reset-filter {
@@ -453,25 +453,25 @@
       border-left: 3px solid transparent;
     }
     .sidebar-nav li a:hover {
-      background: rgba(56, 189, 248, 0.08);
-      color: #fff;
+      background: var(--bg-card-hover);
+      color: var(--text-main);
     }
     .sidebar-nav li a.active {
-      background: rgba(56, 189, 248, 0.15);
+      background: var(--lineage-bg);
       color: var(--accent);
       font-weight: 700;
       border-left: 3px solid var(--accent);
       padding-left: 0.75rem;
     }
     .sidebar-nav li a.role-matched {
-      border-left: 3px solid #38bdf8;
-      background: rgba(56, 189, 248, 0.08);
-      color: #e0f2fe;
+      border-left: 3px solid #0284c7;
+      background: var(--lineage-bg);
+      color: var(--accent);
       font-weight: 600;
     }
     .sidebar-nav li a.role-matched::before {
       content: "● ";
-      color: #38bdf8;
+      color: var(--accent);
       font-size: 0.7rem;
       margin-right: 0.35rem;
     }
@@ -490,6 +490,22 @@
       gap: 2rem;
     }
 
+    /* GLOBAL INLINE CODE FORMATTING */
+    code {
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size: 0.88em;
+      padding: 0.12rem 0.38rem;
+      border-radius: 4px;
+      background: rgba(2, 132, 199, 0.08);
+      color: #0284c7;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+    [data-theme="dark"] code {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
     /* PIPELINE INTERACTIVE DIAGRAM */
     .pipeline-card {
       background: var(--bg-surface);
@@ -505,7 +521,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: #38bdf8;
+      color: var(--accent);
     }
     .pipeline-steps {
       display: grid;
@@ -532,7 +548,7 @@
       width: 26px;
       height: 26px;
       background: #0284c7;
-      color: #fff;
+      color: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -544,12 +560,95 @@
     .pipe-name {
       font-size: 0.9rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff !important;
       margin-bottom: 0.25rem;
     }
     .pipe-sub {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #cbd5e1 !important;
+    }
+
+    /* SCENARIO BOXES & POST-ACTION BOXES (DARK BACKGROUND WITH CRISP WHITE TEXT) */
+    .scenario-box {
+      background: #1a2234;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+    }
+    .scenario-box b, .scenario-box strong {
+      color: #ffffff;
+    }
+    .scenario-box .scenario-title {
+      color: #38bdf8 !important;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    .scenario-box .step-item {
+      background: rgba(15, 23, 42, 0.75) !important;
+      border-left: 3px solid #0284c7 !important;
+      color: #ffffff !important;
+    }
+    .scenario-box .step-num {
+      color: #38bdf8 !important;
+    }
+    .scenario-box .step-text {
+      color: #f8fafc !important;
+    }
+    .scenario-box .step-text b {
+      color: #ffffff !important;
+    }
+    .scenario-box code {
+      color: #7dd3fc !important;
+      background: rgba(56, 189, 248, 0.15) !important;
+      border: 1px solid rgba(56, 189, 248, 0.3) !important;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    /* POST-ACTION VERIFICATION BOXES (GREEN & BLUE) */
+    .post-action-box {
+      background: #112a1d;
+      border: 1px solid rgba(40, 167, 69, 0.5);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-top: 1rem;
+      color: #f8fafc;
+    }
+    .post-action-box.blue {
+      background: #0f2438;
+      border-color: rgba(2, 132, 199, 0.5);
+    }
+    .post-action-box .action-title-green {
+      color: #4ade80 !important;
+      font-size: 0.92rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .post-action-box .action-title-blue {
+      color: #38bdf8 !important;
+      font-size: 0.92rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .post-action-box b, .post-action-box strong {
+      color: #ffffff !important;
+    }
+    .post-action-box ol, .post-action-box ul, .post-action-box li {
+      color: #f1f5f9 !important;
+      line-height: 1.6;
+    }
+    .post-action-box code {
+      color: #7dd3fc !important;
+      background: rgba(56, 189, 248, 0.15) !important;
+      border: 1px solid rgba(56, 189, 248, 0.3) !important;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
     }
 
     /* MODULE SECTION STYLES */
@@ -2115,8 +2214,8 @@
 
           <div class="submodule-title">📋 HƯỚNG DẪN THAO TÁC TỪNG BƯỚC CHI TIẾT (STEP-BY-STEP)</div>
           
-          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
-            <b style="color: #38bdf8; font-size: 0.95rem; display: block; margin-bottom: 0.75rem;">👉 KỊCH BẢN A: NHẬP TRỰC TIẾP TRÊN GIAO DIỆN WEB (Áp dụng cho đơn hàng lẻ, vài dòng vật tư)</b>
+          <div class="scenario-box">
+            <span class="scenario-title">👉 KỊCH BẢN A: NHẬP TRỰC TIẾP TRÊN GIAO DIỆN WEB (Áp dụng cho đơn hàng lẻ, vài dòng vật tư)</span>
             <ul class="steps-list">
               <li class="step-item">
                 <span class="step-num">BƯỚC 1:</span>
@@ -2144,7 +2243,7 @@
                 <span class="step-num">BƯỚC 4:</span>
                 <div class="step-text">
                   <b>Chỉ định vị trí giá kệ kho (Bắt buộc):</b> Tại cột <b>LOCATION</b>, nhấp vào danh sách chọn (dropdown) và chọn vị trí kệ thực tế mà bạn sẽ xếp hàng vào (Ví dụ: <code>KỆ-A1-02</code>, <code>KHO-VẢI-01</code>...).<br>
-                  <span style="color: #ef5350;">⚠️ Tuyệt đối không được bỏ trống LOCATION, vì nếu bỏ trống hệ thống sẽ không thể ghi nhận vị trí vật tư trên báo cáo tồn kho.</span>
+                  <span style="color: #f87171;">⚠️ Tuyệt đối không được bỏ trống LOCATION, vì nếu bỏ trống hệ thống sẽ không thể ghi nhận vị trí vật tư trên báo cáo tồn kho.</span>
                 </div>
               </li>
               <li class="step-item">
@@ -2162,9 +2261,9 @@
             </ul>
 
             <!-- NEXT STEPS AFTER BUTTON PRESS -->
-            <div style="background: rgba(40, 167, 69, 0.12); border: 1px solid rgba(40, 167, 69, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
-              <b style="color: #4ade80; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "APPLYING INBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
-              <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+            <div class="post-action-box">
+              <span class="action-title-green">🔔 SAU KHI NHẤN NÚT "APPLYING INBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</span>
+              <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6;">
                 <li><b>Xác nhận trạng thái hệ thống:</b> Màn hình sẽ hiện thông báo xác nhận thành công <i>"Inbound Applied Successfully!"</i>. Các dòng bạn vừa nhập sẽ được hệ thống khóa lại (đóng sổ) để tránh nhập trùng lặp.</li>
                 <li><b>Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):</b>
                   <ul>
@@ -2185,8 +2284,8 @@
             </div>
           </div>
 
-          <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
-            <b style="color: #38bdf8; font-size: 0.95rem; display: block; margin-bottom: 0.75rem;">👉 KỊCH BẢN B: NHẬP HÀNG LOẠT BẰNG FILE EXCEL (Áp dụng cho xe hàng lớn / container nhiều mã)</b>
+          <div class="scenario-box">
+            <span class="scenario-title">👉 KỊCH BẢN B: NHẬP HÀNG LOẠT BẰNG FILE EXCEL (Áp dụng cho xe hàng lớn / container nhiều mã)</span>
             <ul class="steps-list">
               <li class="step-item">
                 <span class="step-num">BƯỚC 1:</span>
@@ -2356,9 +2455,9 @@
           </ul>
 
           <!-- NEXT STEPS AFTER OUTBOUND BUTTON PRESS -->
-          <div style="background: rgba(40, 167, 69, 0.12); border: 1px solid rgba(40, 167, 69, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
-            <b style="color: #4ade80; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "APPLYING OUTBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
-            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+          <div class="post-action-box">
+            <span class="action-title-green">🔔 SAU KHI NHẤN NÚT "APPLYING OUTBOUND NOW", BẠN CẦN LÀM GÌ TIẾP THEO?</span>
+            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6;">
               <li><b>Xác nhận trạng thái hoàn tất:</b> Hệ thống hiển thị thông báo xuất kho thành công <i>"Outbound Applied Successfully!"</i>. Số lượng tồn kho tương ứng sẽ bị trừ ngay lập tức.</li>
               <li><b>Đối soát tại màn hình Tồn kho (`MATERIAL ▶ Inventory`):</b>
                 <ul>
@@ -2460,9 +2559,9 @@
           </ul>
 
           <!-- NEXT STEPS AFTER QR BUTTON PRESS -->
-          <div style="background: rgba(2, 132, 199, 0.12); border: 1px solid rgba(2, 132, 199, 0.4); border-radius: 6px; padding: 1rem; margin-top: 1rem;">
-            <b style="color: #38bdf8; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">🔔 SAU KHI NHẤN NÚT "QR", BẠN CẦN LÀM GÌ TIẾP THEO?</b>
-            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+          <div class="post-action-box blue">
+            <span class="action-title-blue">🔔 SAU KHI NHẤN NÚT "QR", BẠN CẦN LÀM GÌ TIẾP THEO?</span>
+            <ol style="margin-left: 1.3rem; font-size: 0.88rem; line-height: 1.6;">
               <li><b>In tem mã QR:</b> Trình duyệt sẽ mở một tab mới hiển thị toàn bộ trang tem mã QR công đoạn (Bundle Tag / Travel Ticket). Nhấn <code>Ctrl + P</code> để in ra máy in tem nhiệt hoặc máy in laser.</li>
               <li><b>Bàn giao tem xuống xưởng:</b> Giao tệp tem mã QR cho Tổ trưởng chuyền may / Quản đốc xưởng để dán lên từng bó bán thành phẩm hoặc thẻ bài theo dõi công đoạn.</li>
               <li><b>Quét mã tại các trạm kiểm đếm:</b> Công nhân tại các trạm đầu chuyền, kiểm tra chất lượng (QC), máy rà kim (X-RAY), và đóng gói (PACKING) sử dụng máy quét mã vạch/QR để quét tem mỗi khi hoàn thành một bó hàng.</li>
