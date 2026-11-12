@@ -208,6 +208,49 @@
       border-color: #38bdf8;
     }
 
+    /* SIDEBAR ROLE FILTER PANEL */
+    .sidebar-role-panel {
+      margin-bottom: 0.85rem;
+      background: #141f32;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.75rem;
+    }
+    .sidebar-role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-role-header .sidebar-title {
+      margin-bottom: 0;
+    }
+    .btn-clear-role {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-clear-role:hover {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .sidebar-role-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .sidebar-role-pills .role-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+
     /* LAYOUT CONTAINER */
     .main-container {
       display: flex;
@@ -585,6 +628,48 @@
       margin-top: auto;
     }
 
+    /* FLOATING BACK TO TOP BUTTON */
+    .btn-back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 6.5rem;
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      color: #fff;
+      padding: 0.65rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      z-index: 998;
+    }
+    .btn-back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .btn-back-to-top:hover {
+      background: var(--accent);
+      color: #0f172a;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .btn-back-to-top {
+        right: 5.75rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+      }
+    }
+
     /* FLOATING CHATBOT WIDGET */
     .chatbot-btn {
       position: fixed;
@@ -950,27 +1035,45 @@
     
     <!-- SIDEBAR NAVIGATION -->
     <aside class="sidebar">
+      <div class="sidebar-role-panel">
+        <div class="sidebar-role-header">
+          <span class="sidebar-title">⚡ Chọn phân hệ:</span>
+          <button type="button" class="btn-clear-role" id="sidebarResetRole" title="Xem tất cả">Tất cả</button>
+        </div>
+        <div class="sidebar-role-pills" id="sidebarRolePills">
+          <button class="role-pill active" data-role="all">⚡ Tất cả</button>
+          <button class="role-pill" data-role="merchandiser">💼 Đơn hàng</button>
+          <button class="role-pill" data-role="technical">📐 BOM / R&D</button>
+          <button class="role-pill" data-role="purchasing">🛒 Mua hàng</button>
+          <button class="role-pill" data-role="warehouse">📦 Kho</button>
+          <button class="role-pill" data-role="production">🏭 Chuyền may</button>
+          <button class="role-pill" data-role="admin">🛡️ Quản trị</button>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
       <div class="sidebar-title">Mục lục nhanh</div>
       <ul class="sidebar-nav" id="sidebarNav">
-        <li><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
-        <li><a href="#sec-code-rm">1. Danh mục R/M (Code › RM)</a></li>
-        <li><a href="#sec-fg-order">2. Đơn hàng (Buyer Order)</a></li>
-        <li><a href="#sec-bom-list">3. Danh sách BOM (BOM-List)</a></li>
-        <li><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
-        <li class="sidebar-divider"></li>
-        <li><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
-        <li><a href="#sec-po-status">6. Trạng thái Đơn mua (PO Status)</a></li>
-        <li><a href="#sec-inbound">7. Nhập kho Vật tư (Inbound)</a></li>
-        <li><a href="#sec-inventory">8. Quản lý Tồn kho (Inventory)</a></li>
-        <li><a href="#sec-outbound">9. Xuất kho Cấp phát (Outbound)</a></li>
-        <li class="sidebar-divider"></li>
-        <li><a href="#sec-schedule">10. Kế hoạch Chuyền (Schedule)</a></li>
-        <li><a href="#sec-dashboard">11. Giám sát Năng suất (DT1-DT8)</a></li>
-        <li><a href="#sec-shipment">12. Xuất Hàng & Tồn F/G (Shipment & Stock)</a></li>
-        <li class="sidebar-divider"></li>
-        <li><a href="#sec-buttons">13. Bảng Quy chuẩn Nút bấm</a></li>
-        <li><a href="#sec-glossary">14. Từ điển Thuật ngữ MRP</a></li>
-        <li><a href="#sec-faq">15. Ma trận Xử lý Lỗi (FAQ)</a></li>
+        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
+        <li data-role="all technical purchasing warehouse admin"><a href="#sec-code-rm">1. Danh mục R/M (Code › RM)</a></li>
+        <li data-role="all merchandiser admin"><a href="#sec-fg-order">2. Đơn hàng (Buyer Order)</a></li>
+        <li data-role="all technical merchandiser admin"><a href="#sec-bom-list">3. Danh sách BOM (BOM-List)</a></li>
+        <li data-role="all technical merchandiser admin"><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
+        <li class="sidebar-divider" data-role="all merchandiser technical purchasing warehouse admin"></li>
+        <li data-role="all purchasing warehouse merchandiser admin"><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
+        <li data-role="all purchasing warehouse merchandiser admin"><a href="#sec-po-status">6. Trạng thái Đơn mua (PO Status)</a></li>
+        <li data-role="all warehouse purchasing admin"><a href="#sec-inbound">7. Nhập kho Vật tư (Inbound)</a></li>
+        <li data-role="all warehouse admin"><a href="#sec-inventory">8. Quản lý Tồn kho (Inventory)</a></li>
+        <li data-role="all warehouse production admin"><a href="#sec-outbound">9. Xuất kho Cấp phát (Outbound)</a></li>
+        <li class="sidebar-divider" data-role="all production warehouse admin"></li>
+        <li data-role="all production admin"><a href="#sec-schedule">10. Kế hoạch Chuyền (Schedule)</a></li>
+        <li data-role="all production admin"><a href="#sec-dashboard">11. Giám sát Năng suất (DT1-DT8)</a></li>
+        <li data-role="all production warehouse merchandiser admin"><a href="#sec-shipment">12. Xuất Hàng & Tồn F/G (Shipment & Stock)</a></li>
+        <li class="sidebar-divider" data-role="all merchandiser technical purchasing warehouse production admin"></li>
+        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-buttons">13. Bảng Quy chuẩn Nút bấm</a></li>
+        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-glossary">14. Từ điển Thuật ngữ MRP</a></li>
+        <li data-role="all merchandiser technical purchasing warehouse production admin"><a href="#sec-faq">15. Ma trận Xử lý Lỗi (FAQ)</a></li>
       </ul>
     </aside>
 
@@ -1879,7 +1982,7 @@
       </section>
 
       <!-- 6. SECTION: PRODUCTION SCHEDULE & DASHBOARD -->
-      <section class="module-section" id="sec-schedule" data-role="all production admin">
+      <section class="module-section" id="sec-schedule" data-role="all production warehouse merchandiser admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">PHÂN HỆ PRODUCTION</span>
@@ -1992,7 +2095,7 @@
       </section>
 
       <!-- 7. SECTION: BUTTONS COLOR CODE REFERENCE -->
-      <section class="module-section" id="sec-buttons" data-role="all">
+      <section class="module-section" id="sec-buttons" data-role="all merchandiser technical purchasing warehouse production admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">QUY CHUẨN</span>
@@ -2046,7 +2149,7 @@
       </section>
 
       <!-- 8. SECTION: GLOSSARY -->
-      <section class="module-section" id="sec-glossary" data-role="all">
+      <section class="module-section" id="sec-glossary" data-role="all merchandiser technical purchasing warehouse production admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">TỪ ĐIỂN</span>
@@ -2086,7 +2189,7 @@
       </section>
 
       <!-- 9. SECTION: FAQ / TROUBLESHOOTING -->
-      <section class="module-section" id="sec-faq" data-role="all">
+      <section class="module-section" id="sec-faq" data-role="all merchandiser technical purchasing warehouse production admin">
         <div class="module-header">
           <div class="module-title-wrap">
             <span class="module-tag">HỖ TRỢ</span>
@@ -2147,6 +2250,11 @@
     <p>Hệ Thống Cẩm Nang Điện Tử Tương Tác ERP / MRP - Doanh Nghiệp May Túi Xách NEOBAGS (Phiên bản V25.02)</p>
     <p style="margin-top: 0.35rem; color: #475569;">Tài liệu bảo mật nội bộ. Tuyệt đối không sao chép, lưu trữ công khai hoặc phân phối ra bên ngoài.</p>
   </footer>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="btn-back-to-top" id="btnBackToTop" aria-label="Lên đầu trang / Chọn phân hệ khác" title="Lên đầu trang / Chọn phân hệ khác">
+    ⬆ <span>Lên đầu trang</span>
+  </button>
 
   <!-- FLOATING CHATBOT WIDGET -->
   <button class="chatbot-btn" id="chatOpenBtn" aria-label="Mở Trợ Lý Ảo MRP">
@@ -2247,26 +2355,70 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 2. ROLE FILTER PILLS
-    const rolePills = document.querySelectorAll('.role-pill');
+    // 2. ROLE FILTER PILLS & SYNCHRONIZATION
+    const allRolePills = document.querySelectorAll('.role-pill');
     const sections = document.querySelectorAll('.module-section, .pipeline-card');
-    
-    rolePills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        rolePills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        const role = pill.dataset.role;
+    const sidebarItems = document.querySelectorAll('#sidebarNav li:not(.sidebar-divider)');
+    const sidebarResetBtn = document.getElementById('sidebarResetRole');
 
-        sections.forEach(sec => {
-          const secRoles = sec.dataset.role || 'all';
-          if (role === 'all' || secRoles.includes(role)) {
-            sec.style.display = 'block';
-          } else {
-            sec.style.display = 'none';
+    function applyRoleFilter(role, shouldScroll = false) {
+      // a. Đồng bộ trạng thái active của tất cả buttons (cả trên Hero và trong Sidebar)
+      allRolePills.forEach(p => {
+        if (p.dataset.role === role) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+
+      // b. Lọc các section nội dung chính
+      sections.forEach(sec => {
+        const secRoles = sec.dataset.role || 'all';
+        if (role === 'all' || secRoles.includes(role) || secRoles.includes('all')) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      // c. Lọc mục lục bên Sidebar tương ứng
+      sidebarItems.forEach(li => {
+        const itemRoles = li.dataset.role || 'all';
+        if (role === 'all' || itemRoles.includes(role) || itemRoles.includes('all')) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+
+      // d. Cập nhật vị trí mục lục active
+      updateActiveTOC();
+
+      // e. Nếu người dùng bấm từ Hero khi đang ở trên cùng thì cuộn nhẹ đến đầu danh mục
+      if (shouldScroll) {
+        const mainContainer = document.querySelector('.main-container');
+        if (mainContainer) {
+          const targetY = mainContainer.offsetTop - 70;
+          if (Math.abs(window.scrollY - targetY) > 80) {
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
           }
-        });
+        }
+      }
+    }
+
+    allRolePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const role = pill.dataset.role;
+        const isFromHero = pill.closest('.hero') !== null;
+        applyRoleFilter(role, isFromHero);
       });
     });
+
+    if (sidebarResetBtn) {
+      sidebarResetBtn.addEventListener('click', () => {
+        applyRoleFilter('all', false);
+      });
+    }
 
     // 3. GLOBAL SEARCH FILTER
     const searchInput = document.getElementById('globalSearch');
@@ -2294,7 +2446,7 @@
       }
     });
 
-    // 4. SCROLLSPY / TOC ACTIVE TRACKER (TỰ ĐỘNG TRACKING VỊ TRÍ MỤC LỤC KHI CUỘN)
+    // 4. SCROLLSPY / TOC ACTIVE TRACKER (AN TOÀN - KHÔNG CƯỚP THANH CUỘN WINDOW)
     const tocLinks = Array.from(document.querySelectorAll('#sidebarNav a[href^="#"]'));
     const trackedItems = tocLinks.map(link => {
       const id = link.getAttribute('href').substring(1);
@@ -2303,22 +2455,29 @@
     }).filter(item => item.el !== null);
 
     function updateActiveTOC() {
+      // Chỉ kiểm tra các phần tử đang thực sự hiển thị (không bị display: none do bộ lọc)
+      const visibleTracked = trackedItems.filter(item => {
+        return item.el && item.el.offsetParent !== null;
+      });
+
+      if (visibleTracked.length === 0) return;
+
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollMid = scrollY + 120; // 120px offset cho sticky header
+      const scrollMid = scrollY + 130;
       let activeItem = null;
 
       // Nếu ở đầu trang
-      if (scrollY < 60 && trackedItems.length > 0) {
-        activeItem = trackedItems[0];
+      if (scrollY < 80) {
+        activeItem = visibleTracked[0];
       } 
       // Nếu đã cuộn đến sát chân trang
-      else if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 50 && trackedItems.length > 0) {
-        activeItem = trackedItems[trackedItems.length - 1];
+      else if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 60) {
+        activeItem = visibleTracked[visibleTracked.length - 1];
       } 
       else {
         // Tìm phân hệ hiện tại đang nằm trong vùng nhìn thấy
-        for (let i = 0; i < trackedItems.length; i++) {
-          const item = trackedItems[i];
+        for (let i = 0; i < visibleTracked.length; i++) {
+          const item = visibleTracked[i];
           const top = item.el.offsetTop;
           const bottom = top + item.el.offsetHeight;
 
@@ -2335,13 +2494,17 @@
         tocLinks.forEach(l => l.classList.remove('active'));
         activeItem.link.classList.add('active');
 
-        // Tự động cuộn thanh sidebar nếu mục lục active nằm ngoài vùng hiển thị của sidebar
+        // Cuộn nội bộ thanh sidebar an toàn (CHỈ sửa sidebar.scrollTop, TUYỆT ĐỐI KHÔNG gọi scrollIntoView để tránh cướp thanh cuộn của window)
         const sidebar = document.querySelector('.sidebar');
         if (sidebar && sidebar.scrollHeight > sidebar.clientHeight) {
-          const linkRect = activeItem.link.getBoundingClientRect();
-          const sidebarRect = sidebar.getBoundingClientRect();
-          if (linkRect.top < sidebarRect.top + 20 || linkRect.bottom > sidebarRect.bottom - 20) {
-            activeItem.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          const linkTop = activeItem.link.offsetTop;
+          const currentScroll = sidebar.scrollTop;
+          const visibleHeight = sidebar.clientHeight;
+
+          if (linkTop < currentScroll + 20) {
+            sidebar.scrollTop = Math.max(0, linkTop - 30);
+          } else if (linkTop > currentScroll + visibleHeight - 40) {
+            sidebar.scrollTop = linkTop - visibleHeight + 40;
           }
         }
       }
@@ -2372,6 +2535,22 @@
         }
       });
     });
+
+    // FLOATING BACK TO TOP BUTTON
+    const btnBackToTop = document.getElementById('btnBackToTop');
+    if (btnBackToTop) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          btnBackToTop.classList.add('visible');
+        } else {
+          btnBackToTop.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      btnBackToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
 
     // Kích hoạt khi trang tải xong
     window.addEventListener('DOMContentLoaded', updateActiveTOC);
