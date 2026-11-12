@@ -959,15 +959,18 @@
         <li><a href="#sec-bom-manage">4. Định mức Chi tiết (BOM-Manage)</a></li>
         <li class="sidebar-divider"></li>
         <li><a href="#sec-manage-po">5. Tính toán Nhu cầu (Manage PO)</a></li>
-        <li><a href="#sec-inbound">6. Nhập kho Vật tư (Inbound)</a></li>
-        <li><a href="#sec-inventory">7. Quản lý Tồn kho (Inventory)</a></li>
-        <li><a href="#sec-outbound">8. Xuất kho Cấp phát (Outbound)</a></li>
+        <li><a href="#sec-po-status">6. Trạng thái Đơn mua (PO Status)</a></li>
+        <li><a href="#sec-inbound">7. Nhập kho Vật tư (Inbound)</a></li>
+        <li><a href="#sec-inventory">8. Quản lý Tồn kho (Inventory)</a></li>
+        <li><a href="#sec-outbound">9. Xuất kho Cấp phát (Outbound)</a></li>
         <li class="sidebar-divider"></li>
-        <li><a href="#sec-schedule">9. Kế hoạch Chuyền (Schedule)</a></li>
-        <li><a href="#sec-dashboard">10. Giám sát Năng suất (DT1-DT8)</a></li>
-        <li><a href="#sec-buttons">11. Bảng Quy chuẩn Nút bấm</a></li>
-        <li><a href="#sec-glossary">12. Từ điển Thuật ngữ MRP</a></li>
-        <li><a href="#sec-faq">13. Ma trận Xử lý Lỗi (FAQ)</a></li>
+        <li><a href="#sec-schedule">10. Kế hoạch Chuyền (Schedule)</a></li>
+        <li><a href="#sec-dashboard">11. Giám sát Năng suất (DT1-DT8)</a></li>
+        <li><a href="#sec-shipment">12. Xuất Hàng & Tồn F/G (Shipment & Stock)</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#sec-buttons">13. Bảng Quy chuẩn Nút bấm</a></li>
+        <li><a href="#sec-glossary">14. Từ điển Thuật ngữ MRP</a></li>
+        <li><a href="#sec-faq">15. Ma trận Xử lý Lỗi (FAQ)</a></li>
       </ul>
     </aside>
 
@@ -1003,25 +1006,35 @@
             <div class="pipe-name">MRP Engine</div>
             <div class="pipe-sub">Tính nhu cầu, trừ tồn & Make PO</div>
           </div>
-          <div class="pipe-step" onclick="location.href='#sec-inbound'">
+          <div class="pipe-step" onclick="location.href='#sec-po-status'">
             <div class="pipe-num">4</div>
+            <div class="pipe-name">PO Status</div>
+            <div class="pipe-sub">Theo dõi tiến độ NCC giao</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-inbound'">
+            <div class="pipe-num">5</div>
             <div class="pipe-name">Nhập Kho (Inbound)</div>
             <div class="pipe-sub">Nhận hàng NCC & tăng tồn kho</div>
           </div>
           <div class="pipe-step" onclick="location.href='#sec-outbound'">
-            <div class="pipe-num">5</div>
+            <div class="pipe-num">6</div>
             <div class="pipe-name">Xuất Kho (Outbound)</div>
             <div class="pipe-sub">Cấp phát vật tư cho chuyền may</div>
           </div>
           <div class="pipe-step" onclick="location.href='#sec-schedule'">
-            <div class="pipe-num">6</div>
+            <div class="pipe-num">7</div>
             <div class="pipe-name">Kế Hoạch (Schedule)</div>
             <div class="pipe-sub">Xếp chuyền & In mã QR tem thẻ</div>
           </div>
           <div class="pipe-step" onclick="location.href='#sec-dashboard'">
-            <div class="pipe-num">7</div>
+            <div class="pipe-num">8</div>
             <div class="pipe-name">Giám Sát (DT1-DT8)</div>
             <div class="pipe-sub">Theo dõi sản lượng từng giờ</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-shipment'">
+            <div class="pipe-num">9</div>
+            <div class="pipe-name">Xuất Hàng (Shipment)</div>
+            <div class="pipe-sub">Packing List & Đóng container</div>
           </div>
         </div>
       </section>
@@ -1677,8 +1690,77 @@
             <div class="lineage-arrow">➔</div>
             <div class="lineage-box">
               <b>Chuyển tiếp đến:</b>
-              `MATERIAL › Inbound` (Kho chuẩn bị đón hàng) và Theo dõi thanh toán.
+              `MATERIAL › PO Status` (Theo dõi đơn mua) & `MATERIAL › Inbound` (Kho đón hàng).
             </div>
+          </div>
+        </div>
+
+        <!-- 4.2 PO STATUS -->
+        <div class="submodule-card" id="sec-po-status">
+          <div class="submodule-title">📑 2. Màn hình Theo Dõi Trạng Thái Đơn Mua Vật Tư (PO Status)</div>
+          <p class="submodule-desc">
+            Màn hình <b>MATERIAL ▶ PO Status</b> (Đường dẫn: <code>/material/po-status</code>) là trung tâm theo dõi vòng đời giao nhận của các đơn mua vật tư dành cho phòng Thu mua (Purchasing) và Ban kiểm soát nội bộ sau khi bấm <code>MAKE PO</code>.
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Bấm?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-primary">PRINT PO</span></td>
+                  <td>Xanh dương (`#007bff`)</td>
+                  <td>Xuất file PDF Đơn đặt hàng mua vật tư chính thức theo mẫu chuẩn công ty</td>
+                  <td>Bấm để ký tên, đóng dấu và gửi email đặt hàng chính thức cho Nhà cung cấp.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">D/L PO</span></td>
+                  <td>Vàng cam (`#ffc107`)</td>
+                  <td>Tải bảng chi tiết đơn mua hàng ra file Excel</td>
+                  <td>Gửi đối soát công nợ hoặc gửi NCC để họ xác nhận tiến độ giao.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">CANCEL PO</span></td>
+                  <td>Đỏ (`#dc3545`)</td>
+                  <td>Hủy đơn đặt mua vật tư đã phát hành</td>
+                  <td>Chỉ hủy được khi NCC <b>chưa giao bất kỳ mét/cái hàng nào qua cổng Inbound</b>.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-dark">Search / Filter</span></td>
+                  <td>Xám đen</td>
+                  <td>Lọc danh sách theo NCC, mã Material PO#, ngày ETA hoặc trạng thái</td>
+                  <td>Tra cứu nhanh xem lô hàng nào sắp về đến nhà máy trong tuần.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Cấu trúc theo dõi tiến độ đơn mua trên PO Status</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Cột Dữ Liệu</th>
+                  <th>Ý Nghĩa Nghiệp Vụ</th>
+                  <th>Chỉ Số Giám Sát</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>MATERIAL PO#</code></td><td>Mã đơn mua vật tư chính thức</td><td>Mã số duy nhất để đối soát hóa đơn và phiếu giao hàng.</td></tr>
+                <tr><td><code>SUPPLIER</code></td><td>Tên Nhà cung cấp được đặt mua</td><td>Đối tác chịu trách nhiệm giao lô vật tư.</td></tr>
+                <tr><td><code>ORDER QTY</code></td><td>Số lượng đặt mua thỏa thuận</td><td>Tổng khối lượng vật tư đã cam kết trên hợp đồng.</td></tr>
+                <tr><td><code>IN QTY</code></td><td>Số lượng thực tế đã nhập kho qua Inbound</td><td>Số lượng đã về đến xưởng và qua kiểm tra chất lượng.</td></tr>
+                <tr><td><code>BALANCE (BAL)</code></td><td>Khối lượng NCC còn nợ chưa giao đủ</td><td><code>BAL = ORDER QTY - IN QTY</code>. Nếu BAL > 0 nghĩa là còn thiếu hàng.</td></tr>
+                <tr><td><code>TARGET DATE / ETA</code></td><td>Ngày hẹn giao hàng / Hàng đến xưởng</td><td>Căn cứ kiểm soát xem NCC có giao hàng trễ hẹn hay không.</td></tr>
+                <tr><td><code>STATUS</code></td><td>Trạng thái tiến độ đơn mua</td><td><b>Pending</b> (Chờ giao) ➔ <b>Partial</b> (Đã giao một phần) ➔ <b>Completed</b> (Đã giao đủ 100%).</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -1871,6 +1953,38 @@
                 <tr><td><b>DT7</b></td><td>14:30 – 15:30</td><td>Tăng tốc hoàn thành chỉ tiêu ngày.</td></tr>
                 <tr><td><b>DT8</b></td><td>15:30 – 16:30 (Chốt ca chính thức)</td><td>Đối soát sản lượng thực tế (Actual) vs Kế hoạch (Target).</td></tr>
                 <tr><td><b>EXTRA</b></td><td>Sau 16:30 (Giờ làm thêm Overtime)</td><td>Ghi nhận sản lượng tăng ca nếu có đăng ký trước.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6.3 SHIPMENT & FINISHED GOODS STOCK -->
+        <div class="submodule-card" id="sec-shipment">
+          <div class="submodule-title">🚢 3. Màn hình Xuất Hàng & Tồn Kho Thành Phẩm (F/G Shipment & Stock)</div>
+          <p class="submodule-desc">
+            Sau khi chuyền may hoàn thành đơn hàng và qua khâu đóng gói, sản phẩm chuyển sang <b>F/G ▶ Shipment</b> (Đường dẫn: <code>/FG/Shipment</code>) và <b>F/G ▶ Stock</b> (Đường dẫn: <code>/FG/Stock</code>) để quản lý xuất hàng và tồn kho thành phẩm:
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Màn Hình Nghiệp Vụ</th>
+                  <th>Chức Năng Chính</th>
+                  <th>Nút Bấm & Thao Tác Trọng Tâm</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>F/G ▶ Shipment</b><br><code>/FG/Shipment</code></td>
+                  <td>Lập kế hoạch xuất hàng đóng container, in Packing List và chốt số lượng thực xuất (Shipped)</td>
+                  <td>• <b>+ Add Invoice:</b> Tạo hóa đơn xuất khẩu.<br>• <b>Packing List:</b> Tải file chi tiết số thùng, kích thước, khối lượng CBM.<br>• <b>APPLY SHIPPED:</b> Chốt trừ tồn kho thành phẩm khi xe container rời xưởng.</td>
+                </tr>
+                <tr>
+                  <td><b>F/G ▶ Stock</b><br><code>/FG/Stock</code></td>
+                  <td>Theo dõi tồn kho thành phẩm đã may xong chờ đến ngày ETD xuất xưởng</td>
+                  <td>• <b>IN (Nhập kho F/G):</b> Ghi nhận số lượng chuyền may bàn giao sang kho thành phẩm.<br>• <b>OUT (Xuất kho F/G):</b> Số lượng đã bốc xếp lên cont.<br>• <b>STOCK QTY:</b> Số lượng thành phẩm hiện còn nằm trong kho.</td>
+                </tr>
               </tbody>
             </table>
           </div>
