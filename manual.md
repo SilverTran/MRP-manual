@@ -432,6 +432,20 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
   + `PACKING`: Số lượng đã đóng gói vào thùng carton.
   + `SHIPMENT`: Số lượng đã bốc xếp lên xe xuất hàng.
 
+#### C. Quy trình xếp chuyền & In mã QR từng bước (Step-by-step)
+- **Bước 1 (Mở màn hình):** Truy cập `PRODUCTION ▶ Schedule-Manage` (Đường dẫn: `/Production/ScheduleManage`).
+- **Bước 2 (Phân bổ chuyền):** Tại dòng đơn hàng `NEO PO#` cần đưa vào sản xuất, **nhấn nút màu xanh lá `Schedule`**.
+  + Trong hộp thoại hiện ra: Chọn `LINE` (Chuyền may), `PROCESS` (Công đoạn may/cắt), `START DATE & END DATE` (Ngày bắt đầu - kết thúc) và `QTY` (Chỉ tiêu sản lượng).
+  + Nhấn `SAVE` trong popup để chốt lịch.
+- **Bước 3 (Chọn in tem):** Tick vào ô **checkbox vuông** ở đầu dòng PO tại cột QR.
+- **Bước 4 (In tem QR):** **Nhấn nút màu xanh dương `QR`** trên tiêu đề cột QR.
+
+##### 🔔 SAU KHI NHẤN NÚT "QR", BẠN CẦN LÀM GÌ TIẾP THEO?
+1. **In tem mã QR:** Trình duyệt sẽ mở một tab mới hiển thị toàn bộ trang tem mã QR công đoạn (Bundle Tag / Travel Ticket). Nhấn `Ctrl + P` để in ra máy in tem nhiệt hoặc máy in laser.
+2. **Bàn giao tem xuống xưởng:** Giao tệp tem mã QR cho Tổ trưởng chuyền may / Quản đốc xưởng để dán lên từng bó bán thành phẩm hoặc thẻ bài theo dõi công đoạn.
+3. **Quét mã tại các trạm kiểm đếm:** Công nhân tại các trạm đầu chuyền, kiểm tra chất lượng (QC), máy rà kim (X-RAY), và đóng gói (PACKING) sử dụng máy quét mã vạch/QR để quét tem mỗi khi hoàn thành một bó hàng.
+4. **Theo dõi năng suất từng giờ:** Quản đốc mở màn hình `PRODUCTION ▶ Dashboard-Table`, chọn ngày hiện tại và theo dõi sản lượng nhảy thời gian thực qua từng khung giờ **DT1 đến DT8**.
+
 ---
 
 ### 5.2. Bảng Giám sát Năng suất Từng Giờ (`PRODUCTION › Dashboard-Table`)
