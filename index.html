@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Hướng Dẫn Sử Dụng Hệ Thống ERP / MRP - NEOBAGS V25.02</title>
+
+  <!-- CHẶN HOÀN TOÀN CÔNG CỤ TÌM KIẾM VÀ BOT AI THU THẬP DỮ LIỆU -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-card: #1a2234;
+      --bg-card-hover: #222e44;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      /* Bootstrap Action Colors */
+      --btn-success: #28a745;
+      --btn-success-hover: #218838;
+      --btn-primary: #007bff;
+      --btn-primary-hover: #0069d9;
+      --btn-info: #17a2b8;
+      --btn-info-hover: #138496;
+      --btn-warning: #ffc107;
+      --btn-warning-hover: #e0a800;
+      --btn-danger: #dc3545;
+      --btn-danger-hover: #c82333;
+      --btn-dark: #343a40;
+      --btn-secondary: #6c757d;
+
+      --accent: #38bdf8;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.5);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .module-section, .submodule-card, .pipeline-card {
+      scroll-margin-top: 5rem;
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .brand-logo {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .brand-badge {
+      font-size: 0.75rem;
+      background: #0369a1;
+      color: #e0f2fe;
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+
+    .nav-search {
+      flex: 1;
+      max-width: 460px;
+      position: relative;
+    }
+    .nav-search input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .nav-search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .nav-search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn-portal {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-portal:hover {
+      background: #0369a1;
+    }
+
+    /* HERO BANNER */
+    .hero {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto 1.5rem auto;
+      font-size: 1rem;
+    }
+
+    /* ROLE FILTER PILLS */
+    .role-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .role-pill {
+      background: #1e293b;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .role-pill:hover, .role-pill.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+    }
+
+    /* LAYOUT CONTAINER */
+    .main-container {
+      display: flex;
+      flex: 1;
+      max-width: 1560px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      gap: 2rem;
+    }
+
+    /* SIDEBAR TOC */
+    .sidebar {
+      width: 290px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 4.5rem;
+      height: calc(100vh - 5.5rem);
+      overflow-y: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    .sidebar-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .sidebar-nav li a {
+      display: block;
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav li a:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: #fff;
+    }
+    .sidebar-nav li a.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      font-weight: 700;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 0.75rem 0;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* PIPELINE INTERACTIVE DIAGRAM */
+    .pipeline-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .pipeline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #38bdf8;
+    }
+    .pipeline-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .pipe-step {
+      background: #1a2234;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .pipe-step:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: #202b42;
+    }
+    .pipe-num {
+      width: 26px;
+      height: 26px;
+      background: #0284c7;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin: 0 auto 0.5rem auto;
+    }
+    .pipe-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+    .pipe-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* MODULE SECTION STYLES */
+    .module-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .module-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .module-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .module-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #0284c7;
+      color: #fff;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .module-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .breadcrumb-trail {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    /* SUBMODULE CARDS */
+    .submodule-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .submodule-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .submodule-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* BUTTON BADGES (EXACT COLOR CODES) */
+    .btn-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: monospace;
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .btn-success { background-color: var(--btn-success); }
+    .btn-primary { background-color: var(--btn-primary); }
+    .btn-info { background-color: var(--btn-info); color: #fff; }
+    .btn-warning { background-color: var(--btn-warning); color: #111; }
+    .btn-danger { background-color: var(--btn-danger); }
+    .btn-dark { background-color: var(--btn-dark); border: 1px solid #495057; }
+
+    /* TABLES STYLING */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #111827;
+      color: #38bdf8;
+      padding: 0.65rem 0.85rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+      color: #cbd5e1;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(51, 65, 85, 0.3); }
+
+    /* WORKFLOW STEPS LIST */
+    .steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .step-item {
+      display: flex;
+      gap: 0.85rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      border-left: 3px solid #0284c7;
+    }
+    .step-num {
+      font-weight: 700;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      min-width: 60px;
+    }
+    .step-text {
+      flex: 1;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+
+    /* DATA LINEAGE FLOW CARDS */
+    .lineage-card {
+      background: #0b1329;
+      border: 1px solid #1e3a8a;
+      border-radius: 6px;
+      padding: 0.85rem 1.15rem;
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .lineage-box {
+      background: #1e293b;
+      padding: 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+    .lineage-box b { color: #38bdf8; display: block; margin-bottom: 0.2rem; font-size: 0.75rem; text-transform: uppercase; }
+    .lineage-arrow { color: #64748b; font-weight: bold; font-size: 1.2rem; text-align: center; }
+
+    /* ALERTS / WARNINGS */
+    .alert-box {
+      border-radius: 6px;
+      padding: 0.85rem 1.15rem;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .alert-warning {
+      background: rgba(245, 124, 0, 0.12);
+      border: 1px solid rgba(245, 124, 0, 0.35);
+      color: #ffb74d;
+    }
+    .alert-danger {
+      background: rgba(211, 47, 47, 0.12);
+      border: 1px solid rgba(211, 47, 47, 0.35);
+      color: #ef5350;
+    }
+    .alert-info {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      color: #7dd3fc;
+    }
+
+    /* ACCORDION FAQ */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 0.85rem 1.15rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: #27354f; }
+    .faq-a {
+      padding: 1rem 1.15rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      display: none;
+      background: #131c2e;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-a { display: block; }
+    .faq-icon { transition: transform 0.2s; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+
+    /* FOOTER */
+    footer {
+      background: #090d16;
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    /* FLOATING CHATBOT WIDGET */
+    .chatbot-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      z-index: 999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .chatbot-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.7);
+    }
+    .chat-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.4);
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* CHAT WINDOW */
+    .chat-window {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 440px;
+      max-width: calc(100vw - 2.5rem);
+      height: 600px;
+      max-height: calc(100vh - 7rem);
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .chat-window.open { display: flex; }
+    .chat-header {
+      background: #1e293b;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .chat-status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+    }
+    .chat-header-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .chat-header-sub {
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+    .chat-close-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    .chat-close-btn:hover { color: #fff; }
+
+    /* CHAT TABS */
+    .chat-tabs {
+      display: flex;
+      background: #0f172a;
+      border-bottom: 1px solid #1f2937;
+    }
+    .chat-tab-btn {
+      flex: 1;
+      padding: 9px 12px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .chat-tab-btn:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .chat-tab-btn.active {
+      color: #38bdf8;
+      background: #111827;
+      border-bottom: 2px solid #38bdf8;
+    }
+    .chat-tab-content {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-tab-content.active {
+      display: flex;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .chat-messages::-webkit-scrollbar { width: 5px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .chat-msg-bot {
+      background: #1f2937;
+      color: #e5e7eb;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+      border: 1px solid #374151;
+    }
+    .chat-msg-user {
+      background: #0284c7;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-msg-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+    .chat-chip {
+      background: #111827;
+      border: 1px solid #374151;
+      color: #38bdf8;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .chat-chip:hover {
+      background: #1e3a8a;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    .chat-input-area {
+      padding: 0.75rem;
+      background: #1e293b;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .chat-input {
+      flex: 1;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .chat-input:focus { border-color: var(--accent); }
+    .chat-send-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 0 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-send-btn:hover { background: #0369a1; }
+
+    /* FEEDBACK TO GOOGLE SHEET TAB STYLES */
+    .sheet-form-container {
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #111827;
+    }
+    .sheet-notice {
+      background: rgba(2, 132, 199, 0.12);
+      border-left: 4px solid #38bdf8;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .form-group-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .form-group-item label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .form-group-item textarea,
+    .form-group-item input {
+      padding: 9px 12px;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      background: #0f172a;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-group-item textarea:focus,
+    .form-group-item input:focus {
+      border-color: #38bdf8;
+    }
+    .btn-submit-sheet {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      border: none;
+      padding: 11px 16px;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s, opacity 0.2s;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      margin-top: 4px;
+    }
+    .btn-submit-sheet:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+    .sheet-status-alert {
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      display: none;
+      line-height: 1.4;
+    }
+    .sheet-status-alert.success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid #059669;
+    }
+    .sheet-status-alert.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid #dc2626;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .main-container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .pipeline-steps { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .navbar { flex-wrap: wrap; }
+      .nav-search { order: 3; max-width: 100%; width: 100%; margin-top: 0.5rem; }
+      .pipeline-steps { grid-template-columns: 1fr; }
+      .lineage-card { grid-template-columns: 1fr; }
+      .lineage-arrow { transform: rotate(90deg); margin: 0.2rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="navbar">
+    <div class="brand-wrap">
+      <div class="brand-logo">ERP</div>
+      <div>
+        <div class="brand-title">CẨM NANG HỆ THỐNG MRP</div>
+        <div style="font-size: 0.75rem; color: var(--text-dim);">NEOBAGS ENTERPRISE V25.02</div>
+      </div>
+      <span class="brand-badge">Bản nội bộ</span>
+    </div>
+
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input type="text" id="globalSearch" placeholder="Tìm kiếm chức năng, nút bấm, mã lỗi, tên cột... (Ctrl + K)">
+    </div>
+
+    <div class="nav-actions">
+      <span style="font-size: 0.8rem; color: var(--text-muted); font-family: monospace;" id="sysClock">00:00:00</span>
+      <a href="#pipeline" class="btn-portal">
+        <span>⚙️</span> Chu trình MRP
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>CẨM NANG ĐIỆN TỬ VẬN HÀNH HỆ THỐNG MRP</h1>
+    <p>Tài liệu tra cứu trực quan và trợ lý ảo đơn giản dành cho Merchandiser, Kỹ thuật (BOM), Mua hàng, Quản lý Kho và Quản đốc Sản xuất xưởng may NEOBAGS.</p>
+    
+    <div class="role-filters" id="roleFilters">
+      <button class="role-pill active" data-role="all">⚡ Tất cả phân hệ</button>
+      <button class="role-pill" data-role="merchandiser">💼 Merchandiser (Đơn hàng)</button>
+      <button class="role-pill" data-role="technical">📐 Kỹ thuật / R&D (BOM)</button>
+      <button class="role-pill" data-role="purchasing">🛒 Mua hàng (PO/PR/Chi phí)</button>
+      <button class="role-pill" data-role="warehouse">📦 Quản lý Kho (In/Out/Tồn)</button>
+      <button class="role-pill" data-role="production">🏭 Kế hoạch & Chuyền may</button>
+      <button class="role-pill" data-role="admin">🛡️ Quản trị viên</button>
+    </div>
+  </section>
+
+  <!-- MAIN WRAPPER -->
+  <div class="main-container">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Mục lục nhanh</div>
+      <ul class="sidebar-nav" id="sidebarNav">
+        <li><a href="#pipeline" class="active">Chu trình MRP Khép kín</a></li>
+        <li><a href="#sec-fg-order">1. Đơn hàng (Buyer Order)</a></li>
+        <li><a href="#sec-bom-manage">2. Định mức BOM (BOM-Manage)</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#sec-manage-po">3. Tính toán Nhu cầu (Manage PO)</a></li>
+        <li><a href="#sec-inbound">4. Nhập kho Vật tư (Inbound)</a></li>
+        <li><a href="#sec-inventory">5. Quản lý Tồn kho (Inventory)</a></li>
+        <li><a href="#sec-outbound">6. Xuất kho Cấp phát (Outbound)</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#sec-schedule">7. Kế hoạch Chuyền (Schedule)</a></li>
+        <li><a href="#sec-dashboard">8. Giám sát Năng suất (DT1-DT8)</a></li>
+        <li><a href="#sec-buttons">9. Bảng Quy chuẩn Nút bấm</a></li>
+        <li><a href="#sec-glossary">10. Từ điển Thuật ngữ MRP</a></li>
+        <li><a href="#sec-faq">11. Ma trận Xử lý Lỗi (FAQ)</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENT BODY -->
+    <main class="content">
+
+      <!-- 1. PIPELINE INTERACTIVE DIAGRAM -->
+      <section class="pipeline-card" id="pipeline" data-role="all merchandiser technical purchasing warehouse production admin">
+        <div class="pipeline-title">
+          <span>🔄</span> Chu Trình Dữ Liệu Sản Xuất Khép Kín (End-to-End Pipeline)
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Dữ liệu trong hệ thống MRP liên kết chặt chẽ theo từng mắt xích. Hãy nhấp vào từng công đoạn bên dưới để chuyển nhanh đến tài liệu hướng dẫn chi tiết:
+        </p>
+        <div class="pipeline-steps">
+          <div class="pipe-step" onclick="location.href='#sec-fg-order'">
+            <div class="pipe-num">1</div>
+            <div class="pipe-name">Đơn Hàng (Order)</div>
+            <div class="pipe-sub">Tạo mã NEO PO# & sản lượng</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-bom-manage'">
+            <div class="pipe-num">2</div>
+            <div class="pipe-name">Định Mức (BOM)</div>
+            <div class="pipe-sub">Tiêu hao vật tư Vải, Trim, Bao bì</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-manage-po'">
+            <div class="pipe-num">3</div>
+            <div class="pipe-name">MRP Engine</div>
+            <div class="pipe-sub">Tính nhu cầu, trừ tồn & Make PO</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-inbound'">
+            <div class="pipe-num">4</div>
+            <div class="pipe-name">Nhập Kho (Inbound)</div>
+            <div class="pipe-sub">Nhận hàng NCC & tăng tồn kho</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-outbound'">
+            <div class="pipe-num">5</div>
+            <div class="pipe-name">Xuất Kho (Outbound)</div>
+            <div class="pipe-sub">Cấp phát vật tư cho chuyền may</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-schedule'">
+            <div class="pipe-num">6</div>
+            <div class="pipe-name">Kế Hoạch (Schedule)</div>
+            <div class="pipe-sub">Xếp chuyền & In mã QR tem thẻ</div>
+          </div>
+          <div class="pipe-step" onclick="location.href='#sec-dashboard'">
+            <div class="pipe-num">7</div>
+            <div class="pipe-name">Giám Sát (DT1-DT8)</div>
+            <div class="pipe-sub">Theo dõi sản lượng từng giờ</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. SECTION: F/G BUYER ORDER -->
+      <section class="module-section" id="sec-fg-order" data-role="all merchandiser admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ F/G</span>
+            <h2 class="module-title">Quản Lý Đơn Hàng Khách Hàng (Buyer Order)</h2>
+          </div>
+          <div class="breadcrumb-trail">F/G ▶ Buyer order</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">📌 Mục đích & Bối cảnh sử dụng</div>
+          <p class="submodule-desc">
+            Tiếp nhận đơn hàng chính thức từ khách hàng quốc tế, phát hành mã định danh sản xuất nội bộ <b>NEO PO#</b>, theo dõi số lượng đặt hàng, số lượng đã đóng gói, tồn kho thành phẩm và tiến độ xuất container.
+          </p>
+
+          <div class="submodule-title">🎛️ Bảng giải thích chi tiết các nút bấm chức năng</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Bấm?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">+ Add PO</span></td>
+                  <td>Xanh lá</td>
+                  <td>Mở cửa sổ nhập thủ công đơn hàng mới</td>
+                  <td>Khi có hợp đồng hoặc PO mới từ khách hàng cần tạo đơn lẻ</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">Add PO (Excel)</span></td>
+                  <td>Xanh dương</td>
+                  <td>Nhập hàng loạt đơn hàng từ file bảng tính Excel</td>
+                  <td>Khi nhận file tổng hợp nhiều mã PO/Hợp đồng từ Buyer</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">Template</span></td>
+                  <td>Vàng cam</td>
+                  <td>Tải file Excel mẫu đơn hàng trắng về máy tính</td>
+                  <td>Khi cần file mẫu chuẩn để chuẩn bị dữ liệu trước khi import</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-dark">Search</span></td>
+                  <td>Xám đen</td>
+                  <td>Tìm kiếm đơn hàng theo từ khóa đa trường</td>
+                  <td>Khi tra cứu nhanh theo mã NEO PO#, Style, Buyer, Color</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-info">⚙️ btnDisplayUI</span></td>
+                  <td>Xanh ngọc</td>
+                  <td>Tùy biến bật/tắt các cột hiển thị trên bảng dữ liệu</td>
+                  <td>Khi cần thu gọn màn hình để tập trung vào các chỉ số cốt lõi</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">D/L AR</span></td>
+                  <td>Vàng cam</td>
+                  <td>Kết xuất báo cáo tiến độ và công nợ các đơn được chọn</td>
+                  <td>Khi đối soát tiến độ xuất hàng với bộ phận Kế toán</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ</td>
+                  <td>Xóa đơn hàng khỏi hệ thống</td>
+                  <td>Chỉ bấm khi tạo nhầm PO (Chưa phát sinh BOM hay Đơn mua vật tư)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Quy trình 4 bước nhập đơn hàng chuẩn xác</div>
+          <ul class="steps-list">
+            <li class="step-item">
+              <span class="step-num">BƯỚC 1:</span>
+              <div class="step-text">Bấm nút <span class="btn-badge btn-success">+ Add PO</span> để mở hộp thoại Basic PO Information.</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 2:</span>
+              <div class="step-text">Khai báo thông tin đơn hàng: Chọn Buyer (Khách hàng), nhập <b>NEO PO #</b> (Mã nội bộ), Buyer PO #, PIC (Nhân viên phụ trách), Order Date, và Buyer ETD (Ngày hẹn giao).</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 3:</span>
+              <div class="step-text">Nhập danh sách mã hàng trong đơn: Style Code, Style Name, Color, Season, Số lượng đặt (<b>ORDER QTY</b>), Giá xuất FOB hoặc giá gia công CMT.</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 4:</span>
+              <div class="step-text">Bấm <b>SAVE</b> để ghi nhận đơn hàng. Đơn hàng sẽ xuất hiện trên bảng với trạng thái ACTIVE.</div>
+            </li>
+          </ul>
+
+          <div class="lineage-card">
+            <div class="lineage-box">
+              <b>Nguồn dữ liệu vào:</b>
+              Hợp đồng mua bán / Tech Pack / PO Sheet từ Buyer quốc tế (JW, HS, DJ...).
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Xử lý tại màn hình:</b>
+              Khởi tạo mã đơn hàng `NEO PO#`, chốt sản lượng đặt, ngày ETD và giá.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Chuyển tiếp đến:</b>
+              `F/G › BOM-Manage` (Lập định mức) & `MATERIAL › Manage PO` (Chạy MRP).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SECTION: F/G BOM-LIST & BOM-MANAGE -->
+      <section class="module-section" id="sec-bom-manage" data-role="all technical merchandiser admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ F/G</span>
+            <h2 class="module-title">Quản Lý Chi Tiết Định Mức Kỹ Thuật (BOM-Manage)</h2>
+          </div>
+          <div class="breadcrumb-trail">F/G ▶ BOM-Manage</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">📌 Mục đích & Bản chất nghiệp vụ</div>
+          <p class="submodule-desc">
+            Khai báo chi tiết 100% nguyên phụ liệu (R/M) để sản xuất ra 1 sản phẩm túi xách/balo: Vải chính (Fabric), Vải lót, Khóa kéo, Đầu kéo (Trim), Thùng carton, Bao nilon (Packing)... Định mức này là căn cứ tối thượng để hệ thống tính toán nhu cầu mua hàng.
+          </p>
+
+          <!-- CHECKBOX EDIT CALLOUT -->
+          <div class="alert-box alert-info" style="border-left: 4px solid #38bdf8;">
+            <span>🔒</span>
+            <div>
+              <b style="font-size: 1rem; color: #38bdf8;">CÔNG TẮC BIÊN TẬP: CHECKBOX [ ] EDIT (Cực kỳ quan trọng)</b><br>
+              Để chống vô tình sửa sai định mức kỹ thuật hoặc giá mua, <b>mặc định hệ thống khóa 100% bảng BOM ở chế độ Chỉ Xem (Read-only)</b>.<br>
+              Người dùng <b>BẮT BUỘC PHẢI TICK VÀO CHECKBOX <code>EDIT</code></b> (nằm trên thanh Toolbar đầu trang, cạnh nút <i>D/L BOM</i>) để mở khóa giao diện:
+              <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.88rem; line-height: 1.5;">
+                <li><b>Xuất hiện 2 nút điều khiển:</b> Nút màu xanh lá <b>✔ SAVE</b> (để lưu vào CSDL) và nút màu xám <b>CANCEL</b> (để hủy bỏ thay đổi). Các nút xem thông thường tạm thời ẩn đi.</li>
+                <li><b>Mở khóa chỉnh sửa trực tiếp (Inline Editing):</b> Cho phép click trực tiếp vào số để sửa tại cột <b>CONS</b> (Định mức tiêu hao), <b>U/PRICE</b> (Đơn giá), <b>CURRENCY</b> (Tiền tệ) và <b>REMARK (BOM)</b>.</li>
+                <li><b>Kích hoạt công cụ Thêm / Xóa:</b> Xuất hiện nút xanh lá <b>+ Add R/M</b> để tra cứu thêm vật tư; xuất hiện cột <b>DEL</b> ngoài cùng gồm nút đỏ <b>DEL</b>, checkbox tiêu đề <code>chkAllItem</code> (chọn tất cả dòng) và các checkbox con <code>chkItem</code> ở từng dòng để xóa các dòng vật tư không dùng.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="alert-box alert-warning">
+            <span>⚠️</span>
+            <div>
+              <b>LƯU Ý SỐNG CÒN:</b> Mọi chỉnh sửa vật tư trong BOM chỉ có hiệu lực khi bạn bấm nút <b>✔ SAVE</b> màu xanh lá trên đầu trang. Nếu rời khỏi màn hình hoặc bấm CANCEL mà chưa bấm SAVE, dữ liệu sẽ bị hủy và không được đồng bộ sang phân hệ Mua hàng (Manage PO)!
+            </div>
+          </div>
+
+          <div class="submodule-title">🎛️ Bảng giải thích các nút bấm & checkbox trên màn hình BOM-Manage</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm / Checkbox</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Khi Nào Cần Bấm?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Checkbox [ ] EDIT</b></td>
+                  <td>Ô checkbox viền xanh</td>
+                  <td><b>Công tắc mở khóa toàn bộ bảng BOM sang chế độ chỉnh sửa (Edit Mode)</b></td>
+                  <td><b>Bắt buộc tick đầu tiên</b> khi cần sửa số định mức CONS, sửa đơn giá, thêm hoặc xóa vật tư.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">✔ SAVE</span></td>
+                  <td>Xanh lá (Icon check)</td>
+                  <td>Lưu toàn bộ danh mục và định mức vật tư vừa cập nhật vào CSDL</td>
+                  <td>Xuất hiện khi tick EDIT. Bắt buộc bấm sau mỗi lần thêm/sửa định mức tiêu hao.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-secondary">CANCEL</span></td>
+                  <td>Xám</td>
+                  <td>Hủy bỏ chế độ sửa, phục hồi dữ liệu ban đầu</td>
+                  <td>Xuất hiện khi tick EDIT. Bấm khi nhập nhầm muốn quay lại trạng thái cũ.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">+ Add R/M</span></td>
+                  <td>Xanh lá</td>
+                  <td>Mở bảng tìm kiếm và chèn mã nguyên phụ liệu vào bảng</td>
+                  <td>Xuất hiện ở cột R/M Name khi tick EDIT. Bấm để bổ sung vật tư mới vào sản phẩm.</td>
+                </tr>
+                <tr>
+                  <td><b>Checkbox chkAllItem</b></td>
+                  <td>Checkbox tiêu đề DEL</td>
+                  <td>Tự động tick chọn tất cả 100% các dòng vật tư trong bảng</td>
+                  <td>Xuất hiện khi tick EDIT. Dùng để chọn xóa nhanh hàng loạt các dòng.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL</span></td>
+                  <td>Đỏ</td>
+                  <td>Xóa các dòng vật tư đã tick chọn khỏi bảng định mức</td>
+                  <td>Xuất hiện khi tick EDIT. Bấm sau khi đã tick chọn các dòng cần loại bỏ.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">NewBasic info / Basic info</span></td>
+                  <td>Xanh dương</td>
+                  <td>Mở popup thông tin cơ sở sản phẩm (Style, Buyer, Season, Revision)</td>
+                  <td>Khi bắt đầu tạo một BOM mới hoặc sửa thông tin chung (khi chưa tick EDIT).</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">D/L BOM</span></td>
+                  <td>Vàng cam</td>
+                  <td>Tải file bảng tính Excel toàn bộ chi tiết định mức của Style</td>
+                  <td>Dùng khi cần kết xuất dữ liệu gửi phòng Merchandiser hoặc khách hàng duyệt.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-info">Color Selector</span></td>
+                  <td>Dropdown</td>
+                  <td>Chuyển đổi qua lại giữa các phiên bản màu sắc (Colorways)</td>
+                  <td>Khi sản phẩm có nhiều phối màu (Đen, Hồng, Xanh...) dùng chung mã BOM.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Giải mã các trường dữ liệu quan trọng trong bảng BOM</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Cột Dữ Liệu</th>
+                  <th>Ý Nghĩa Nghiệp Vụ</th>
+                  <th>Ví Dụ Thực Tế</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>CATEGORY</b></td>
+                  <td>Phân nhóm vật tư chính trong ngành may túi xách</td>
+                  <td>Fabric (Vải), Trim (Phụ liệu), Packing (Đóng gói), Other</td>
+                </tr>
+                <tr>
+                  <td><b>R/M CODE</b></td>
+                  <td>Mã nguyên phụ liệu chuẩn hóa hệ thống (Nền đỏ đậm)</td>
+                  <td><code>RMF00123</code> (Vải), <code>RMT00456</code> (Khóa)</td>
+                </tr>
+                <tr>
+                  <td><b>SPECIFICATION</b></td>
+                  <td>Quy cách kỹ thuật chi tiết của vật tư</td>
+                  <td>Khổ 58" tráng PU1, Độ dày 210D/3P, Bản rộng 25mm</td>
+                </tr>
+                <tr>
+                  <td><b>CONS (Consumption)</b></td>
+                  <td>Định mức tiêu hao chuẩn cho 1 chiếc sản phẩm</td>
+                  <td>0.85 (0.85 Yard vải/túi), 2.0 (2 con khóa/túi)</td>
+                </tr>
+                <tr>
+                  <td><b>UNIT</b></td>
+                  <td>Đơn vị tính mua và sử dụng</td>
+                  <td>YDS (Yard), M (Mét), PCS (Cái), CON (Cuộn), SET</td>
+                </tr>
+                <tr>
+                  <td><b>U/PRICE & CURRENCY</b></td>
+                  <td>Đơn giá kế hoạch dự toán và loại tiền tệ</td>
+                  <td>1.45 USD / Yard, 500 VND / Cái</td>
+                </tr>
+                <tr>
+                  <td><b>SUPPLIER</b></td>
+                  <td>Nhà cung cấp được phê duyệt theo chỉ định của Buyer</td>
+                  <td>Formosa, YKK Vietnam, Paiho, Sanfang...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="lineage-card">
+            <div class="lineage-box">
+              <b>Nguồn dữ liệu vào:</b>
+              Tài liệu kỹ thuật (Tech Pack / Spec Sheet) từ Buyer và mẫu may thử R&D.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Xử lý tại màn hình:</b>
+              Khai báo mã R/M, định mức CONS, quy cách, màu và nhà cung cấp.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Chuyển tiếp đến:</b>
+              `MATERIAL › Manage PO` làm công thức tính toán khối lượng mua hàng.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SECTION: MATERIAL MANAGE PO (MRP CORE) -->
+      <section class="module-section" id="sec-manage-po" data-role="all purchasing warehouse merchandiser admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ MATERIAL</span>
+            <h2 class="module-title">Tính Toán Nhu Cầu & Đặt Mua Vật Tư (Manage PO - Trọng Tâm MRP)</h2>
+          </div>
+          <div class="breadcrumb-trail">MATERIAL ▶ Manage PO</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">📌 Động cơ tính toán MRP (Material Requirements Planning)</div>
+          <p class="submodule-desc">
+            Đây là <b>trung tâm điều khiển trọng tâm của hệ thống</b>. Tại đây, hệ thống tự động chạy thuật toán MRP đối chiếu giữa: Sản lượng đặt của PO × Định mức tiêu hao BOM + % Hao hụt - Tồn kho sẵn có để ra Số lượng đặt mua thực tế gửi nhà cung cấp.
+          </p>
+
+          <div class="alert-box alert-info">
+            <span>💡</span>
+            <div>
+              <b>CÔNG THỨC TÍNH TOÁN MRP CHUẨN:</b><br>
+              <code>Tổng Nhu Cầu [CONS.(LOSS)] = Định Mức Gốc [CONS.(BOM)] × (1 + Tỷ Lệ Hao Hụt [LOSS %])</code><br>
+              <code>Số Lượng Cần Mua [ORDER QTY] = Tổng Nhu Cầu Toàn Đơn - Số Lượng Gán Tồn Kho [ASSIGN]</code>
+            </div>
+          </div>
+
+          <div class="submodule-title">🎛️ Bảng giải thích chi tiết các nút bấm trên màn hình Manage PO</div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tên Nút Bấm</th>
+                  <th>Màu Sắc Thực Tế</th>
+                  <th>Vị Trí Cột</th>
+                  <th>Chức Năng Nghiệp Vụ & Thời Điểm Sử Dụng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">MAKE PO</span></td>
+                  <td>Xanh lá</td>
+                  <td>Cột Supplier</td>
+                  <td><b>Gom các vật tư được tick chọn và tạo Đơn đặt hàng chính thức</b> gửi NCC. Bấm sau khi đã kiểm tra xong số lượng và đơn giá.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">SET (Loss %)</span></td>
+                  <td>Xanh lá</td>
+                  <td>Cột LOSS %</td>
+                  <td>Thiết lập tỷ lệ phần trăm hao hụt cho vật tư (ví dụ vải dệt 3%, chỉ may 5%). Bấm để cập nhật lại tổng định mức tiêu hao.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">SET (Assign)</span></td>
+                  <td>Xanh lá</td>
+                  <td>Cột ASSIGN</td>
+                  <td><b>Giữ chỗ/Cấp phát lượng vật tư sẵn có trong kho</b> vào đơn hàng này để giảm số lượng cần mua thêm từ NCC.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">SET (Order Qty)</span></td>
+                  <td>Xanh lá</td>
+                  <td>Cột ORDER QTY</td>
+                  <td>Điều chỉnh hoặc chốt số lượng đặt mua thực tế (làm tròn cuộn/thùng).</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">RESET (Unit Price)</span></td>
+                  <td>Vàng cam</td>
+                  <td>Cột UNIT PRICE</td>
+                  <td>Khôi phục đơn giá mua về mức giá chuẩn quy định trong Master Data.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">SET DECIMAL</span></td>
+                  <td>Xanh dương</td>
+                  <td>Cột AMOUNT</td>
+                  <td>Thiết lập số chữ số thập phân hiển thị cho tổng tiền thanh toán.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-danger">DEL PO</span></td>
+                  <td>Đỏ</td>
+                  <td>Cột Material PO#</td>
+                  <td><b>Hủy bỏ đơn đặt mua vật tư</b> đã tạo. Chỉ bấm khi hủy hợp đồng với NCC.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="submodule-title">📋 Quy trình 4 bước thực hiện nghiệp vụ MRP Mua hàng</div>
+          <ul class="steps-list">
+            <li class="step-item">
+              <span class="step-num">BƯỚC 1:</span>
+              <div class="step-text">Tại thanh lọc trên cùng, chọn mã <b>NEO PO #</b> cần tính toán. Hệ thống tự động nạp toàn bộ danh mục vật tư từ BOM tương ứng.</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 2:</span>
+              <div class="step-text">Tại cột <code>LOSS %</code>, bấm nút <span class="btn-badge btn-success">SET</span> để cài đặt tỷ lệ hao hụt kỹ thuật cho từng loại vật tư.</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 3:</span>
+              <div class="step-text">Kiểm tra cột <code>INVENTORY</code>. Nếu kho còn tồn khả dụng, bấm <span class="btn-badge btn-success">SET</span> tại <code>ASSIGN</code> để khấu trừ tồn kho. Số lượng cần mua tại cột <code>ORDER QTY</code> sẽ tự động giảm trừ.</div>
+            </li>
+            <li class="step-item">
+              <span class="step-num">BƯỚC 4:</span>
+              <div class="step-text">Tick chọn các dòng vật tư cùng một Nhà cung cấp, bấm nút màu xanh lá <span class="btn-badge btn-success">MAKE PO</span>. Hệ thống sẽ sinh mã <b>MATERIAL PO#</b> và sẵn sàng cho quá trình giao nhận.</div>
+            </li>
+          </ul>
+
+          <div class="lineage-card">
+            <div class="lineage-box">
+              <b>Nguồn dữ liệu vào:</b>
+              Sản lượng từ `Buyer Order` và Định mức tiêu hao từ `BOM-Manage`.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Xử lý tại màn hình:</b>
+              Tính tổng tiêu hao + hao hụt, trừ tồn kho Assign, chốt giá và Make PO.
+            </div>
+            <div class="lineage-arrow">➔</div>
+            <div class="lineage-box">
+              <b>Chuyển tiếp đến:</b>
+              `MATERIAL › Inbound` (Kho chuẩn bị đón hàng) và Theo dõi thanh toán.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. SECTION: MATERIAL INBOUND, OUTBOUND, INVENTORY -->
+      <section class="module-section" id="sec-inbound" data-role="all warehouse purchasing admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ MATERIAL</span>
+            <h2 class="module-title">Kho Nguyên Phụ Liệu: Nhập (Inbound) - Tồn (Inventory) - Xuất (Outbound)</h2>
+          </div>
+          <div class="breadcrumb-trail">MATERIAL ▶ Inbound / Inventory / Outbound</div>
+        </div>
+
+        <!-- 5.1 Inbound -->
+        <div class="submodule-card">
+          <div class="submodule-title">📦 1. Màn hình Nhập kho Vật tư (Inbound)</div>
+          <p class="submodule-desc">
+            Tiếp nhận các chuyến hàng giao từ Nhà cung cấp theo mã `MATERIAL PO#`, kiểm đếm số lượng thực nhận, gắn vị trí kệ kho (Location) và chốt tăng tồn kho.
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nút Bấm</th>
+                  <th>Màu Sắc</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Lưu Ý Quan Trọng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-success">APPLYING INBOUND NOW</span></td>
+                  <td>Xanh lá</td>
+                  <td><b>Xác nhận chốt ghi sổ nhập kho chính thức</b></td>
+                  <td><b>BẮT BUỘC BẤM</b> sau khi nhập xong số lượng để hệ thống tăng tồn kho trong `Inventory`!</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-primary">UPLOAD EXCEL</span></td>
+                  <td>Xanh dương</td>
+                  <td>Nhập danh sách phiếu nhập kho từ file Excel</td>
+                  <td>Dùng khi tiếp nhận chuyến xe hàng lớn gồm hàng trăm cuộn vải/phụ liệu.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-warning">DOWNLOAD EXCEL</span></td>
+                  <td>Vàng cam</td>
+                  <td>Tải file Excel mẫu phiếu nhập kho</td>
+                  <td>Dùng mẫu này để thủ kho đối chiếu với Packing List của NCC.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5.2 Inventory -->
+        <div class="submodule-card" id="sec-inventory">
+          <div class="submodule-title">📊 2. Màn hình Tồn kho & Định giá Tài sản (Inventory)</div>
+          <p class="submodule-desc">
+            Theo dõi tổng quan tồn kho toàn bộ vật tư, phân chia theo từng vị trí kệ, đối soát tồn sổ sách và tồn thực tế đếm được, quy đổi tổng tài sản kho ra tiền USD.
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Cột Dữ Liệu</th>
+                  <th>Ý Nghĩa Nghiệp Vụ</th>
+                  <th>Ứng Dụng Trong Quản Trị</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>IN / OUT</b></td>
+                  <td>Số lượng đã nhập và đã xuất kho lũy kế</td>
+                  <td>Kiểm tra tổng lưu chuyển vật tư theo từng đơn hàng hoặc dùng chung.</td>
+                </tr>
+                <tr>
+                  <td><b>PHYSICAL INVENTORY</b></td>
+                  <td>Số lượng tồn thực tế đếm được tại kho</td>
+                  <td>Dữ liệu kiểm kê vật lý định kỳ của bộ phận quản lý kho.</td>
+                </tr>
+                <tr>
+                  <td><b>INVENTORY</b></td>
+                  <td>Số lượng tồn kho sổ sách khả dụng</td>
+                  <td>Số lượng sẵn sàng để cấp phát hoặc gán (Assign) cho các đơn hàng mới.</td>
+                </tr>
+                <tr>
+                  <td><b>① * STD PRICE AMOUNT (USD)</b></td>
+                  <td>Tổng giá trị tài sản tồn kho quy đổi ra USD</td>
+                  <td>Báo cáo tài chính kho hàng tháng gửi Ban Giám đốc.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-info">HISTORY</span></td>
+                  <td>Lịch sử biến động vật tư</td>
+                  <td>Xem chi tiết từng lần Nhập - Xuất - Chuyển kho của mã vật tư tương ứng.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5.3 Outbound -->
+        <div class="submodule-card" id="sec-outbound">
+          <div class="submodule-title">🚚 3. Màn hình Xuất kho Cấp phát Sản xuất (Outbound)</div>
+          <p class="submodule-desc">
+            Xuất cấp nguyên phụ liệu từ kho cho các Chuyền may (Line) hoặc Xưởng cắt theo Lệnh sản xuất.
+          </p>
+          <div class="alert-box alert-warning">
+            <span>⚠️</span>
+            <div>
+              Sau khi chọn mã Style và nhập số lượng xuất tại cột <code>TO BE OUT QTY</code>, thủ kho <b>bắt buộc phải bấm nút <span class="btn-badge btn-success">APPLYING OUTBOUND NOW</span></b> để hệ thống tự động trừ tồn kho và ghi nhận chi phí vào đơn hàng!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. SECTION: PRODUCTION SCHEDULE & DASHBOARD -->
+      <section class="module-section" id="sec-schedule" data-role="all production admin">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">PHÂN HỆ PRODUCTION</span>
+            <h2 class="module-title">Kế Hoạch Xếp Chuyền & Giám Sát Năng Suất Từng Giờ</h2>
+          </div>
+          <div class="breadcrumb-trail">PRODUCTION ▶ Schedule-Manage / Dashboard-Table</div>
+        </div>
+
+        <div class="submodule-card">
+          <div class="submodule-title">🏭 1. Lập Lịch Sản Xuất & In Mã QR Công Đoạn (Schedule-Manage)</div>
+          <p class="submodule-desc">
+            Phân bổ các đơn hàng vào từng Chuyền may (Line 1, Line 2...), cài đặt ngày Bắt đầu (Start) - ngày Kết thúc (End), giao chỉ tiêu sản lượng và in tem mã QR công đoạn (Bundle Tag / Travel Ticket).
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nút Bấm</th>
+                  <th>Màu Sắc</th>
+                  <th>Chức Năng Nghiệp Vụ</th>
+                  <th>Thời Điểm Sử Dụng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="btn-badge btn-primary">QR</span></td>
+                  <td>Xanh dương</td>
+                  <td><b>In hàng loạt tem mã QR công đoạn sản xuất</b></td>
+                  <td>Bấm sau khi tick chọn các đơn hàng chuẩn bị đưa lên chuyền may.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-success">Schedule</span></td>
+                  <td>Xanh lá</td>
+                  <td>Mở cửa sổ xếp lịch phân bổ chuyền chi tiết</td>
+                  <td>Bấm tại từng dòng PO để chọn Chuyền, ngày vào hàng và chỉ tiêu Qty.</td>
+                </tr>
+                <tr>
+                  <td><span class="btn-badge btn-dark">Update Filter</span></td>
+                  <td>Xám đen</td>
+                  <td>Làm mới danh sách kế hoạch sản xuất</td>
+                  <td>Bấm để cập nhật lại tiến độ các chuyền sau khi có lượt quét QR mới.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="submodule-card" id="sec-dashboard">
+          <div class="submodule-title">⏱️ 2. Giám Sát Năng Suất Từng Giờ (Dashboard-Table DT1 - DT8)</div>
+          <p class="submodule-desc">
+            Bảng điều hành tác nghiệp thời gian thực của Quản đốc xưởng và Tổ trưởng chuyền. Giám sát chi tiết sản lượng hoàn thành của từng chuyền may qua <b>8 khung giờ chuẩn + Tăng ca</b>:
+          </p>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Khung Giờ</th>
+                  <th>Khoảng Thời Gian Chuẩn</th>
+                  <th>Chỉ Tiêu Cần Kiểm Soát</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><b>DT1</b></td><td>07:30 – 08:30 (Đầu ca sáng)</td><td>Khởi động chuyền, kiểm tra đủ nguyên phụ liệu và máy móc.</td></tr>
+                <tr><td><b>DT2</b></td><td>08:30 – 09:30</td><td>Ổn định nhịp độ chuyền may, kiểm tra sản phẩm đầu chuyền.</td></tr>
+                <tr><td><b>DT3</b></td><td>09:30 – 10:30</td><td>Giai đoạn đạt tốc độ may chuẩn.</td></tr>
+                <tr><td><b>DT4</b></td><td>10:30 – 11:30 (Cuối ca sáng)</td><td>Chốt sản lượng nửa ca trước khi nghỉ ăn trưa.</td></tr>
+                <tr><td><b>DT5</b></td><td>12:30 – 13:30 (Đầu ca chiều)</td><td>Kiểm tra tỷ lệ công nhân vào ca đúng giờ.</td></tr>
+                <tr><td><b>DT6</b></td><td>13:30 – 14:30</td><td>Kiểm tra chất lượng QC giữa ca chiều.</td></tr>
+                <tr><td><b>DT7</b></td><td>14:30 – 15:30</td><td>Tăng tốc hoàn thành chỉ tiêu ngày.</td></tr>
+                <tr><td><b>DT8</b></td><td>15:30 – 16:30 (Chốt ca chính thức)</td><td>Đối soát sản lượng thực tế (Actual) vs Kế hoạch (Target).</td></tr>
+                <tr><td><b>EXTRA</b></td><td>Sau 16:30 (Giờ làm thêm Overtime)</td><td>Ghi nhận sản lượng tăng ca nếu có đăng ký trước.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SECTION: BUTTONS COLOR CODE REFERENCE -->
+      <section class="module-section" id="sec-buttons" data-role="all">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">QUY CHUẨN</span>
+            <h2 class="module-title">Bảng Quy Chuẩn Màu Sắc & Hành Vi Nút Bấm Thực Tế</h2>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Màu Sắc Nút</th>
+                <th>Mã Màu CSS</th>
+                <th>Các Nút Thực Tế Điển Hình</th>
+                <th>Bản Chất Thao Tác & Lưu Ý An Toàn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="btn-badge btn-success">XANH LÁ</span></td>
+                <td><code>#28a745</code></td>
+                <td><code>+ Add PO</code>, <code>Upload BOM</code>, <code>SAVE</code>, <code>MAKE PO</code>, <code>APPLYING INBOUND NOW</code>, <code>APPLYING OUTBOUND NOW</code>, <code>Schedule</code></td>
+                <td><b>Tạo mới / Lưu dữ liệu / Xác nhận chốt sổ:</b> Làm phát sinh hoặc thay đổi chính thức dữ liệu trên hệ thống.</td>
+              </tr>
+              <tr>
+                <td><span class="btn-badge btn-primary">XANH DƯƠNG</span></td>
+                <td><code>#007bff</code></td>
+                <td><code>NewBasic info</code>, <code>UPLOAD EXCEL</code>, <code>QR</code>, <code>COPY</code></td>
+                <td><b>Mở biểu mẫu / Đọc file Excel / In ấn:</b> Mở cửa sổ khai báo hoặc kích hoạt chức năng in tem mã QR.</td>
+              </tr>
+              <tr>
+                <td><span class="btn-badge btn-info">XANH NGỌC (TEAL)</span></td>
+                <td><code>#17a2b8</code></td>
+                <td><code>btnDisplayUI</code>, <code>Settings</code>, <code>MANAGE</code></td>
+                <td><b>Quản trị chi tiết / Tùy biến hiển thị:</b> Mở trang quản trị chuyên sâu hoặc cấu hình ẩn/hiển thị cột.</td>
+              </tr>
+              <tr>
+                <td><span class="btn-badge btn-warning">VÀNG CAM</span></td>
+                <td><code>#ffc107</code></td>
+                <td><code>Template</code>, <code>Template BOM</code>, <code>DOWNLOAD EXCEL</code>, <code>D/L AR</code></td>
+                <td><b>Tải mẫu tệp / Xuất báo cáo Excel:</b> Hoàn toàn an toàn, chỉ trích xuất dữ liệu về máy tính người dùng.</td>
+              </tr>
+              <tr>
+                <td><span class="btn-badge btn-danger">ĐỎ NGUY HIỂM</span></td>
+                <td><code>#dc3545</code></td>
+                <td><code>DEL</code>, <code>DEL PO</code>, <code>RESET</code></td>
+                <td><b>Xóa bản ghi / Hủy đơn mua:</b> <span style="color:#ef5350; font-weight:bold;">CỰC KỲ CẨN TRỌNG!</span> Dữ liệu xóa không thể khôi phục.</td>
+              </tr>
+              <tr>
+                <td><span class="btn-badge btn-dark">XÁM ĐEN</span></td>
+                <td><code>#343a40</code></td>
+                <td><code>Search</code>, <code>Update Filter</code>, <code>Refresh</code></td>
+                <td><b>Tìm kiếm / Làm mới số liệu:</b> Tải lại trạng thái dữ liệu mới nhất từ máy chủ.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 8. SECTION: GLOSSARY -->
+      <section class="module-section" id="sec-glossary" data-role="all">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">TỪ ĐIỂN</span>
+            <h2 class="module-title">Bảng Từ Điển Thuật Ngữ ERP / MRP May Mặc</h2>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Thuật Ngữ Tiếng Anh</th>
+                <th>Dịch Nghĩa Nghiệp Vụ</th>
+                <th>Ứng Dụng Trong Hệ Thống NEOBAGS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><b>F/G (Finished Goods)</b></td><td>Thành phẩm hoàn chỉnh</td><td>Nhóm phân hệ quản lý sản phẩm hoàn thiện và đơn hàng xuất khẩu.</td></tr>
+              <tr><td><b>R/M (Raw Materials)</b></td><td>Nguyên phụ liệu thô</td><td>Vải chính, vải lót, chỉ may, khóa kéo, đầu kéo, nhãn mác, thùng carton.</td></tr>
+              <tr><td><b>NEO PO#</b></td><td>Mã đơn hàng nội bộ</td><td>Mã định danh xuyên suốt liên kết giữa Đơn hàng, Định mức, Mua hàng và Chuyền may.</td></tr>
+              <tr><td><b>BUYER PO#</b></td><td>Mã PO của khách hàng</td><td>Mã số hợp đồng do nhãn hàng quốc tế phát hành cho nhà máy.</td></tr>
+              <tr><td><b>BOM (Bill of Materials)</b></td><td>Định mức kỹ thuật vật tư</td><td>Bảng liệt kê 100% nguyên phụ liệu cấu thành nên 1 chiếc balo/túi xách.</td></tr>
+              <tr><td><b>CONS (Consumption)</b></td><td>Định mức tiêu hao</td><td>Số lượng vật tư tiêu hao để may 1 sản phẩm (ví dụ 0.85 YDS vải/túi).</td></tr>
+              <tr><td><b>LOSS %</b></td><td>Tỷ lệ hao hụt</td><td>Tỷ lệ phần trăm dự phòng hao phí do cắt lỗi hoặc lỗi dệt sợi.</td></tr>
+              <tr><td><b>ASSIGN</b></td><td>Gán tồn kho giữ chỗ</td><td>Bù trừ vật tư sẵn có trong kho vào đơn hàng mới để không phải mua thêm.</td></tr>
+              <tr><td><b>INBOUND</b></td><td>Nhập kho</td><td>Quá trình nhận hàng từ NCC về kho và ghi tăng tồn kho hệ thống.</td></tr>
+              <tr><td><b>OUTBOUND</b></td><td>Xuất kho</td><td>Quá trình xuất cấp vật tư từ kho giao cho xưởng may sản xuất.</td></tr>
+              <tr><td><b>BAL (Balance)</b></td><td>Số lượng còn nợ / Còn thiếu</td><td>Chênh lệch giữa số lượng hợp đồng và số lượng đã giao thực tế.</td></tr>
+              <tr><td><b>PHYSICAL INVENTORY</b></td><td>Tồn kho thực tế</td><td>Số lượng đếm được khi thủ kho đi kiểm kê thực tế tại giá kệ.</td></tr>
+              <tr><td><b>STD PRICE</b></td><td>Đơn giá tiêu chuẩn</td><td>Đơn giá danh nghĩa dùng để quy đổi tổng giá trị tồn kho ra USD.</td></tr>
+              <tr><td><b>LINE</b></td><td>Chuyền sản xuất</td><td>Tổ đội công nhân may phụ trách lắp ráp hoàn thiện sản phẩm.</td></tr>
+              <tr><td><b>DT1 – DT8</b></td><td>8 Khung giờ sản xuất</td><td>Các khung giờ theo dõi năng suất chuẩn trong ngày từ 07:30 đến 16:30.</td></tr>
+              <tr><td><b>ETD / ETA</b></td><td>Ngày xuất / Ngày đến dự kiến</td><td>ETD: Ngày xuất xưởng giao hàng; ETA: Ngày hàng vật tư về đến xưởng.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 9. SECTION: FAQ / TROUBLESHOOTING -->
+      <section class="module-section" id="sec-faq" data-role="all">
+        <div class="module-header">
+          <div class="module-title-wrap">
+            <span class="module-tag">HỖ TRỢ</span>
+            <h2 class="module-title">Ma Trận Xử Lý Lỗi Nghiệp Vụ Thường Gặp (FAQ)</h2>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>❓ Sự cố 1: Sau khi tạo đơn hàng mới, vì sao trong `MATERIAL › Manage PO` không hiển thị vật tư để tính toán?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-a">
+            <b>Nguyên nhân:</b> Mã Style Code của đơn hàng đó chưa được tạo bảng định mức BOM trong `F/G › BOM-Manage`, hoặc BOM đang ở trạng thái nháp chưa bấm nút <b>SAVE</b>.<br>
+            <b>Cách xử lý:</b> Vào menu <code>F/G › BOM-Manage</code>, kiểm tra mã Style, khai báo danh mục vật tư và bắt buộc bấm nút màu xanh lá <b>SAVE</b>. Sau đó quay lại <code>Manage PO</code> chọn lại mã đơn hàng.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>❓ Sự cố 2: Đã nhập hàng ở màn hình Inbound nhưng tồn kho trong `MATERIAL › Inventory` không tăng?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-a">
+            <b>Nguyên nhân:</b> Người dùng mới chỉ điền số lượng vào cột <code>DELIVERY QTY</code> nhưng quên chưa bấm nút xác nhận chốt sổ.<br>
+            <b>Cách xử lý:</b> Tại màn hình <code>MATERIAL › Inbound</code>, sau khi nhập số lượng và chọn Location, bắt buộc phải bấm nút màu xanh lá <b>APPLYING INBOUND NOW</b> trên thanh công cụ.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>❓ Sự cố 3: Nút `MAKE PO` trong màn hình `Manage PO` bị mờ không thể bấm được?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-a">
+            <b>Nguyên nhân:</b> Chưa tích chọn các ô checkbox ở đầu dòng vật tư, hoặc các dòng vật tư được tích chọn thuộc nhiều Nhà cung cấp (Supplier) khác nhau.<br>
+            <b>Cách xử lý:</b> Dùng bộ lọc lọc theo từng Nhà cung cấp cụ thể, sau đó tích chọn các dòng vật tư cần mua của nhà cung cấp đó. Nút <b>MAKE PO</b> sẽ sáng lên để bấm.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>❓ Sự cố 4: Chuyền may đã làm xong hàng nhưng trên `PRODUCTION › Dashboard-Table` cột Output bằng 0?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-a">
+            <b>Nguyên nhân:</b> Bộ lọc ngày (Pick a date) đang chọn sai ngày, hoặc công nhân chưa quét tem mã QR công đoạn qua đầu đọc.<br>
+            <b>Cách xử lý:</b> Kiểm tra lại bộ lọc ngày tại ô <code>Pick a date</code>, chọn đúng ngày hôm nay và bấm <b>Update filter</b>. Đồng thời kiểm tra đầu đọc mã QR tại trạm kiểm đếm.
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hệ Thống Cẩm Nang Điện Tử Tương Tác ERP / MRP - Doanh Nghiệp May Túi Xách NEOBAGS (Phiên bản V25.02)</p>
+    <p style="margin-top: 0.35rem; color: #475569;">Tài liệu bảo mật nội bộ. Tuyệt đối không sao chép, lưu trữ công khai hoặc phân phối ra bên ngoài.</p>
+  </footer>
+
+  <!-- FLOATING CHATBOT WIDGET -->
+  <button class="chatbot-btn" id="chatOpenBtn" aria-label="Mở Trợ Lý Ảo MRP">
+    <div class="chat-pulse"></div>
+    💬
+  </button>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-status-dot"></div>
+        <div>
+          <div class="chat-header-title">Trợ Lý Ảo MRP &amp; Hỗ Trợ Kỹ Thuật</div>
+          <div class="chat-header-sub">Tra cứu quy trình, nút bấm &amp; Gửi phản hồi Google Sheet</div>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="chatCloseBtn">✕</button>
+    </div>
+
+    <!-- TABS NAVIGATION -->
+    <div class="chat-tabs">
+      <button class="chat-tab-btn active" id="tabBtnChat" onclick="switchMrpTab('chat')">
+        💬 Hỏi đáp tức thì
+      </button>
+      <button class="chat-tab-btn" id="tabBtnSheet" onclick="switchMrpTab('sheet')">
+        📝 Gửi yêu cầu lên Google Sheet
+      </button>
+    </div>
+
+    <!-- TAB 1: INTERACTIVE CHATBOT -->
+    <div class="chat-tab-content active" id="tabContentChat">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg chat-msg-bot">
+          Chào bạn! Tôi là Trợ lý ảo hỗ trợ tra cứu hệ thống ERP/MRP NEOBAGS. Tôi hỗ trợ trả lời các câu hỏi trọng tâm về:
+          <ul style="margin: 0.5rem 0 0 1.2rem; font-size: 0.85rem;">
+            <li>Nguồn gốc và đích đến của dữ liệu từng màn hình</li>
+            <li>Ý nghĩa và thời điểm bấm các nút (MAKE PO, APPLYING, SAVE, Checkbox EDIT...)</li>
+            <li>Cách tính toán định mức tiêu hao và hao hụt (BOM / Loss)</li>
+            <li>Xử lý các sự cố nghiệp vụ thường gặp</li>
+          </ul>
+          <div class="chat-msg-chips">
+            <span class="chat-chip" onclick="askQuestion('Nút MAKE PO dùng khi nào?')">Nút MAKE PO dùng khi nào?</span>
+            <span class="chat-chip" onclick="askQuestion('Checkbox EDIT trong BOM là gì?')">Checkbox EDIT trong BOM là gì?</span>
+            <span class="chat-chip" onclick="askQuestion('Nhập vật tư ở đâu?')">Nhập vật tư ở đâu?</span>
+            <span class="chat-chip" onclick="askQuestion('Dữ liệu Manage PO lấy từ đâu?')">Dữ liệu Manage PO lấy từ đâu?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Nhập câu hỏi tra cứu... (VD: Nút SAVE, lỗi không tăng tồn...)">
+        <button class="chat-send-btn" id="chatSendBtn">Gửi</button>
+      </div>
+    </div>
+
+    <!-- TAB 2: GOOGLE SHEET FEEDBACK -->
+    <div class="chat-tab-content" id="tabContentSheet">
+      <div class="sheet-form-container">
+        <div class="sheet-notice">
+          ℹ️ <strong>Kênh hỗ trợ kỹ thuật MRP:</strong> Mọi phản hồi, yêu cầu tính năng hoặc sự cố phát sinh sẽ được truyền thẳng về <strong>Google Sheet dùng chung của Quản trị viên &amp; AI Agent</strong> để theo dõi và xử lý nhanh chóng.
+        </div>
+
+        <div id="mrpSheetStatusMsg" class="sheet-status-alert"></div>
+
+        <div class="form-group-item">
+          <label>Nội dung yêu cầu / Thắc mắc / Báo lỗi MRP: <span style="color:#ef4444;">*</span></label>
+          <textarea id="mrpSheetRequest" rows="4" placeholder="Mô tả cụ thể màn hình, mã đơn hàng/vật tư hoặc lỗi bạn đang gặp phải..."></textarea>
+        </div>
+
+        <div class="form-group-item">
+          <label>Tên Zalo / Số điện thoại liên hệ:</label>
+          <input type="text" id="mrpSheetZalo" placeholder="Ví dụ: 0987654321 (để Admin phản hồi trực tiếp)">
+        </div>
+
+        <div class="form-group-item">
+          <label>Bộ phận / Phân xưởng may:</label>
+          <input type="text" id="mrpSheetCompany" placeholder="Ví dụ: Kho nguyên phụ liệu / Xưởng may 2">
+        </div>
+
+        <button type="button" class="btn-submit-sheet" id="mrpSheetSubmitBtn" onclick="submitMrpFeedback()">
+          🚀 Gửi phản hồi lên Google Sheet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC: SEARCH, FILTERS, REAL-TIME CLOCK, AND CHATBOT ENGINE -->
+  <script>
+    // 1. REAL-TIME CLOCK
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const clockEl = document.getElementById('sysClock');
+      if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 2. ROLE FILTER PILLS
+    const rolePills = document.querySelectorAll('.role-pill');
+    const sections = document.querySelectorAll('.module-section, .pipeline-card');
+    
+    rolePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        rolePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const role = pill.dataset.role;
+
+        sections.forEach(sec => {
+          const secRoles = sec.dataset.role || 'all';
+          if (role === 'all' || secRoles.includes(role)) {
+            sec.style.display = 'block';
+          } else {
+            sec.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 3. GLOBAL SEARCH FILTER
+    const searchInput = document.getElementById('globalSearch');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      if (!term) {
+        sections.forEach(sec => sec.style.display = 'block');
+        return;
+      }
+      sections.forEach(sec => {
+        const text = sec.innerText.toLowerCase();
+        if (text.includes(term)) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
+
+    // Shortcut Ctrl + K for search
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+
+    // 4. SCROLLSPY / TOC ACTIVE TRACKER (TỰ ĐỘNG TRACKING VỊ TRÍ MỤC LỤC KHI CUỘN)
+    const tocLinks = Array.from(document.querySelectorAll('#sidebarNav a[href^="#"]'));
+    const trackedItems = tocLinks.map(link => {
+      const id = link.getAttribute('href').substring(1);
+      const el = document.getElementById(id);
+      return { link, el };
+    }).filter(item => item.el !== null);
+
+    function updateActiveTOC() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollMid = scrollY + 120; // 120px offset cho sticky header
+      let activeItem = null;
+
+      // Nếu ở đầu trang
+      if (scrollY < 60 && trackedItems.length > 0) {
+        activeItem = trackedItems[0];
+      } 
+      // Nếu đã cuộn đến sát chân trang
+      else if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 50 && trackedItems.length > 0) {
+        activeItem = trackedItems[trackedItems.length - 1];
+      } 
+      else {
+        // Tìm phân hệ hiện tại đang nằm trong vùng nhìn thấy
+        for (let i = 0; i < trackedItems.length; i++) {
+          const item = trackedItems[i];
+          const top = item.el.offsetTop;
+          const bottom = top + item.el.offsetHeight;
+
+          if (scrollMid >= top && scrollMid < bottom) {
+            activeItem = item;
+            break;
+          } else if (scrollMid >= top) {
+            activeItem = item;
+          }
+        }
+      }
+
+      if (activeItem) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        activeItem.link.classList.add('active');
+
+        // Tự động cuộn thanh sidebar nếu mục lục active nằm ngoài vùng hiển thị của sidebar
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && sidebar.scrollHeight > sidebar.clientHeight) {
+          const linkRect = activeItem.link.getBoundingClientRect();
+          const sidebarRect = sidebar.getBoundingClientRect();
+          if (linkRect.top < sidebarRect.top + 20 || linkRect.bottom > sidebarRect.bottom - 20) {
+            activeItem.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
+      }
+    }
+
+    // Lắng nghe sự kiện scroll với throttle mượt mà
+    let scrollScheduled = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollScheduled) {
+        window.requestAnimationFrame(() => {
+          updateActiveTOC();
+          scrollScheduled = false;
+        });
+        scrollScheduled = true;
+      }
+    }, { passive: true });
+
+    // Khi người dùng bấm vào một link mục lục: cuộn mượt và highlight tức thì
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href').substring(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          tocLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Kích hoạt khi trang tải xong
+    window.addEventListener('DOMContentLoaded', updateActiveTOC);
+    window.addEventListener('resize', updateActiveTOC);
+    updateActiveTOC();
+
+    // 5. ACCORDION FAQ
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // 5. SMART CLIENT-SIDE CHATBOT ENGINE
+    const chatBtn = document.getElementById('chatOpenBtn');
+    const chatWin = document.getElementById('chatWindow');
+    const chatClose = document.getElementById('chatCloseBtn');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSendBtn');
+
+    chatBtn.addEventListener('click', () => chatWin.classList.toggle('open'));
+    chatClose.addEventListener('click', () => chatWin.classList.remove('open'));
+
+    // VIETNAMESE STOP WORDS
+    const STOP_WORDS = new Set([
+      'là', 'của', 'và', 'cho', 'với', 'ở', 'tại', 'trong', 'như', 'thế', 'nào', 
+      'làm', 'sao', 'được', 'gì', 'thì', 'bị', 'do', 'khi', 'sau', 'trước', 'các', 
+      'những', 'cái', 'chiếc', 'một', 'này', 'đó', 'ơi', 'hỏi', 'mình', 'tôi', 'bạn', 
+      'hãy', 'vui', 'lòng', 'vào', 'để', 'có', 'không', 'ai', 'ạ', 'nhe', 'nha'
+    ]);
+
+    // MULTI-TURN CONTEXT TRACKER
+    let activeChatContext = 'general';
+
+    // KNOWLEDGE BASE (30 TOPICS COVERING ALL MODULES, BUTTONS, DATA FLOWS & TROUBLESHOOTING)
+    const KB = [
+      {
+        id: 'nhap-vat-tu-o-dau',
+        title: 'Nhập vật tư ở đâu? (Nhập kho Inbound vs Khai báo mã R/M)',
+        keywords: [
+          'nhập vật tư ở đâu', 'nhập vật tư', 'nhập kho vật tư', 'nhập nvl', 'nhập nguyên phụ liệu', 
+          'nhập hàng ở đâu', 'nhập kho ở đâu', 'tiếp nhận vật tư', 'đưa vật tư vào kho', 
+          'vào kho vật tư', 'nhập hàng ncc', 'tạo mã vật tư ở đâu', 'khai báo vật tư ở đâu',
+          'vào vật tư ở đâu', 'nhập nvl ở đâu'
+        ],
+        answer: 'Tùy theo nhu cầu thực tế của bạn, hệ thống chia việc <b>"nhập vật tư"</b> thành 3 nghiệp vụ rõ ràng tại 3 màn hình khác nhau:<br><br>' +
+          '1. <b>NHẬP KHO LÔ HÀNG THỰC TẾ TỪ NCC (Ghi tăng tồn kho):</b><br>' +
+          '   • <b>Vị trí Menu:</b> <code>MATERIAL ▶ Inbound</code> (Đường dẫn: <code>/material/inbound</code>).<br>' +
+          '   • <b>Thao tác:</b> Nhập mã <code>MATERIAL PO#</code>, điền số lượng thực nhận vào cột <code>DELIVERY QTY</code>, chọn vị trí kệ tại <code>LOCATION</code>, và <b>BẮT BUỘC BẤM</b> nút màu xanh lá <b>APPLYING INBOUND NOW</b> để chính thức tăng tồn kho hệ thống.<br><br>' +
+          '2. <b>KHAI BÁO MÃ NGUYÊN PHỤ LIỆU MỚI (Master Data):</b><br>' +
+          '   • <b>Vị trí Menu:</b> <code>CODE ▶ R/M</code> (Đường dẫn: <code>/code/rm</code>).<br>' +
+          '   • <b>Thao tác:</b> Dùng khi doanh nghiệp có loại vải, khóa, phụ liệu mới chưa từng có trên hệ thống. Khai báo mã R/M (RMF..., RMT...), Tên, Quy cách, Màu, Đơn vị tính và Đơn giá tiêu chuẩn.<br><br>' +
+          '3. <b>THÊM VẬT TƯ VÀO ĐỊNH MỨC BOM CỦA MÃ HÀNG:</b><br>' +
+          '   • <b>Vị trí Menu:</b> <code>F/G ▶ BOM-Manage</code>.<br>' +
+          '   • <b>Thao tác:</b> Tick vào checkbox <b>EDIT</b> trên thanh Toolbar, sau đó bấm nút màu xanh lá <b>+ Add R/M</b> tại cột R/M Name.',
+        chips: ['Nút APPLYING INBOUND NOW', 'Tại sao nhập kho không tăng tồn?', 'Khai báo Master Data R/M', 'Xem tồn kho Inventory']
+      },
+      {
+        id: 'dua-vat-tu-len-he-thong',
+        title: 'Đưa vật tư lên hệ thống (Khai báo Danh mục Master Data vs Upload BOM)',
+        keywords: [
+          'đưa vật tư lên hệ thống', 'đưa vật tư lên', 'tải vật tư lên hệ thống', 'up vật tư lên hệ thống', 
+          'upload vật tư', 'tạo danh mục vật tư', 'khai báo vật tư mới', 'thêm vật tư mới vào hệ thống', 
+          'đăng ký vật tư', 'master data rm', 'đưa nvl lên hệ thống', 'còn đưa vật tư lên hệ thống thì sao'
+        ],
+        answer: 'Để <b>đưa dữ liệu vật tư lên hệ thống</b>, bạn thực hiện theo 2 cấp độ tùy theo mục đích nghiệp vụ:<br><br>' +
+          '1. <b>CẤP ĐỘ 1: KHAI BÁO DANH MỤC VẬT TƯ GỐC (MASTER DATA R/M)</b><br>' +
+          '   • <b>Màn hình:</b> <code>CODE ▶ R/M</code> (Đường dẫn: <code>/code/rm</code>).<br>' +
+          '   • <b>Ý nghĩa:</b> Đưa loại vật tư mới vào từ điển dùng chung toàn công ty trước khi đưa vào sản xuất.<br>' +
+          '   • <b>Các trường cần nhập:</b> Phân loại <code>Category</code> (F: Vải, T: Phụ liệu Trim, P: Đóng gói Packing, O: Khác), Mã <code>R/M Code</code> (RMF..., RMT...), Tên tiếng Anh kỹ thuật, Quy cách <code>Specification</code>, Màu sắc, Đơn vị tính <code>Unit</code> (YDS, M, PCS, CON...), Nhà cung cấp và Đơn giá tiêu chuẩn (Standard Price USD).<br><br>' +
+          '2. <b>CẤP ĐỘ 2: ĐƯA ĐỊNH MỨC VẬT TƯ CỦA SẢN PHẨM LÊN HỆ THỐNG (BOM)</b><br>' +
+          '   • <b>Cách 1 (Nhanh bằng Excel):</b> Vào <code>F/G ▶ BOM-List</code>, bấm nút vàng <b>Template BOM</b> để tải file mẫu Excel, điền danh sách vật tư theo mẫu rồi bấm nút xanh lá <b>Upload BOM</b> để nạp hàng loạt.<br>' +
+          '   • <b>Cách 2 (Nhập trực tiếp trên Web):</b> Vào <code>F/G ▶ BOM-Manage</code>, tick chọn checkbox <b>EDIT</b> trên đầu trang, bấm nút xanh lá <b>+ Add R/M</b> để tra cứu mã R/M từ danh mục gốc và chèn vào cấu trúc sản phẩm, nhập định mức <code>CONS</code>, giá <code>U/PRICE</code> và bấm <b>✔ SAVE</b>.',
+        chips: ['Upload BOM bằng Excel', 'Khai báo CODE R/M', 'Checkbox EDIT trong BOM', 'Tính toán nhu cầu Manage PO']
+      },
+      {
+        id: 'manage-po',
+        title: 'Tính toán nhu cầu vật tư (Manage PO)',
+        keywords: ['manage po', 'tính toán mrp', 'mrp', 'nhu cầu mrp', 'tính toán nhu cầu', 'chạy mrp', 'cân đối vật tư', 'đặt mua vật tư theo po'],
+        answer: 'Màn hình <b>MATERIAL ▶ Manage PO</b> là trung tâm tính toán MRP. Hệ thống lấy: (Sản lượng PO) × (Định mức BOM) + (% Hao hụt Loss) - (Tồn kho Assign) = <b>Số lượng cần đặt mua [ORDER QTY]</b>.<br>Sau khi kiểm tra giá và ngày hẹn giao, bạn tick chọn vật tư và bấm nút màu xanh lá <b>MAKE PO</b>.',
+        chips: ['Nút MAKE PO dùng khi nào?', 'Dữ liệu Manage PO lấy từ đâu?', 'Gán tồn kho Assign là gì?']
+      },
+      {
+        id: 'make-po-btn',
+        title: 'Nút MAKE PO',
+        keywords: ['nút make po', 'make po', 'bấm make po', 'tạo po vật tư', 'đặt hàng ncc'],
+        answer: 'Nút <b>MAKE PO</b> (màu xanh lá) nằm tại cột Supplier trên màn hình <code>MATERIAL › Manage PO</code>.<br>• <b>Chức năng:</b> Gom các dòng vật tư đã tick chọn của cùng 1 Nhà cung cấp để sinh mã đơn mua <code>MATERIAL PO#</code> chính thức gửi NCC.<br>• <b>Lưu ý:</b> Nếu nút bị mờ, hãy kiểm tra xem bạn đã tick chọn checkbox đầu dòng chưa, và các dòng chọn có cùng một Nhà cung cấp hay không.',
+        chips: ['Làm gì tiếp theo sau khi Make PO?', 'Nút DEL PO dùng khi nào?']
+      },
+      {
+        id: 'data-source-manage-po',
+        title: 'Nguồn dữ liệu của màn hình Manage PO',
+        keywords: ['manage po lấy từ đâu', 'dữ liệu manage po', 'nguồn manage po', 'nguồn gốc manage po'],
+        answer: 'Dữ liệu bảng <code>MATERIAL › Manage PO</code> được hợp nhất từ 3 nguồn:<br>1. <b>Sản lượng & Mã hàng:</b> Lấy từ <code>F/G › Buyer order</code> theo mã <code>NEO PO#</code>.<br>2. <b>Định mức tiêu hao:</b> Lấy từ bảng <code>F/G › BOM-Manage</code>.<br>3. <b>Tồn kho sẵn có:</b> Lấy từ phân hệ <code>MATERIAL › Inventory</code> để tính toán số lượng bù trừ (Assign).',
+        chips: ['Làm gì tiếp theo?', 'Cách chỉnh hao hụt Loss %?']
+      },
+      {
+        id: 'checkbox-edit-bom',
+        title: 'Checkbox EDIT trong BOM-Manage (Công tắc mở khóa sửa định mức)',
+        keywords: [
+          'checkbox edit', 'checkbox edit trong bom', 'checkbox edit trong bom manage', 
+          'checkbox trong bom manage', 'checkbox edit là gì', 'nút edit trong bom', 'edit bom', 
+          'chkeditbom', 'mở khóa sửa bom', 'tại sao không sửa được bom', 'cách sửa bom', 
+          'sửa định mức', 'chỉnh sửa bom', 'edit mode', 'chkallitem', 'chkitem', 'xóa dòng bom',
+          'checkbox bom manage', 'checkbox edit bom'
+        ],
+        answer: '<b>Checkbox EDIT</b> (nằm trên thanh Toolbar đầu trang của màn hình <code>F/G ▶ BOM-Manage</code>, cạnh nút <i>D/L BOM</i>) chính là <b>CÔNG TẮC CHUYỂN ĐỔI CHẾ ĐỘ BIÊN TẬP (Edit Mode Switch)</b> của bảng định mức:<br><br>' +
+          '• <b>Mặc định (Chưa tick):</b> Hệ thống khóa cứng 100% bảng BOM ở chế độ Chỉ xem (Read-only) an toàn để chống người dùng vô tình bấm nhầm làm sai lệch định mức kỹ thuật.<br><br>' +
+          '• <b>Khi bạn TICK CHỌN [✔] EDIT, 3 thay đổi sẽ diễn ra tức thì:</b><br>' +
+          '  1. <b>Xuất hiện 2 nút điều khiển:</b> Nút xanh lá <b>✔ SAVE</b> (để lưu dữ liệu vào CSDL) và nút xám <b>CANCEL</b> (để hủy bỏ chỉnh sửa, hỏi xác nhận <i>Are you sure?</i>). Các nút xem thông thường (Open BOM, Basic info, D/L BOM...) tạm thời bị ẩn đi.<br>' +
+          '  2. <b>Mở khóa chỉnh sửa trực tiếp (Inline Editing):</b> Cho phép click trực tiếp vào số để sửa tại các cột: <code>CONS</code> (Định mức tiêu hao), <code>U/PRICE</code> (Đơn giá), <code>CURRENCY</code> (Tiền tệ) và <code>REMARK (BOM)</code>.<br>' +
+          '  3. <b>Kích hoạt tính năng Thêm & Xóa vật tư:</b><br>' +
+          '     - Xuất hiện nút màu xanh lá <b>+ Add R/M</b> ở cột R/M Name để thêm vật tư mới.<br>' +
+          '     - Xuất hiện cột tác vụ <b>DEL</b> ngoài cùng bên phải gồm nút đỏ <b>DEL</b>, checkbox tiêu đề <code>chkAllItem</code> (chọn tất cả dòng) và các checkbox con <code>chkItem</code> ở từng dòng để xóa các dòng vật tư không dùng.<br><br>' +
+          '⚠️ <i>Sau khi sửa xong, bắt buộc bấm <b>✔ SAVE</b> để lưu vào CSDL, hoặc bấm <b>CANCEL</b> để hoàn tác!</i>',
+        chips: ['Khi nào bấm nút SAVE?', 'Nút + Add R/M', 'Xóa dòng trong BOM', 'Dữ liệu BOM chuyển đi đâu?']
+      },
+      {
+        id: 'bom-save-btn',
+        title: 'Lập và Lưu Định mức (BOM-Manage)',
+        keywords: ['bom', 'lập bom', 'định mức', 'nút save bom', 'save bom', 'quản lý bom', 'bom-manage'],
+        answer: 'Màn hình <b>F/G ▶ BOM-Manage</b> dùng để khai báo 100% nguyên phụ liệu cấu thành sản phẩm (Vải, Trim, Packing...).<br>• <b>Bước 1:</b> Tick vào checkbox <b>EDIT</b> trên thanh Toolbar để mở khóa chế độ sửa.<br>• <b>Bước 2:</b> Bấm <b>+ Add R/M</b> để thêm vật tư, hoặc click vào các ô <code>CONS</code>, <code>U/PRICE</code> để sửa định mức và giá.<br>• <b>Bước 3:</b> Bắt buộc bấm nút màu xanh lá <b>✔ SAVE</b> trên đầu trang để lưu dữ liệu. Nếu không bấm SAVE, dữ liệu sẽ không đồng bộ sang màn hình Manage PO!',
+        chips: ['Checkbox EDIT trong BOM là gì?', 'Nút + Add R/M', 'Color Selector là gì?', 'Dữ liệu BOM chuyển đi đâu?']
+      },
+      {
+        id: 'inbound-applying',
+        title: 'Nhập kho & Nút APPLYING INBOUND NOW',
+        keywords: ['nhập kho', 'nhập kho ở đâu', 'inbound', 'applying inbound now', 'tăng tồn kho', 'nhận hàng ncc', 'quên bấm applying', 'nhận hàng vật tư', 'nhập kho vật tư thực tế'],
+        answer: 'Khi nhận hàng từ nhà cung cấp về kho:<br>1. Vào <b>MATERIAL ▶ Inbound</b>, nhập mã <code>MATERIAL PO#</code>.<br>2. Điền số lượng thực nhận vào cột <code>DELIVERY QTY</code> và chọn vị trí kệ tại <code>LOCATION</code>.<br>3. <b>BẮT BUỘC BẤM</b> nút màu xanh lá <b>APPLYING INBOUND NOW</b>. Khi có thông báo hoàn tất, tồn kho mới chính thức được cộng vào hệ thống!',
+        chips: ['Tại sao nhập kho không tăng tồn?', 'Xem tồn kho ở đâu?']
+      },
+      {
+        id: 'outbound-applying',
+        title: 'Xuất kho cấp phát sản xuất (Outbound)',
+        keywords: ['xuất kho', 'outbound', 'applying outbound now', 'xuất cho chuyền', 'cấp phát vật tư'],
+        answer: 'Để xuất kho cấp phát vật tư cho xưởng may:<br>1. Vào <b>MATERIAL ▶ Outbound</b>, bấm <code>+ ADD/EDIT STYLE</code> chọn đơn hàng.<br>2. Nhập số lượng xuất vào cột <code>TO BE OUT QTY</code>.<br>3. Bắt buộc bấm nút màu xanh lá <b>APPLYING OUTBOUND NOW</b> để hệ thống tự động trừ tồn kho và ghi nhận chi phí vào PO sản xuất.',
+        chips: ['Xem tồn kho sau khi xuất?', 'Kiểm tra tiến độ chuyền may?']
+      },
+      {
+        id: 'inventory-valuation',
+        title: 'Quản lý tồn kho & Định giá USD (Inventory)',
+        keywords: ['tồn kho', 'inventory', 'định giá kho', 'std price', 'giá trị kho', 'physical inventory'],
+        answer: 'Màn hình <b>MATERIAL ▶ Inventory</b> theo dõi toàn bộ tài sản kho:<br>• <b>IN / OUT:</b> Số lượng nhập và xuất lũy kế.<br>• <b>PHYSICAL INVENTORY:</b> Số lượng tồn kho thực tế đếm được khi kiểm kê.<br>• <b>INVENTORY:</b> Tồn kho sổ sách có thể sử dụng (khả dụng).<br>• <b>STD PRICE AMOUNT(USD):</b> Giá trị tồn kho quy đổi ra tiền USD (Số lượng × Đơn giá tiêu chuẩn) phục vụ báo cáo tài chính.',
+        chips: ['Lịch sử vật tư HISTORY', 'Cách xuất file Excel tồn kho?']
+      },
+      {
+        id: 'schedule-qr',
+        title: 'Lập lịch sản xuất & In mã QR (Schedule-Manage)',
+        keywords: ['kế hoạch', 'xếp chuyền', 'schedule', 'in mã qr', 'nút qr', 'tem qr', 'bundle tag'],
+        answer: 'Tại màn hình <b>PRODUCTION ▶ Schedule-Manage</b>:<br>• Bấm nút <b>Schedule</b> (màu xanh lá) tại từng đơn hàng để chọn Chuyền may (Line), ngày Start, ngày End và chỉ tiêu Qty.<br>• Tick chọn các PO chuẩn bị vào chuyền và bấm nút màu xanh dương <b>QR</b> trên tiêu đề cột để in hàng loạt tem mã QR công đoạn (Travel Ticket) dán theo bó bán thành phẩm.',
+        chips: ['Theo dõi sản lượng từng giờ DT1-DT8', 'Tại sao quét QR không lên sản lượng?']
+      },
+      {
+        id: 'dashboard-hourly',
+        title: 'Giám sát năng suất từng giờ (Dashboard-Table DT1-DT8)',
+        keywords: ['dashboard', 'dt1', 'dt2', 'dt8', 'sản lượng từng giờ', 'năng suất chuyền', 'theo dõi giờ'],
+        answer: 'Màn hình <b>PRODUCTION ▶ Dashboard-Table</b> cho phép Quản đốc theo dõi sản lượng thực tế qua 8 khung giờ chuẩn (DT1: 07:30 đến DT8: 16:30 + EXTRA tăng ca).<br>Số liệu tự động nhảy thời gian thực mỗi khi công nhân quét mã QR tại các trạm kiểm đếm đầu/cuối chuyền.',
+        chips: ['Lỗi sản lượng bằng 0', 'Top lỗi phế phẩm Top Defect?']
+      },
+      {
+        id: 'error-zero-output',
+        title: 'Lỗi cột Output hiển thị bằng 0',
+        keywords: ['lỗi output bằng 0', 'không nhảy sản lượng', 'output 0', 'sản lượng không lên'],
+        answer: 'Nếu chuyền may đã làm xong hàng nhưng trên <code>Dashboard-Table</code> hiển thị 0:<br>1. Kiểm tra ô <b>Pick a date</b> xem đã chọn đúng ngày hôm nay chưa, sau đó bấm <b>Update filter</b>.<br>2. Kiểm tra lại thiết bị đọc mã QR tại chuyền xem công nhân đã quét tem QR in từ màn hình <code>Schedule-Manage</code> hay chưa.',
+        chips: ['In lại mã QR', 'Xem lịch chuyền Schedule']
+      },
+      {
+        id: 'error-make-po-disabled',
+        title: 'Lỗi nút MAKE PO bị mờ không bấm được',
+        keywords: ['nút make po bị mờ', 'không bấm được make po', 'make po disabled', 'lỗi make po'],
+        answer: 'Nút <b>MAKE PO</b> bị mờ do 2 nguyên nhân:<br>1. Bạn chưa tick chọn ô checkbox ở đầu các dòng vật tư.<br>2. Các dòng vật tư được tick chọn thuộc <b>nhiều Nhà cung cấp khác nhau</b> (mỗi đơn mua chỉ phát hành cho 1 NCC duy nhất).<br>👉 <b>Cách khắc phục:</b> Lọc theo từng NCC, sau đó tick chọn các dòng cần mua của NCC đó.',
+        chips: ['Quy trình đặt mua vật tư?', 'Quản lý PO Status?']
+      },
+      {
+        id: 'buyer-order-add',
+        title: 'Tạo đơn hàng mới (+ Add PO)',
+        keywords: ['tạo đơn hàng', 'add po', 'nhập đơn hàng', 'buyer order', 'tạo neo po'],
+        answer: 'Để tạo đơn hàng mới:<br>1. Vào <b>F/G ▶ Buyer order</b>, bấm nút màu xanh lá <b>+ Add PO</b>.<br>2. Điền thông tin: Buyer, NEO PO#, Buyer PO#, PIC, Order Date, ETD.<br>3. Thêm chi tiết mã hàng: Style Code, Name, Color, Season, Order Qty, FOB/CMT price.<br>4. Bấm <b>SAVE</b> để hoàn tất tạo đơn hàng.',
+        chips: ['Tải đơn hàng bằng Excel', 'Lập BOM cho đơn hàng mới?']
+      },
+      {
+        id: 'data-source-manage-po',
+        title: 'Dữ liệu Manage PO lấy từ đâu?',
+        keywords: ['dữ liệu manage po lấy từ đâu', 'manage po lấy từ đâu', 'nguồn dữ liệu manage po', 'dữ liệu tính mrp lấy từ đâu'],
+        answer: '📊 <b>Nguồn gốc dữ liệu của màn hình MATERIAL ▶ Manage PO:</b><br><br>Dữ liệu tính nhu cầu vật tư (MRP) được hệ thống tổng hợp tự động từ 3 nguồn chính:<br>1. <b>Số lượng đơn hàng:</b> Lấy từ cột <code>Order Qty</code> trong màn hình <b>F/G ▶ Buyer order</b>.<br>2. <b>Định mức tiêu hao &amp; Tỷ lệ hao hụt:</b> Lấy từ công thức <code>Gross Yield / (1 + Loss Rate%)</code> đã được duyệt tại <b>F/G ▶ BOM-Manage</b>.<br>3. <b>Tồn kho khả dụng hiện tại:</b> Lấy từ số lượng <code>INVENTORY</code> thực tế trong màn hình <b>MATERIAL ▶ Inventory</b>.<br><br>👉 <b>Công thức hệ thống tính:</b><br><code>Nhu cầu đặt mua (Purchase Qty) = (Order Qty × Gross Yield) - Tồn kho khả dụng - Hàng đang trên đường về</code>.',
+        chips: ['Nút MAKE PO dùng khi nào?', 'Lập BOM định mức']
+      },
+      {
+        id: 'data-source-outbound',
+        title: 'Dữ liệu Outbound lấy từ đâu?',
+        keywords: ['dữ liệu outbound lấy từ đâu', 'outbound lấy từ đâu', 'nguồn dữ liệu xuất kho', 'dữ liệu xuất vật tư lấy từ đâu'],
+        answer: '📦 <b>Nguồn gốc dữ liệu của màn hình MATERIAL ▶ Outbound (Xuất kho vật tư):</b><br><br>Dữ liệu danh sách cần xuất cấp cho chuyền may được đồng bộ từ:<br>1. <b>Kế hoạch sản xuất &amp; Xếp chuyền:</b> Màn hình <b>PRODUCTION ▶ Schedule-Manage</b> (xác định ngày chuyền vào hàng và sản lượng cần may).<br>2. <b>Định mức BOM chi tiết:</b> Hệ thống tra cứu theo mã Style trong <b>BOM-Manage</b> để biết chính xác từng loại vải, chỉ, khóa kéo cần xuất.<br>3. <b>Số lượng đã nhập kho (Inbound):</b> Thủ kho chỉ có thể xuất các cuộn/thùng vật tư đã được bấm <code>APPLYING INBOUND NOW</code> và có mã Barcode/Roll No hợp lệ trong kho.',
+        chips: ['Quy trình xuất kho Outbound', 'Lỗi không đủ tồn để xuất']
+      },
+      {
+        id: 'next-step-general',
+        title: 'Làm gì tiếp theo?',
+        keywords: ['làm gì tiếp theo', 'tiếp theo làm gì', 'bước tiếp theo', 'sau đó làm gì'],
+        answer: function(ctx) {
+          switch(ctx) {
+            case 'buyer-order':
+              return 'Sau khi hoàn tất tạo đơn hàng <code>Buyer order</code>, bước tiếp theo là vào <b>F/G ▶ BOM-Manage</b> để lập định mức vật tư kỹ thuật cho mã Style đó.';
+            case 'bom-manage':
+              return 'Sau khi hoàn tất và bấm SAVE trong <code>BOM-Manage</code>, bước tiếp theo là vào <b>MATERIAL ▶ Manage PO</b> để chạy động cơ MRP tính toán nhu cầu mua hàng.';
+            case 'manage-po':
+              return 'Sau khi bấm <code>MAKE PO</code> phát hành đơn mua vật tư, bước tiếp theo là theo dõi tiến độ tại <b>MATERIAL ▶ PO Status</b> và sẵn sàng đón nhận hàng tại <b>MATERIAL ▶ Inbound</b>.';
+            case 'inbound':
+              return 'Sau khi bấm <code>APPLYING INBOUND NOW</code> để tăng tồn kho, bước tiếp theo là vào <b>MATERIAL ▶ Outbound</b> xuất cấp vật tư cho chuyền hoặc vào <b>PRODUCTION ▶ Schedule-Manage</b> xếp lịch may.';
+            case 'schedule':
+              return 'Sau khi xếp lịch và in tem mã <code>QR</code>, chuyền may bắt đầu vào hàng và Quản đốc mở <b>PRODUCTION ▶ Dashboard-Table</b> để giám sát sản lượng từng giờ (DT1-DT8).';
+            default:
+              return 'Quy trình chuẩn tiếp nối: <b>[1. Đơn hàng Buyer Order] ➔ [2. Định mức BOM] ➔ [3. Tính nhu cầu Manage PO] ➔ [4. Nhập kho Inbound] ➔ [5. Xuất xưởng Outbound] ➔ [6. Xếp chuyền Schedule] ➔ [7. Giám sát Giờ Dashboard]</b>.<br>Bạn đang thao tác ở phân hệ nào để tôi chỉ dẫn bước tiếp theo chính xác nhất?';
+          }
+        },
+        chips: ['Quy trình từ đầu đến cuối', 'Đơn hàng (Buyer Order)', 'Tính MRP (Manage PO)']
+      }
+    ];
+
+    // CẤU HÌNH GOOGLE APPS SCRIPT DÙNG CHUNG VỚI HRM
+    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwZy_F3H1rOyASlRcQ232udKlspUlb-3mGLKhCGPlBSz7tfdxPYf0H0WvnHDcbhfY5N/exec";
+
+    // TABS SWITCHER (CHAT VS GOOGLE SHEET)
+    window.switchMrpTab = function(tabName) {
+      const btnChat = document.getElementById('tabBtnChat');
+      const btnSheet = document.getElementById('tabBtnSheet');
+      const contentChat = document.getElementById('tabContentChat');
+      const contentSheet = document.getElementById('tabContentSheet');
+
+      if (tabName === 'sheet') {
+        btnChat.classList.remove('active');
+        btnSheet.classList.add('active');
+        contentChat.classList.remove('active');
+        contentSheet.classList.add('active');
+      } else {
+        btnSheet.classList.remove('active');
+        btnChat.classList.add('active');
+        contentSheet.classList.remove('active');
+        contentChat.classList.add('active');
+      }
+    };
+
+    // FORM TIẾP NHẬN PHẢN HỒI GỬI LÊN GOOGLE SHEET
+    window.submitMrpFeedback = function() {
+      const reqInput = document.getElementById('mrpSheetRequest');
+      const zaloInput = document.getElementById('mrpSheetZalo');
+      const compInput = document.getElementById('mrpSheetCompany');
+      const statusMsg = document.getElementById('mrpSheetStatusMsg');
+      const submitBtn = document.getElementById('mrpSheetSubmitBtn');
+
+      const requestVal = reqInput ? reqInput.value.trim() : '';
+      const zaloVal = zaloInput ? zaloInput.value.trim() : '';
+      const companyVal = compInput ? compInput.value.trim() : '';
+
+      if (!requestVal) {
+        if (statusMsg) {
+          statusMsg.className = 'sheet-status-alert error';
+          statusMsg.style.display = 'block';
+          statusMsg.innerHTML = '⚠️ Vui lòng nhập nội dung thắc mắc hoặc sự cố MRP của bạn!';
+        }
+        if (reqInput) reqInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '⏳ Đang truyền dữ liệu đến Google Sheet...';
+      if (statusMsg) statusMsg.style.display = 'none';
+
+      // Chuyển sang tab chat để tạo bubble tiến trình
+      switchMrpTab('chat');
+      const pendingBubble = document.createElement('div');
+      pendingBubble.className = 'chat-msg chat-msg-bot';
+      pendingBubble.innerHTML = `⏳ <em>Đang gửi yêu cầu hỗ trợ MRP đến Google Sheet của Quản trị viên...</em>`;
+      chatMessages.appendChild(pendingBubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Chuẩn bị FormData với system = 'MRP'
+      const formData = new FormData();
+      formData.append('system', 'MRP');
+      formData.append('request', requestVal);
+      formData.append('zalo', zaloVal || 'Ẩn danh');
+      formData.append('company', companyVal || 'MRP User');
+      formData.append('timestamp', new Date().toLocaleString('vi-VN'));
+      formData.append('url', window.location.href);
+
+      // Lưu tạm LocalStorage
+      try {
+        const history = JSON.parse(localStorage.getItem('mrp_sheet_feedbacks') || '[]');
+        history.push({
+          system: 'MRP',
+          request: requestVal,
+          zalo: zaloVal,
+          company: companyVal,
+          time: new Date().toISOString()
+        });
+        localStorage.setItem('mrp_sheet_feedbacks', JSON.stringify(history));
+      } catch(e) {}
+
+      // Gửi Fetch (mode: no-cors)
+      if (GOOGLE_SHEET_WEBAPP_URL && GOOGLE_SHEET_WEBAPP_URL.startsWith('http')) {
+        fetch(GOOGLE_SHEET_WEBAPP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        })
+        .then(() => {
+          finishMrpSubmission(pendingBubble, zaloVal);
+        })
+        .catch(() => {
+          finishMrpSubmission(pendingBubble, zaloVal);
+        });
+      } else {
+        finishMrpSubmission(pendingBubble, zaloVal);
+      }
+    };
+
+    function finishMrpSubmission(bubbleElem, zaloVal) {
+      const submitBtn = document.getElementById('mrpSheetSubmitBtn');
+      const reqInput = document.getElementById('mrpSheetRequest');
+      const zaloInput = document.getElementById('mrpSheetZalo');
+      const compInput = document.getElementById('mrpSheetCompany');
+      const statusMsg = document.getElementById('mrpSheetStatusMsg');
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '🚀 Gửi phản hồi lên Google Sheet';
+      }
+      if (reqInput) reqInput.value = '';
+      if (zaloInput) zaloInput.value = '';
+      if (compInput) compInput.value = '';
+
+      bubbleElem.style.borderColor = '#10b981';
+      bubbleElem.innerHTML = `🎉 <b>ĐÃ GỬI YÊU CẦU MRP THÀNH CÔNG!</b><br><br>Yêu cầu đã được lưu trực tiếp vào <b>Google Sheet Quản trị viên &amp; AI Agent</b> (cột Hệ thống: <code>MRP</code>).<br><em>Chúng tôi sẽ kiểm tra và phản hồi sớm qua Zalo (${zaloVal || 'Ẩn danh'}).</em>`;
+
+      if (statusMsg) {
+        statusMsg.className = 'sheet-status-alert success';
+        statusMsg.style.display = 'block';
+        statusMsg.innerHTML = '🎉 Đã gửi thành công! Xem xác nhận trong tab <strong>Hỏi đáp tức thì</strong>.';
+      }
+    }
+
+    // CHATBOT MESSAGE RENDERING
+    function appendMessage(text, isUser, chips = []) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-msg ${isUser ? 'chat-msg-user' : 'chat-msg-bot'}`;
+      msgDiv.innerHTML = text;
+
+      if (chips && chips.length > 0 && !isUser) {
+        const chipsContainer = document.createElement('div');
+        chipsContainer.className = 'chat-msg-chips';
+        chips.forEach(c => {
+          const chipSpan = document.createElement('span');
+          chipSpan.className = 'chat-chip';
+          chipSpan.textContent = c;
+          chipSpan.onclick = () => askQuestion(c);
+          chipsContainer.appendChild(chipSpan);
+        });
+        msgDiv.appendChild(chipsContainer);
+      }
+
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // QUERY PROCESSOR
+    function askQuestion(q) {
+      if (!chatWin.classList.contains('open')) chatWin.classList.add('open');
+      appendMessage(q, true);
+      processQuery(q);
+    }
+
+    function processQuery(rawQuery) {
+      const query = rawQuery.toLowerCase().trim();
+
+      // Check for multi-turn follow-up intent ("làm gì tiếp theo", "bước tiếp theo")
+      const isNextStepIntent = /tiếp theo|bước sau|làm gì sau|tiếp tục/.test(query);
+      if (isNextStepIntent) {
+        const nextTopic = KB.find(k => k.id === 'next-step-general');
+        if (nextTopic) {
+          const ansText = typeof nextTopic.answer === 'function' ? nextTopic.answer(activeChatContext) : nextTopic.answer;
+          setTimeout(() => appendMessage(ansText, false, nextTopic.chips), 300);
+          return;
+        }
+      }
+
+      // Filter query tokens with Vietnamese Stop Words
+      const tokens = query.split(/[\s,?.!;:()\[\]"]+/).filter(t => t.length > 1 && !STOP_WORDS.has(t));
+
+      let bestMatch = null;
+      let highestScore = 0;
+
+      KB.forEach(item => {
+        let score = 0;
+        
+        // Exact keyword phrase check (Cụm từ dài và chi tiết được ưu tiên trọng số vượt trội)
+        item.keywords.forEach(kw => {
+          const kwLow = kw.toLowerCase();
+          if (query === kwLow) {
+            score += 60; // Khớp tuyệt đối cả câu
+          } else if (query.includes(kwLow)) {
+            const kwWordCount = kwLow.split(' ').length;
+            score += (kwWordCount >= 2) ? (70 + kwWordCount * 25) : 35;
+          }
+        });
+
+        // Token match: Mỗi từ khóa ý nghĩa chỉ tính điểm 1 lần duy nhất cho mỗi bài viết
+        tokens.forEach(tok => {
+          let matched = false;
+          if (item.title.toLowerCase().includes(tok)) {
+            score += 15;
+            matched = true;
+          }
+          if (!matched) {
+            for (let k = 0; k < item.keywords.length; k++) {
+              if (item.keywords[k].toLowerCase().includes(tok)) {
+                score += 10;
+                break;
+              }
+            }
+          }
+        });
+
+        // Context alignment bonus
+        if (item.id.includes(activeChatContext) || activeChatContext.includes(item.id)) {
+          score += 15;
+        }
+
+        if (score > highestScore) {
+          highestScore = score;
+          bestMatch = item;
+        }
+      });
+
+      setTimeout(() => {
+        if (bestMatch && highestScore >= 20) {
+          activeChatContext = bestMatch.id;
+          const ansText = typeof bestMatch.answer === 'function' ? bestMatch.answer(activeChatContext) : bestMatch.answer;
+          appendMessage(ansText, false, bestMatch.chips);
+        } else {
+          appendMessage(
+            `Xin lỗi, tôi chưa tìm thấy câu trả lời chính xác cho câu hỏi "<b>${rawQuery}</b>".<br><br>
+            Bạn có thể thử hỏi với từ khóa cụ thể hơn như: <i>"Nút MAKE PO"</i>, <i>"Nút SAVE trong BOM"</i>, <i>"Dữ liệu Manage PO lấy từ đâu"</i>, hoặc chuyển sang tab gửi yêu cầu kỹ thuật:<br><br>
+            <button onclick="switchMrpTab('sheet')" style="background:#10b981; color:#fff; border:none; padding:7px 12px; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.83rem;">
+              📝 Chuyển sang gửi yêu cầu lên Google Sheet &raquo;
+            </button>`,
+            false,
+            ['Nút MAKE PO', 'Lập BOM định mức', 'Nhập kho Inbound', 'Tính MRP Manage PO']
+          );
+        }
+      }, 350);
+    }
+
+    chatSend.addEventListener('click', () => {
+      const q = chatInput.value.trim();
+      if (!q) return;
+      chatInput.value = '';
+      askQuestion(q);
+    });
+
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const q = chatInput.value.trim();
+        if (!q) return;
+        chatInput.value = '';
+        askQuestion(q);
+      }
+    });
+  </script>
+</body>
+</html>
