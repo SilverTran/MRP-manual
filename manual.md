@@ -96,7 +96,7 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 ## 3. PHÂN HỆ 1: F/G (FINISHED GOODS) - QUẢN LÝ ĐƠN HÀNG & BOM
 
 ### 3.1. Quản lý Đơn hàng Khách hàng (`F/G › Buyer order`)
-- **Breadcrumb:** `F/G ▶ Buyer order` (Đường dẫn: `/fg/manage-order`)
+- **Đường dẫn Menu (Breadcrumb):** `F/G ▶ Buyer order` (Đường dẫn: `/fg/manage-order`)
 - **Mục đích:** Tiếp nhận đơn hàng chính thức từ khách hàng, tạo mã đơn hàng nội bộ `NEO PO#`, quản lý sản lượng đặt, số lượng đã đóng gói, tồn kho thành phẩm và theo dõi tiến độ xuất hàng.
 
 #### A. Bảng giải thích chi tiết các nút bấm
@@ -137,13 +137,13 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 ---
 
 ### 3.2. Quản lý Đơn hàng Tạm tính (`F/G › Temp order`)
-- **Breadcrumb:** `F/G ▶ Temp order` (Đường dẫn: `/fg/temp-order`)
+- **Đường dẫn Menu (Breadcrumb):** `F/G ▶ Temp order` (Đường dẫn: `/fg/temp-order`)
 - **Mục đích:** Lưu trữ các đơn hàng dự thảo, đơn hàng chào mẫu (Sample Order) hoặc đơn hàng chưa chốt số lượng chính thức, giúp Merchandiser tính thử định mức vật tư trước khi ký hợp đồng chính thức.
 
 ---
 
 ### 3.3. Danh sách Định mức Vật tư (`F/G › BOM-List`)
-- **Breadcrumb:** `F/G ▶ BOM-List` (Đường dẫn: `/fg/bom-list`)
+- **Đường dẫn Menu (Breadcrumb):** `F/G ▶ BOM-List` (Đường dẫn: `/fg/bom-list`)
 - **Mục đích:** Tra cứu, quản lý phiên bản Revision, tải lên hàng loạt và điều phối định mức kỹ thuật sản phẩm.
 
 #### A. Bảng nút bấm tác vụ
@@ -166,7 +166,7 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 ---
 
 ### 3.4. Quản lý Chi tiết Định mức Kỹ thuật (`F/G › BOM-Manage`)
-- **Breadcrumb:** `F/G ▶ BOM-Manage` (Đường dẫn: `/fg/bom-manage?RID={BOM_ID}`)
+- **Đường dẫn Menu (Breadcrumb):** `F/G ▶ BOM-Manage` (Đường dẫn: `/fg/bom-manage?RID={BOM_ID}`)
 - **Mục đích:** Khai báo chi tiết 100% nguyên phụ liệu cấu thành nên sản phẩm túi xách/balo: loại vải chính, vải lót, chỉ may, khóa kéo, đầu kéo, nhãn mác, thùng carton, keo dán...
 
 #### A. Công tắc chuyển đổi chế độ biên tập: Checkbox "EDIT" (CỰC KỲ QUAN TRỌNG)
@@ -234,7 +234,7 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 ## 4. PHÂN HỆ 2: MATERIAL - QUẢN LÝ NGUYÊN PHỤ LIỆU, MUA HÀNG & KHO
 
 ### 4.1. Tính toán Nhu cầu & Đặt mua Vật tư (`MATERIAL › Manage PO` - TRỌNG TÂM MRP)
-- **Breadcrumb:** `MATERIAL ▶ Manage PO` (Đường dẫn: `/material/manage-po`)
+- **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Manage PO` (Đường dẫn: `/material/manage-po`)
 - **Mục đích:** Đây là **trái tim của hệ thống MRP**. Động cơ tính toán sẽ đối chiếu giữa: (Số lượng đặt của đơn hàng) × (Định mức BOM) + (% Hao hụt) - (Tồn kho sẵn có) để ra Số lượng cần đặt mua thực tế, tính toán chi phí và phát hành đơn mua gửi nhà cung cấp.
 
 #### A. Bộ lọc & Công cụ đầu trang
@@ -294,7 +294,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ---
 
 ### 4.2. Quản lý Tồn kho & Định giá Tài sản Kho (`MATERIAL › Inventory`)
-- **Breadcrumb:** `MATERIAL ▶ Inventory` (Đường dẫn: `/material/inventory`)
+- **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Inventory` (Đường dẫn: `/material/inventory`)
 - **Mục đích:** Kiểm soát tổng thể tồn kho nguyên phụ liệu, đối soát tồn sổ sách và tồn thực tế đếm được, phân bổ theo vị trí giá kệ và định giá tổng tài sản kho theo USD.
 
 #### A. Thanh công cụ & Bộ lọc
@@ -317,7 +317,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ---
 
 ### 4.3. Nhập kho Nguyên Phụ Liệu (`MATERIAL › Inbound`)
-- **Breadcrumb:** `MATERIAL ▶ Inbound` (Đường dẫn: `/material/inbound`)
+- **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Inbound` (Đường dẫn: `/material/inbound`)
 - **Mục đích:** Tiếp nhận lô hàng giao từ nhà cung cấp, ghi nhận số lượng thực tế nhận được theo từng mã `MATERIAL PO#`, gắn vị trí kệ kho và cộng tồn vào hệ thống.
 
 #### A. Bảng nút bấm tác vụ
@@ -338,7 +338,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ---
 
 ### 4.4. Xuất kho Cấp phát Sản xuất (`MATERIAL › Outbound`)
-- **Breadcrumb:** `MATERIAL ▶ Outbound` (Đường dẫn: `/material/Outbound`)
+- **Đường dẫn Menu (Breadcrumb):** `MATERIAL ▶ Outbound` (Đường dẫn: `/material/Outbound`)
 - **Mục đích:** Xuất cấp nguyên phụ liệu từ kho cho các chuyền may hoặc xưởng cắt theo lệnh sản xuất.
 
 #### A. Bảng nút bấm tác vụ
@@ -352,7 +352,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ## 5. PHÂN HỆ 3: PRODUCTION - KẾ HOẠCH SẢN XUẤT & GIÁM SÁT CHUYỀN
 
 ### 5.1. Lập Lịch Sản xuất & Xếp Chuyền (`PRODUCTION › Schedule-Manage`)
-- **Breadcrumb:** `PRODUCTION ▶ Schedule-Manage` (Đường dẫn: `/Production/ScheduleManage`)
+- **Đường dẫn Menu (Breadcrumb):** `PRODUCTION ▶ Schedule-Manage` (Đường dẫn: `/Production/ScheduleManage`)
 - **Mục đích:** Phân bổ các đơn hàng `NEO PO#` vào từng chuyền may (Line), xác định ngày bắt đầu - ngày kết thúc, giao chỉ tiêu sản lượng và in mã QR công đoạn (Bundle Tag / Travel Ticket).
 
 #### A. Bảng nút bấm tác vụ
@@ -381,7 +381,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ---
 
 ### 5.2. Bảng Giám sát Năng suất Từng Giờ (`PRODUCTION › Dashboard-Table`)
-- **Breadcrumb:** `PRODUCTION ▶ Dashboard-Table` (Đường dẫn: `/Production/DashboardTable`)
+- **Đường dẫn Menu (Breadcrumb):** `PRODUCTION ▶ Dashboard-Table` (Đường dẫn: `/Production/DashboardTable`)
 - **Mục đích:** Màn hình điều hành tác nghiệp thời gian thực của Quản đốc xưởng và Tổ trưởng chuyền. Giám sát chi tiết sản lượng đạt được của từng chuyền may qua từng giờ làm việc trong ngày (DT1 đến DT8 + Tăng ca), phát hiện ngay hiện tượng nghẽn chuyền hoặc tỷ lệ phế phẩm tăng cao.
 
 #### A. Bộ điều khiển đầu trang
@@ -440,7 +440,7 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 ## 8. PHÂN HỆ 6: CODE - MASTER DATA (DANH MỤC DÙNG CHUNG)
 
 ### 8.1. Quản lý Danh mục Nguyên phụ liệu gốc (`CODE › R/M`)
-- **Breadcrumb:** `CODE ▶ R/M` (Đường dẫn: `/code/rm`)
+- **Đường dẫn Menu (Breadcrumb):** `CODE ▶ R/M` (Đường dẫn: `/code/rm`)
 - **Mục đích:** Đây là **Từ điển Master Data nguyên phụ liệu dùng chung cho toàn bộ nhà máy**. Mọi loại vải chính, vải lót, chỉ may, khóa kéo, nhãn mác, băng dính hay thùng carton trước khi được đưa vào Định mức BOM hoặc Đặt mua đều phải được khai báo mã chuẩn tại màn hình này.
 
 #### A. Quy tắc phân nhóm vật tư (Category Code)
