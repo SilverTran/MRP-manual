@@ -102,15 +102,15 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 #### A. Bảng giải thích chi tiết các nút bấm
 | Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
-| **+ Add PO** | Xanh lá (`#28a745`) | Thanh công cụ trái | Mở modal nhập thủ công đơn hàng mới | Khi có đơn hàng mới từ khách hàng cần tạo mã NEO PO# đơn chiếc |
-| **Add PO (Excel)** | Xanh dương (`#17a2b8`) | Cạnh nút Add PO | Mở giao diện tải lên file Excel để nhập hàng loạt PO | Khi tiếp nhận đơn hàng lớn gồm nhiều mã PO / hợp đồng từ Buyer |
-| **Template** | Vàng cam (`#ffc107`) | Thanh công cụ | Tải file mẫu Excel chuẩn để điền đơn hàng | Khi cần chuẩn bị dữ liệu Excel trước khi import vào hệ thống |
+| **+ Add PO** | Xanh lá | Thanh công cụ trái | Mở modal nhập thủ công đơn hàng mới | Khi có đơn hàng mới từ khách hàng cần tạo mã NEO PO# đơn chiếc |
+| **Add PO (Excel)** | Xanh dương | Cạnh nút Add PO | Mở giao diện tải lên file Excel để nhập hàng loạt PO | Khi tiếp nhận đơn hàng lớn gồm nhiều mã PO / hợp đồng từ Buyer |
+| **Template** | Vàng cam | Thanh công cụ | Tải file mẫu Excel chuẩn để điền đơn hàng | Khi cần chuẩn bị dữ liệu Excel trước khi import vào hệ thống |
 | **ACTIVE / ARCHIVE / ALL** | Dropdown viền xám | Giữa thanh công cụ | Lọc trạng thái đơn hàng (Đang chạy, Đã lưu trữ, Tất cả) | Dùng để lọc nhanh danh sách đơn hàng cần xử lý |
-| **Search** | Xám đen (`#343a40`) | Cạnh ô tìm kiếm | Thực thi tìm kiếm theo từ khóa đã gõ | Khi cần tìm theo mã NEO PO#, Style, Buyer, Color |
-| **btnDisplayUI** (Bánh răng) | Xanh ngọc (`#17a2b8`) | Góc phải công cụ | Tùy biến ẩn/hiển thị các cột trên bảng dữ liệu | Khi cần thu gọn màn hình để chỉ xem các cột trọng tâm |
-| **D/L AR** | Vàng cam (`#ffc107`) | Tiêu đề cột thao tác | Tải xuống báo cáo kế toán / tiến độ các PO được tick chọn | Khi cần kết xuất dữ liệu đối soát tiến độ và tài chính |
+| **Search** | Xám đen | Cạnh ô tìm kiếm | Thực thi tìm kiếm theo từ khóa đã gõ | Khi cần tìm theo mã NEO PO#, Style, Buyer, Color |
+| **btnDisplayUI** (Bánh răng) | Xanh ngọc | Góc phải công cụ | Tùy biến ẩn/hiển thị các cột trên bảng dữ liệu | Khi cần thu gọn màn hình để chỉ xem các cột trọng tâm |
+| **D/L AR** | Vàng cam | Tiêu đề cột thao tác | Tải xuống báo cáo kế toán / tiến độ các PO được tick chọn | Khi cần kết xuất dữ liệu đối soát tiến độ và tài chính |
 | **ARCHIVE** | Xám viền | Mỗi dòng đơn hàng | Chuyển đơn hàng vào trạng thái lưu trữ (hoàn tất) | Khi PO đã hoàn thành xuất hàng và chốt thanh toán |
-| **DEL** | Đỏ (`#dc3545`) | Mỗi dòng đơn hàng | Xóa đơn hàng khỏi hệ thống | Chỉ dùng khi tạo nhầm đơn hàng (chưa phát sinh BOM/Mua hàng) |
+| **DEL** | Đỏ | Mỗi dòng đơn hàng | Xóa đơn hàng khỏi hệ thống | Chỉ dùng khi tạo nhầm đơn hàng (chưa phát sinh BOM/Mua hàng) |
 | **COPY** | Xanh dương | Mỗi dòng đơn hàng | Sao chép thông tin đơn hàng để tạo PO tương tự | Khi có đơn hàng lặp lại quy cách với PO cũ |
 
 #### B. Cấu trúc các cột dữ liệu
@@ -149,10 +149,10 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 #### A. Bảng nút bấm tác vụ
 | Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
-| **Upload BOM** | Xanh lá (`#28a745`) | Thanh công cụ | Tải file Excel BOM kỹ thuật lên hệ thống | Khi phòng Kỹ thuật/R&D đã hoàn thiện bảng BOM trên file mẫu |
-| **Template BOM** | Vàng cam (`#ffc107`) | Thanh công cụ | Tải file Excel mẫu BOM trắng tiêu chuẩn | Khi cần mẫu file để nhập định mức sản phẩm mới |
+| **Upload BOM** | Xanh lá | Thanh công cụ | Tải file Excel BOM kỹ thuật lên hệ thống | Khi phòng Kỹ thuật/R&D đã hoàn thiện bảng BOM trên file mẫu |
+| **Template BOM** | Vàng cam | Thanh công cụ | Tải file Excel mẫu BOM trắng tiêu chuẩn | Khi cần mẫu file để nhập định mức sản phẩm mới |
 | **D/L** (Download) | Vàng | Header cột tác vụ | Xuất các bản ghi BOM đã chọn ra file Excel | Khi cần gửi bảng BOM cho Merchandiser hoặc khách hàng duyệt |
-| **DEL** (Delete) | Đỏ (`#dc3545`) | Header cột tác vụ | Xóa hàng loạt các BOM được tick chọn | Khi muốn xóa các bản nháp BOM không sử dụng |
+| **DEL** (Delete) | Đỏ | Header cột tác vụ | Xóa hàng loạt các BOM được tick chọn | Khi muốn xóa các bản nháp BOM không sử dụng |
 | **MANAGE** | Xanh ngọc / Cyan | Cột thao tác từng dòng | Mở trang biên tập chi tiết định mức BOM | Bấm để vào màn hình cấu hình chi tiết vật tư của mã hàng |
 
 #### B. Cấu trúc các cột bảng BOM-List
@@ -196,14 +196,14 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 | Tên Nút Bấm / Checkbox | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
 | **Checkbox [ ] EDIT** | Ô checkbox viền xanh | Toolbar đầu trang | **Mở khóa toàn bộ bảng BOM sang chế độ chỉnh sửa (Edit Mode)** | **Bắt buộc tick đầu tiên** nếu muốn thêm vật tư, sửa CONS, sửa giá hoặc xóa dòng. |
-| **✔ SAVE** | Xanh lá (`#28a745`) | Xuất hiện khi tick EDIT | Lưu toàn bộ danh mục và định mức vừa sửa vào hệ thống | Bắt buộc bấm sau khi đã hoàn tất chỉnh sửa định mức. |
-| **CANCEL** | Xám (`#6c757d`) | Xuất hiện khi tick EDIT | Hủy bỏ chế độ sửa, hoàn tác dữ liệu về ban đầu | Bấm khi không muốn lưu các thay đổi vừa gõ nhầm. |
-| **+ Add R/M** | Xanh lá (`#28a745`) | Header cột R/M Name (khi tick EDIT) | Mở popup tra cứu danh mục để gán thêm mã vật tư vào BOM | Bấm để bổ sung thêm vải, khóa, nhãn vào sản phẩm. |
+| **✔ SAVE** | Xanh lá | Xuất hiện khi tick EDIT | Lưu toàn bộ danh mục và định mức vừa sửa vào hệ thống | Bắt buộc bấm sau khi đã hoàn tất chỉnh sửa định mức. |
+| **CANCEL** | Xám | Xuất hiện khi tick EDIT | Hủy bỏ chế độ sửa, hoàn tác dữ liệu về ban đầu | Bấm khi không muốn lưu các thay đổi vừa gõ nhầm. |
+| **+ Add R/M** | Xanh lá | Header cột R/M Name (khi tick EDIT) | Mở popup tra cứu danh mục để gán thêm mã vật tư vào BOM | Bấm để bổ sung thêm vải, khóa, nhãn vào sản phẩm. |
 | **Checkbox [ ] chkAllItem** | Checkbox | Header cột DEL (khi tick EDIT) | Tự động tick chọn tất cả các dòng vật tư trong bảng | Dùng khi muốn chọn hàng loạt tất cả các dòng để xóa. |
 | **Checkbox [ ] chkItem** | Checkbox | Từng dòng cột DEL (khi tick EDIT) | Đánh dấu chọn riêng dòng vật tư này để xóa | Tick vào các dòng vật tư thừa, sau đó bấm nút đỏ DEL. |
-| **DEL** | Đỏ (`#dc3545`) | Header cột DEL (khi tick EDIT) | Xóa toàn bộ các dòng vật tư đã tick chọn | Bấm để thực thi xóa các dòng đã chọn. |
-| **NewBasic info / Basic info** | Xanh dương (`#007bff`) | Toolbar đầu trang (khi chưa tick EDIT) | Mở popup xem/sửa thông tin chung: Style, Buyer, Season, Color | Dùng khi cần cập nhật thông tin chung của sản phẩm. |
-| **D/L BOM** | Vàng cam (`#ffc107`) | Toolbar đầu trang (khi chưa tick EDIT) | Tải toàn bộ cấu trúc định mức BOM ra file Excel | Dùng khi cần gửi bảng BOM cho Merchandiser hoặc khách hàng duyệt. |
+| **DEL** | Đỏ | Header cột DEL (khi tick EDIT) | Xóa toàn bộ các dòng vật tư đã tick chọn | Bấm để thực thi xóa các dòng đã chọn. |
+| **NewBasic info / Basic info** | Xanh dương | Toolbar đầu trang (khi chưa tick EDIT) | Mở popup xem/sửa thông tin chung: Style, Buyer, Season, Color | Dùng khi cần cập nhật thông tin chung của sản phẩm. |
+| **D/L BOM** | Vàng cam | Toolbar đầu trang (khi chưa tick EDIT) | Tải toàn bộ cấu trúc định mức BOM ra file Excel | Dùng khi cần gửi bảng BOM cho Merchandiser hoặc khách hàng duyệt. |
 | **Color Selector** | Dropdown | Đầu trang | Chuyển đổi qua lại giữa các phiên bản màu sắc (Colorways) | Khi sản phẩm có nhiều màu (Đen, Hồng, Navy...) dùng chung khung BOM. |
 
 #### C. Cấu trúc bảng định mức chi tiết
@@ -323,11 +323,11 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 #### A. Bảng nút bấm tác vụ
 | Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
-| **UPLOAD EXCEL** | Xanh dương (`#007bff`) | Đầu trang | Nhập danh sách phiếu nhập kho nhanh từ file Excel | Khi nhập lô hàng lớn gồm hàng trăm mã phụ liệu cùng lúc |
-| **DOWNLOAD EXCEL** | Vàng cam (`#ffc107`) | Đầu trang | Tải file Excel mẫu phiếu nhập kho | Khi cần mẫu chuẩn để thủ kho làm biên bản nhận hàng |
-| **APPLYING INBOUND NOW** | Xanh lá (`#28a745`) | Đầu trang | **Chốt ghi sổ nhập kho chính thức** | **Bắt buộc bấm sau khi kiểm tra xong số lượng** để tăng tồn kho hệ thống |
-| **+ ADD** | Xanh lá (`#28a745`) | Cạnh cột PO# | Thêm dòng vật tư cần nhập | Khi nhập bổ sung từng mã hàng lẻ |
-| **DEL** | Đỏ (`#dc3545`) | Cột cuối mỗi dòng | Xóa dòng vật tư khỏi phiếu nhập | Khi nhập nhầm dòng hoặc nhà cung cấp chưa giao mã đó |
+| **UPLOAD EXCEL** | Xanh dương | Đầu trang | Nhập danh sách phiếu nhập kho nhanh từ file Excel | Khi nhập lô hàng lớn gồm hàng trăm mã phụ liệu cùng lúc |
+| **DOWNLOAD EXCEL** | Vàng cam | Đầu trang | Tải file Excel mẫu phiếu nhập kho | Khi cần mẫu chuẩn để thủ kho làm biên bản nhận hàng |
+| **APPLYING INBOUND NOW** | Xanh lá | Đầu trang | **Chốt ghi sổ nhập kho chính thức** | **Bắt buộc bấm sau khi kiểm tra xong số lượng** để tăng tồn kho hệ thống |
+| **+ ADD** | Xanh lá | Cạnh cột PO# | Thêm dòng vật tư cần nhập | Khi nhập bổ sung từng mã hàng lẻ |
+| **DEL** | Đỏ | Cột cuối mỗi dòng | Xóa dòng vật tư khỏi phiếu nhập | Khi nhập nhầm dòng hoặc nhà cung cấp chưa giao mã đó |
 
 #### B. Quy trình nhập kho 4 bước
 - **Bước 1:** Nhập mã `MATERIAL PO#` vào dòng nhập. Hệ thống sẽ tự động điền các thông tin: Nhà cung cấp, Tên vật tư, Quy cách, Số lượng đã đặt mua `ORDER QTY` và Số lượng còn thiếu `BALANCE QTY`.
@@ -358,10 +358,10 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 #### A. Bảng nút bấm tác vụ
 | Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
-| **Update Filter** | Xám đen (`#343a40`) | Đầu trang | Làm mới danh sách kế hoạch theo điều kiện lọc | Khi muốn tải lại bảng kế hoạch chuyền mới nhất |
-| **Settings** (Bánh răng) | Xanh ngọc (`#17a2b8`) | Đầu trang | Cấu hình ẩn/hiển thị cột bảng kế hoạch | Dùng khi cần giao diện làm việc tối giản |
-| **QR** | Xanh dương (`#007bff`) | Header cột QR | **In hàng loạt phiếu mã QR công đoạn sản xuất** | Bấm sau khi tick chọn các đơn hàng chuẩn bị đưa lên chuyền may |
-| **Schedule** | Xanh lá (`#28a745`) | Từng dòng đơn hàng | Mở hộp thoại phân bổ lịch sản xuất chi tiết | Bấm để chọn chuyền may (Line), ngày Start, ngày End, chỉ tiêu Qty |
+| **Update Filter** | Xám đen | Đầu trang | Làm mới danh sách kế hoạch theo điều kiện lọc | Khi muốn tải lại bảng kế hoạch chuyền mới nhất |
+| **Settings** (Bánh răng) | Xanh ngọc | Đầu trang | Cấu hình ẩn/hiển thị cột bảng kế hoạch | Dùng khi cần giao diện làm việc tối giản |
+| **QR** | Xanh dương | Header cột QR | **In hàng loạt phiếu mã QR công đoạn sản xuất** | Bấm sau khi tick chọn các đơn hàng chuẩn bị đưa lên chuyền may |
+| **Schedule** | Xanh lá | Từng dòng đơn hàng | Mở hộp thoại phân bổ lịch sản xuất chi tiết | Bấm để chọn chuyền may (Line), ngày Start, ngày End, chỉ tiêu Qty |
 
 #### B. Cấu trúc bảng kế hoạch sản xuất
 - `PO INFORMATION`: Mã NEO PO#, Khách hàng (BUYER), Style Code, Style Name, Màu, Số lượng đặt (ORDER QTY).
@@ -452,12 +452,12 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 #### B. Bảng nút bấm tác vụ trên màn hình CODE › R/M
 | Tên Nút Bấm | Màu Sắc | Vị Trí | Chức Năng Nghiệp Vụ | Khi Nào Cần Bấm? |
 | :--- | :--- | :--- | :--- | :--- |
-| **+ Add R/M** | Xanh lá (`#28a745`) | Thanh công cụ | Mở popup khai báo 01 mã nguyên phụ liệu mới vào từ điển | Khi có mã vải, phụ liệu mới về xưởng chưa từng có trong hệ thống. |
-| **UPLOAD EXCEL** | Xanh dương (`#007bff`) | Thanh công cụ | Nạp danh sách hàng loạt nguyên phụ liệu từ file Excel | Khi nhận dự án mới cần nhập hàng trăm mã phụ liệu cùng lúc vào Master Data. |
-| **Template R/M** | Vàng cam (`#ffc107`) | Thanh công cụ | Tải file mẫu Excel chuẩn để điền dữ liệu R/M | Trước khi bấm UPLOAD EXCEL, tải file mẫu này về để điền đúng định dạng cột. |
-| **D/L Excel** | Vàng cam (`#ffc107`) | Thanh công cụ | Xuất toàn bộ từ điển danh mục R/M ra tệp Excel | Dùng khi cần gửi bảng tra cứu mã vật tư cho phòng Mua hàng hoặc Kỹ thuật. |
+| **+ Add R/M** | Xanh lá | Thanh công cụ | Mở popup khai báo 01 mã nguyên phụ liệu mới vào từ điển | Khi có mã vải, phụ liệu mới về xưởng chưa từng có trong hệ thống. |
+| **UPLOAD EXCEL** | Xanh dương | Thanh công cụ | Nạp danh sách hàng loạt nguyên phụ liệu từ file Excel | Khi nhận dự án mới cần nhập hàng trăm mã phụ liệu cùng lúc vào Master Data. |
+| **Template R/M** | Vàng cam | Thanh công cụ | Tải file mẫu Excel chuẩn để điền dữ liệu R/M | Trước khi bấm UPLOAD EXCEL, tải file mẫu này về để điền đúng định dạng cột. |
+| **D/L Excel** | Vàng cam | Thanh công cụ | Xuất toàn bộ từ điển danh mục R/M ra tệp Excel | Dùng khi cần gửi bảng tra cứu mã vật tư cho phòng Mua hàng hoặc Kỹ thuật. |
 | **EDIT** | Xanh ngọc / Cyan | Từng dòng vật tư | Mở popup chỉnh sửa thông tin kỹ thuật, quy cách hoặc đơn giá chuẩn | Khi cần sửa Tên, Đơn vị tính (YDS/M/PCS), Nhà cung cấp hoặc Standard Price. |
-| **DEL** | Đỏ (`#dc3545`) | Từng dòng vật tư | Xóa mã nguyên phụ liệu khỏi hệ thống | Chỉ xóa được khi mã R/M này **chưa từng được đưa vào bất kỳ BOM nào**. |
+| **DEL** | Đỏ | Từng dòng vật tư | Xóa mã nguyên phụ liệu khỏi hệ thống | Chỉ xóa được khi mã R/M này **chưa từng được đưa vào bất kỳ BOM nào**. |
 
 #### C. Cấu trúc thông tin bắt buộc khi khai báo mã R/M mới
 - `Category`: F (Fabric), T (Trim), P (Packing) hoặc O (Other).
@@ -491,14 +491,14 @@ Bảng dữ liệu được tổ chức theo 6 khối nghiệp vụ chuẩn qu�
 
 Hệ thống tuân thủ quy chuẩn mã màu Bootstrap chuẩn hóa để người dùng nhận diện ngay bản chất thao tác:
 
-| Quy Chuẩn Màu Sắc | Mã Màu Hex | Loại Nút Bấm Thực Tế | Ý Nghĩa Nghiệp Vụ | Lưu Ý Quan Trọng |
-| :--- | :--- | :--- | :--- | :--- |
-| **XANH LÁ CÂY** | `#28a745` | `+ Add PO`, `Upload BOM`, `SAVE`, `MAKE PO`, `APPLYING INBOUND NOW`, `APPLYING OUTBOUND NOW`, `Schedule` | **Tạo mới / Lưu / Thực thi / Chốt sổ** | Đây là các nút làm phát sinh hoặc xác nhận thay đổi dữ liệu chính thức vào hệ thống. |
-| **XANH DƯƠNG** | `#007bff` | `NewBasic info`, `UPLOAD EXCEL`, `QR`, `COPY` | **Mở biểu mẫu / Nhập tệp / In ấn** | Dùng để mở popup khai báo, đọc file mẫu hoặc kích hoạt in mã QR công đoạn. |
-| **XANH NGỌC (TEAL)** | `#17a2b8` | `btnDisplayUI`, `Settings`, `MANAGE` | **Tùy biến hiển thị / Quản trị chi tiết** | Mở bảng quản trị chi tiết của dòng hoặc bật tắt ẩn/hiển thị các cột của bảng. |
-| **VÀNG CAM** | `#ffc107` | `Template`, `Template BOM`, `DOWNLOAD EXCEL`, `D/L AR` | **Tải mẫu tệp / Xuất báo cáo dữ liệu** | An toàn 100%, chỉ tải file dữ liệu về máy cá nhân, không làm thay đổi hệ thống. |
-| **ĐỎ NGUY HIỂM** | `#dc3545` | `DEL`, `DEL PO`, `RESET` | **Xóa bản ghi / Hủy bỏ đơn mua / Xóa dòng** | **CỰC KỲ CẨN TRỌNG!** Dữ liệu sau khi xóa sẽ không thể khôi phục. Chỉ bấm khi có phê duyệt. |
-| **XÁM ĐEN** | `#343a40` | `Search`, `Update Filter`, `Refresh` | **Tìm kiếm / Làm mới số liệu** | Giúp tải lại trạng thái dữ liệu mới nhất mà các người dùng khác vừa cập nhật. |
+| Màu Sắc Nút Bấm | Các Nút Thực Tế Điển Hình | Ý Nghĩa Nghiệp Vụ | Lưu Ý Quan Trọng |
+| :--- | :--- | :--- | :--- |
+| **XANH LÁ** | `+ Add PO`, `Upload BOM`, `SAVE`, `MAKE PO`, `APPLYING INBOUND NOW`, `APPLYING OUTBOUND NOW`, `Schedule` | **Tạo mới / Lưu / Thực thi / Chốt sổ** | Đây là các nút làm phát sinh hoặc xác nhận thay đổi dữ liệu chính thức vào hệ thống. |
+| **XANH DƯƠNG** | `NewBasic info`, `UPLOAD EXCEL`, `QR`, `COPY`, `PRINT PO` | **Mở biểu mẫu / Nhập tệp / In ấn** | Dùng để mở popup khai báo, đọc file mẫu hoặc kích hoạt in ấn / tem mã QR công đoạn. |
+| **XANH NGỌC** | `btnDisplayUI`, `Settings`, `MANAGE`, `EDIT` | **Tùy biến hiển thị / Quản trị chi tiết** | Mở bảng quản trị chi tiết của dòng hoặc bật tắt ẩn/hiển thị các cột của bảng. |
+| **VÀNG CAM** | `Template`, `Template BOM`, `DOWNLOAD EXCEL`, `D/L AR`, `D/L PO` | **Tải mẫu tệp / Xuất báo cáo dữ liệu** | An toàn 100%, chỉ tải file dữ liệu về máy cá nhân, không làm thay đổi hệ thống. |
+| **ĐỎ NGUY HIỂM** | `DEL`, `DEL PO`, `RESET`, `CANCEL PO` | **Xóa bản ghi / Hủy bỏ đơn mua / Xóa dòng** | **CỰC KỲ CẨN TRỌNG!** Dữ liệu sau khi xóa sẽ không thể khôi phục. Chỉ bấm khi có phê duyệt. |
+| **XÁM ĐEN** | `Search`, `Update Filter`, `Refresh` | **Tìm kiếm / Làm mới số liệu** | Giúp tải lại trạng thái dữ liệu mới nhất mà các người dùng khác vừa cập nhật. |
 
 ---
 
