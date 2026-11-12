@@ -167,14 +167,16 @@ Hệ thống NEOBAGS ERP/MRP vận hành theo chu trình sản xuất công nghi
 1. **Bước 1 (Chuẩn bị file mẫu):** Bấm nút màu vàng cam **`Template BOM`** trên thanh công cụ để tải file Excel mẫu chuẩn trắng về máy tính. Điền đầy đủ thông tin: Mã khách hàng `Buyer`, Mã kiểu dáng `Style Code`, Tên sản phẩm `Style Name`, Tên phối màu `Color`, Phiên bản `Revision` (`V_1`, `V_2`, `FINAL`...), danh mục `R/M Code`, định mức tiêu hao `Cons`, đơn vị tính `Unit`, đơn giá `U/Price` và loại tiền `Currency`.
 2. **Bước 2 (Tải file lên hệ thống):** Tại màn hình `F/G ▶ BOM-List`, nhấn nút màu xanh lá **`Upload BOM`** trên thanh công cụ và chọn file Excel vừa chuẩn bị.
 3. **Bước 3 (Giao diện Xem Trước BOM Preview xuất hiện):** Hệ thống tự động phân tích cú pháp (parse) file và mở giao diện cửa sổ/bảng **BOM Preview** để đối soát trước khi ghi dữ liệu chính thức vào CSDL.
-4. **Bước 4 (Chỉnh sửa trực tiếp một số thông tin ngay trên màn hình Preview - Inline Editing):**
-   - **Tính năng sửa trực tiếp:** Người dùng **không bắt buộc phải quay lại sửa file Excel** nếu chỉ có các điều chỉnh nhỏ. Giao diện xem trước cho phép click sửa trực tiếp:
-     - **Thông tin chung:** Nhấp vào ô để sửa phiên bản `Revision` (ví dụ đổi từ `V_1` sang `FINAL`), phối màu `Color`, hoặc ghi chú kỹ thuật `Remark`.
-     - **Định mức & Giá từng dòng:** Nhấp trực tiếp vào ô số liệu tại cột `CONS` để sửa định mức tiêu hao, hoặc cột `U/PRICE` để cập nhật đơn giá mua mới mà không cần mở lại file Excel.
+4. **Bước 4 (Đối soát chi tiết định mức & Quy tắc không thể sửa trực tiếp):**
+   - **Quy tắc hệ thống:** Giao diện xem trước là chế độ **Chỉ xem (Read-only Preview)**, **KHÔNG cho phép chỉnh sửa trực tiếp** trên các ô dữ liệu để bảo vệ tính toàn vẹn. Người dùng rà soát kỹ:
+     - **Header Info:** Kiểm tra đúng `Buyer`, `Style Code`, `Style Name`, `Color` và phiên bản `Revision`.
+     - **Danh mục R/M:** Đảm bảo đủ các dòng vải (Fabric), phụ liệu may (Trim), và vật tư đóng gói (Packing).
+     - **Định mức (CONS):** Kiểm tra kỹ các số thập phân (tránh lỗi định dạng dấu chấm/phẩy của Excel).
+     - **Đơn giá (U/PRICE) & Loại tiền:** Đối chiếu đơn giá đàm phán mua và loại tiền tệ (USD/VND).
 5. **Bước 5 (Kiểm tra cột Trạng thái đối chiếu mã R/M & Nạp lại file khác tại chỗ):**
    - 🟢 **Dòng báo MATCH (Khớp / Màu xanh):** Mã vật tư `R/M Code` đã tồn tại chuẩn trong Danh mục gốc Master Data (`CODE ▶ R/M`). Dòng này hợp lệ và sẵn sàng import.
    - 🔴 **Dòng báo NOT MATCH / NOT FOUND (Lỗi / Màu đỏ):** Mã vật tư trong file Excel **chưa từng được khai báo** trong `CODE ▶ R/M` hoặc bị gõ sai chính tả.
-   - 🔁 **Không cần nhấn Cancel – Có thể import lại ngay file khác tại chỗ:** Nếu phát hiện tải nhầm file hoặc có nhiều dòng cần thay đổi từ Excel, người dùng **không cần bấm Cancel để thoát ra ngoài**. Ngay trong giao diện xem trước có sẵn nút/ô chọn tệp để **chọn và import lại ngay 1 file Excel khác**, bảng xem trước sẽ tự động làm mới tức thì.
+   - 🔁 **Không cần nhấn Cancel – Có thể import lại ngay file khác tại chỗ:** Nếu phát hiện sai số liệu, nhầm file hoặc có mã vật tư báo lỗi đỏ, người dùng **không cần bấm Cancel để thoát ra ngoài**. Chỉ cần sửa lại file Excel trên máy (hoặc sang `CODE ▶ R/M` khai báo mã mới), sau đó dùng nút/ô chọn tệp có sẵn ngay trong giao diện xem trước để **chọn và import lại ngay 1 file Excel khác**, bảng xem trước sẽ tự động làm mới tức thì.
 6. **Bước 6 (Chốt ghi nhận chính thức):**
    - *Nếu toàn bộ dữ liệu chuẩn xác và 100% dòng đạt trạng thái MATCH:* Nhấn nút màu xanh lá **`SAVE`** / **`IMPORT`** trên giao diện xem trước để ghi nhận bảng BOM chính thức vào hệ thống.
    - *Nếu muốn hủy bỏ toàn bộ việc tạo BOM:* Bấm nút màu xám **`CANCEL`** để đóng cửa sổ mà không lưu bản ghi rác nào.

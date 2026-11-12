@@ -1776,7 +1776,7 @@
               <li class="step-item">
                 <span class="step-num">BƯỚC 3:</span>
                 <div class="step-text">
-                  <b>Giao diện Xem Trước (BOM Preview) xuất hiện:</b> Hệ thống tự động phân tích cú pháp (parse) file Excel và mở cửa sổ <b>BOM Preview / Verification Table</b>. Giao diện này cung cấp đầy đủ công cụ để bạn đối soát, sửa lỗi trực tiếp tại chỗ hoặc nạp lại tệp khác:
+                  <b>Giao diện Xem Trước (BOM Preview) xuất hiện:</b> Hệ thống tự động phân tích cú pháp (parse) file Excel và mở cửa sổ <b>BOM Preview / Verification Table</b>. Giao diện này hiển thị ở chế độ <b>Chỉ xem đối soát (Read-only Preview)</b> để bạn kiểm tra toàn diện dữ liệu định mức trước khi ghi vào cơ sở dữ liệu:
                   <ul style="margin: 0.35rem 0 0 1.2rem; font-size: 0.88rem; line-height: 1.6;">
                     <li><b>Thông tin chung (Header Info):</b> Hiển thị <code>Buyer</code>, <code>Style Code</code>, <code>Style Name</code>, <code>Color</code> và phiên bản <code>Revision</code>.</li>
                     <li><b>Bảng danh mục vật tư chi tiết:</b> Hiển thị toàn bộ các dòng nguyên phụ liệu cùng định mức <code>CONS</code>, đơn vị tính <code>UNIT</code>, đơn giá <code>U/PRICE</code>, nhà cung cấp <code>SUPPLIER</code>.</li>
@@ -1787,11 +1787,13 @@
               <li class="step-item">
                 <span class="step-num">BƯỚC 4:</span>
                 <div class="step-text">
-                  <b>Chỉnh sửa trực tiếp một số thông tin ngay trên giao diện xem trước (Inline Editing):</b><br>
-                  <span style="color: #38bdf8; font-weight: 600;">💡 Tính năng linh hoạt:</span> Bạn <b>không bắt buộc phải quay lại sửa file Excel</b> nếu chỉ có các sai sót hoặc điều chỉnh nhỏ. Giao diện xem trước cho phép click sửa trực tiếp:
+                  <b>Đối soát chi tiết định mức & Lưu ý về chỉnh sửa:</b><br>
+                  <span style="color: #fbbf24; font-weight: 600;">⚠️ Quy tắc hệ thống:</span> Giao diện xem trước <b>KHÔNG cho phép chỉnh sửa trực tiếp (No inline editing)</b> trên các ô dữ liệu. Bảng preview chỉ dùng để kiểm tra tính hợp lệ.<br>
+                  Người dùng tiến hành đối soát kỹ:
                   <ul style="margin: 0.35rem 0 0 1.2rem; font-size: 0.88rem; line-height: 1.6;">
-                    <li><b>Sửa trực tiếp các trường thông tin chung:</b> Nhấp chuột vào ô để hiệu chỉnh phiên bản <code>Revision</code> (ví dụ đổi từ <code>V_1</code> sang <code>FINAL</code>), tên phối màu <code>Color</code>, hoặc bổ sung ghi chú kỹ thuật <code>Remark</code>.</li>
-                    <li><b>Sửa trực tiếp định mức & Đơn giá từng dòng:</b> Nhấp trực tiếp vào ô số liệu tại cột <code>CONS</code> để sửa lại số định mức tiêu hao, hoặc cột <code>U/PRICE</code> để cập nhật giá mua mới mà không cần mở lại file Excel.</li>
+                    <li><b>Thông tin chung:</b> Rà soát <code>Buyer</code>, <code>Style Code</code>, <code>Style Name</code>, <code>Color</code> và phiên bản <code>Revision</code> (đúng mã hàng, tránh ghi đè nhầm bản cũ).</li>
+                    <li><b>Danh mục vật tư & Định mức CONS:</b> Soát đủ các dòng vải (Fabric), phụ liệu (Trim), đóng gói (Packing). Kiểm tra kỹ số thập phân tại cột <code>CONS</code> (tránh lỗi lệch dấu chấm/phẩy của Excel).</li>
+                    <li><b>Đơn giá & Loại tiền:</b> Kiểm tra cột <code>U/PRICE</code> và <code>CURRENCY</code> (USD/VND).</li>
                   </ul>
                 </div>
               </li>
@@ -1800,9 +1802,9 @@
                 <div class="step-text">
                   <b>Kiểm tra cột Trạng thái R/M & Nạp lại file khác ngay trong giao diện xem trước:</b>
                   <ul style="margin: 0.35rem 0 0 1.2rem; font-size: 0.88rem; line-height: 1.6;">
-                    <li><span style="color: #4ade80; font-weight: bold;">🟢 Dòng báo MATCH / KHỚP (Màu xanh):</span> Mã vật tư <code>R/M Code</code> đã tồn tại chuẩn trong Danh mục gốc Master Data (<code>CODE ▶ R/M</code>). Dòng này hợp lệ và sẵn sàng import.</li>
+                    <li><span style="color: #4ade80; font-weight: bold;">🟢 Dòng báo MATCH / KHỚP (Màu xanh):</span> Mã <code>R/M Code</code> đã tồn tại chuẩn trong Danh mục gốc Master Data (<code>CODE ▶ R/M</code>), hợp lệ và sẵn sàng import.</li>
                     <li><span style="color: #f87171; font-weight: bold;">🔴 Dòng báo NOT MATCH / NOT FOUND (Màu đỏ cảnh báo):</span> Mã vật tư trong file Excel chưa từng được khai báo trong hệ thống hoặc bị gõ sai ký tự.</li>
-                    <li><b>🔁 Không cần nhấn Cancel – Có thể chọn nạp lại file khác ngay tại đây:</b> Nếu file Excel tải lên bị nhầm tệp, thiếu nhiều dòng hoặc có quá nhiều mã vật tư cần chuẩn hóa lại từ Excel, bạn <b>không cần thiết phải nhấn Cancel để thoát ra</b>. Ngay trên giao diện xem trước có sẵn nút/ô chọn tệp để bạn <b>chọn và import lại ngay 1 file Excel khác</b>, hệ thống sẽ tự động phân tích và làm mới toàn bộ bảng preview tức thì.</li>
+                    <li><b>🔁 Không cần nhấn Cancel – Có thể chọn nạp lại file khác ngay tại đây:</b> Nếu phát hiện sai số liệu, nhầm file hoặc có mã vật tư báo đỏ, bạn <b>không cần thiết phải nhấn Cancel để thoát ra</b>. Chỉ cần sửa lại file Excel trên máy (hoặc sang <code>CODE ▶ R/M</code> khai báo mã mới), sau đó dùng nút/ô chọn tệp có sẵn ngay trên giao diện xem trước để <b>chọn và import lại ngay 1 file Excel khác</b>. Hệ thống sẽ tự động nạp lại và làm mới toàn bộ bảng preview tức thì.</li>
                   </ul>
                 </div>
               </li>
@@ -1810,8 +1812,8 @@
                 <span class="step-num">BƯỚC 6:</span>
                 <div class="step-text">
                   <b>Chốt ghi nhận chính thức:</b><br>
-                  • Sau khi đã đối chiếu kỹ lưỡng (hoặc đã hiệu chỉnh trực tiếp xong các trường cần thiết) và 100% dòng đạt trạng thái hợp lệ, <b>nhấn nút màu xanh lá <span class="btn-badge btn-success">SAVE</span> / <span class="btn-badge btn-success">IMPORT</span></b> trên giao diện xem trước để ghi nhận bảng BOM chính thức vào hệ thống.<br>
-                  • Chỉ sử dụng nút <span class="btn-badge btn-secondary">CANCEL</span> khi bạn muốn hủy bỏ hoàn toàn việc tạo bảng định mức đợt này.
+                  • Sau khi đã đối chiếu chuẩn xác 100% và tất cả các dòng đều đạt trạng thái MATCH, <b>nhấn nút màu xanh lá <span class="btn-badge btn-success">SAVE</span> / <span class="btn-badge btn-success">IMPORT</span></b> trên giao diện xem trước để hệ thống ghi nhận bảng BOM chính thức vào CSDL.<br>
+                  • Chỉ sử dụng nút <span class="btn-badge btn-secondary">CANCEL</span> khi bạn muốn hủy bỏ hoàn toàn phiên làm việc import này.
                 </div>
               </li>
             </ul>
@@ -3327,12 +3329,12 @@
         ],
         answer: '📋 <b>HƯỚNG DẪN THAO TÁC TRÊN GIAO DIỆN XEM TRƯỚC (BOM PREVIEW) KHI IMPORT FILE EXCEL:</b><br><br>' +
           'Sau khi bấm nút xanh lá <b>Upload BOM</b> tại màn hình <code>F/G ▶ BOM-List</code> và chọn file Excel, hệ thống sẽ mở cửa sổ <b>BOM Preview</b> để bạn đối soát:<br><br>' +
-          '1. <b>Sửa trực tiếp thông tin ngay tại chỗ (Inline Editing):</b> Bạn <b>không bắt buộc phải quay lại sửa file Excel</b> nếu chỉ có sai sót nhỏ. Có thể nhấp chuột trực tiếp vào ô để sửa phiên bản <code>Revision</code>, <code>Color</code>, định mức <code>CONS</code> hoặc đơn giá <code>U/PRICE</code> ngay trên bảng xem trước.<br>' +
-          '2. <b>Không cần bấm Cancel – Có thể chọn nạp lại file khác ngay:</b> Nếu tải nhầm file hoặc muốn thay thế bằng file Excel khác, bạn có thể chọn và import lại ngay 1 file mới ngay trong giao diện xem trước mà không cần thoát ra ngoài.<br>' +
+          '1. <b>Quy tắc đối soát (Không thể sửa trực tiếp):</b> Bảng xem trước là chế độ <b>Chỉ xem (Read-only Preview)</b>, không cho phép gõ sửa trực tiếp trên giao diện để tránh rủi ro sai lệch dữ liệu. Bạn đối soát kỹ Buyer, Style Code, Revision, định mức CONS và đơn giá.<br>' +
+          '2. <b>Không cần bấm Cancel – Có thể import lại ngay file khác tại chỗ:</b> Nếu phát hiện sai số liệu hoặc có mã vật tư báo lỗi đỏ (Not Match), bạn <b>không cần bấm Cancel để thoát ra</b>. Chỉ cần sửa lại file Excel trên máy (hoặc sang <code>CODE ▶ R/M</code> tạo mã mới), sau đó dùng nút/ô chọn tệp có sẵn ngay trong giao diện xem trước để <b>chọn và import lại ngay 1 file Excel khác</b>, bảng preview sẽ tự động làm mới tức thì.<br>' +
           '3. <b>Kiểm tra cột Trạng thái R/M:</b><br>' +
           '   • 🟢 <b>MATCH:</b> Mã R/M đã có chuẩn trong Master Data (<code>CODE ▶ R/M</code>), hợp lệ.<br>' +
-          '   • 🔴 <b>NOT MATCH / NOT FOUND:</b> Mã R/M chưa có trong hệ thống hoặc gõ sai chính tả. Cần sửa lại mã hoặc chọn lại file mới đã chuẩn hóa.<br>' +
-          '4. <b>Chốt lưu:</b> Sau khi dữ liệu đã chuẩn xác, bấm nút màu xanh lá <b>SAVE / IMPORT</b> để ghi nhận chính thức vào hệ thống.',
+          '   • 🔴 <b>NOT MATCH / NOT FOUND:</b> Mã R/M chưa có trong hệ thống hoặc gõ sai chính tả. Cần nạp lại file đã chỉnh sửa đúng.<br>' +
+          '4. <b>Chốt lưu:</b> Khi toàn bộ dữ liệu đã chuẩn xác 100%, bấm nút màu xanh lá <b>SAVE / IMPORT</b> để ghi nhận chính thức vào hệ thống.',
         chips: ['Màn hình BOM-Manage', 'Checkbox EDIT trong BOM', 'Khai báo Code R/M', 'Tính toán nhu cầu Manage PO']
       },
       {
